@@ -1,13 +1,13 @@
 
 
-var port = process.env.PORT || 3000,
-    http = require('http'),
-    fs = require('fs'),
-    html = fs.readFileSync('consent.html');
+var port = process.env.PORT || 3000
+    // http = require('http'),
+    // fs = require('fs'),
+    // html = fs.readFileSync('consent.html');
 
-var log = function(entry) {
-    fs.appendFileSync('/tmp/sample-app.log', new Date().toISOString() + ' - ' + entry + '\n');
-};
+// var log = function(entry) {
+//     fs.appendFileSync('/tmp/sample-app.log', new Date().toISOString() + ' - ' + entry + '\n');
+// };
 
 
 
@@ -50,12 +50,12 @@ app.get('/', function(req, res) {
 // exports.add_consent = function(req, res) {
 // };
 
-app.get('/consent', consent.index);
-app.post('/add_consent', consent.add_hike);
+// app.get('/consent', consent.index);
+// app.post('/add_consent', consent.add_hike);
 
 
 
-app.listen(port, () => {
+app.listen(3000, () => {
     console.log("hello log");
 })
 
