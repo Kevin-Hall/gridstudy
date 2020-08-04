@@ -1,65 +1,61 @@
 
 
-var AWS = require('aws-sdk');
+// var AWS = require('aws-sdk');
+// const app = express();
+// app.use(express.static(__dirname + '/public'));
+//
+// var port = process.env.PORT || 3000,
+//     http = require('http'),
+//     fs = require('fs'),
+//     html = fs.readFileSync('consent.html');
+//
+//
+// var server = http.createServer(function (req, res) {
+//     if (req.method === 'POST') {
+//         var body = '';
+//
+//         req.on('data', function(chunk) {
+//             body += chunk;
+//         });
+//
+//         req.on('end', function() {
+//             if (req.url === '/') {
+//                 log('Received message: ' + body);
+//             } else if (req.url = '/scheduled') {
+//                 log('Received task ' + req.headers['x-aws-sqsd-taskname'] + ' scheduled at ' + req.headers['x-aws-sqsd-scheduled-at']);
+//             }
+//
+//             res.writeHead(200, 'OK', {'Content-Type': 'text/plain'});
+//             res.end();
+//         });
+//     } else {
+//         res.writeHead(200);
+//         res.write(html);
+//         res.end();
+//     }
+// });
+//
+//
+// // Listen on port 3000, IP defaults to 127.0.0.1
+// server.listen(port);
+//
+// // Put a friendly message on the terminal
+// console.log('Server running at http://127.0.0.1:' + port + '/');
+
+
+const express = require('express');
+const path = require('path');
 const app = express();
-app.use(express.static(__dirname + '/public'));
+const publicDirectoryPath = path.join(__dirname, '../public/')
+app.use(express.static(publicDirectoryPath))
 
-var port = process.env.PORT || 3000,
-    http = require('http'),
-    fs = require('fs'),
-    html = fs.readFileSync('consent.html');
-
-
-var server = http.createServer(function (req, res) {
-    if (req.method === 'POST') {
-        var body = '';
-
-        req.on('data', function(chunk) {
-            body += chunk;
-        });
-
-        req.on('end', function() {
-            if (req.url === '/') {
-                log('Received message: ' + body);
-            } else if (req.url = '/scheduled') {
-                log('Received task ' + req.headers['x-aws-sqsd-taskname'] + ' scheduled at ' + req.headers['x-aws-sqsd-scheduled-at']);
-            }
-
-            res.writeHead(200, 'OK', {'Content-Type': 'text/plain'});
-            res.end();
-        });
-    } else {
-        res.writeHead(200);
-        res.write(html);
-        res.end();
-    }
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/consent.html');
 });
 
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.get('/', function(req, res) {
-//     res.sendFile(path.join(__dirname + './consent.html'));
-// });
-
-// Listen on port 3000, IP defaults to 127.0.0.1
-server.listen(port);
-
-// Put a friendly message on the terminal
-console.log('Server running at http://127.0.0.1:' + port + '/');
-
-
-// const express = require('express');
-// const path = require('path');
-// const app = express();
-// const publicDirectoryPath = path.join(__dirname, '../public/')
-// app.use(express.static(publicDirectoryPath))
-//
-// app.get('/', function(req, res) {
-//     res.sendFile(path.join(__dirname + './consent.html'));
-// });
-//
-// app.listen(3000, () => {
-//     console.log("hello log");
-// })
+app.listen(3000, () => {
+    console.log("hello log");
+})
 
 // var port = process.env.PORT || 3000,
 //     http = require('http'),
@@ -103,6 +99,12 @@ console.log('Server running at http://127.0.0.1:' + port + '/');
 
 
 
+
+
+
+
+
+
 // const express = require('express');
 // const app = express();
 //
@@ -140,6 +142,16 @@ console.log('Server running at http://127.0.0.1:' + port + '/');
 // })
 
 
+
+
+
+
+
+
+
+
+
+
 // var AWS = require('aws-sdk');
 // var s3 = new AWS.S3();
 //
@@ -157,6 +169,10 @@ console.log('Server running at http://127.0.0.1:' + port + '/');
 //     }),
 //     CacheControl: 'public, max-age=86400'
 // }
+
+
+
+
 
 
 // s3.putObject(params, function(err, data) {
