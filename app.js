@@ -9,97 +9,55 @@ var log = function(entry) {
     fs.appendFileSync('/tmp/sample-app.log', new Date().toISOString() + ' - ' + entry + '\n');
 };
 
-var server = http.createServer(function (req, res) {
-    if (req.method === 'POST') {
-        var body = '';
 
-        req.on('data', function(chunk) {
-            body += chunk;
-        });
 
-        req.on('end', function() {
-            if (req.url === '/') {
-                log('Received message: ' + body);
-            } else if (req.url = '/scheduled') {
-                log('Received task ' + req.headers['x-aws-sqsd-taskname'] + ' scheduled at ' + req.headers['x-aws-sqsd-scheduled-at']);
-            }
 
-            res.writeHead(200, 'OK', {'Content-Type': 'text/plain'});
-            res.end();
-        });
-    } else {
-        res.writeHead(200);
-        res.write(html);
-        res.end();
-    }
+
+
+
+
+
+
+
+
+
+const express = require('express');
+const path = require('path');
+const app = express();
+
+
+// -- public keys
+
+var bucketName = "BUCKET_NAME";
+var bucketRegion = "REGION";
+var IdentityPoolId = "IDENTITY_POOL_ID";
+
+var consent = require('./public/consent');
+
+//app.use(express.static('public'));
+
+//app.use(express.static(path.join(__dirname, '/')));
+//app.use('/public', express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/public/consent.html'));
 });
 
-// Listen on port 3000, IP defaults to 127.0.0.1
-server.listen(port);
-
-// Put a friendly message on the terminal
-console.log('Server running at http://127.0.0.1:' + port + '/');
-
-
-
-
-
-
-
-
-
-
-
-
-// const express = require('express');
-// const path = require('path');
-// const app = express();
+// exports.index = function(req, res) {
+//  res.render('consent', {title: 'consent page'});
+// };
 //
-//
-// // -- public keys
-//
-// var bucketName = "BUCKET_NAME";
-// var bucketRegion = "REGION";
-// var IdentityPoolId = "IDENTITY_POOL_ID";
-//
-// var consent = require('./public/consent');
-//
-// //app.use(express.static('public'));
-//
-// //app.use(express.static(path.join(__dirname, '/')));
-// //app.use('/public', express.static(path.join(__dirname, "public")));
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.get('/', function(req, res) {
-//     res.sendFile(path.join(__dirname + '/public/consent.html'));
-// });
-//
-// // exports.index = function(req, res) {
-// //  res.render('consent', {title: 'consent page'});
-// // };
-// //
-// // exports.add_consent = function(req, res) {
-// // };
-//
-// app.get('/consent', consent.index);
-// app.post('/add_consent', consent.add_hike);
+// exports.add_consent = function(req, res) {
+// };
+
+app.get('/consent', consent.index);
+app.post('/add_consent', consent.add_hike);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// app.listen(3000, () => {
-//     console.log("hello log");
-// })
+app.listen(port, () => {
+    console.log("hello log");
+})
 
 
 // var AWS = require('aws-sdk');
