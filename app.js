@@ -46,12 +46,12 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const publicDirectoryPath = path.join(__dirname, 'public')
-app.use(express.static(publicDirectoryPath))
+// const publicDirectoryPath = path.join(__dirname, 'public')
 
-app.get('/', function(req, res){
-    res.sendFile(__dirname + 'consent.html');
-});
+app.use(express.static('public'));
+app.get('/consent.html', function (req, res) {
+   res.sendFile( __dirname + "/" + "consent.html" );
+})
 
 app.listen(3000, () => {
     console.log('Server running at http://127.0.0.1:3000/');
