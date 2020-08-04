@@ -1,6 +1,6 @@
 
 
-var port = process.env.PORT || 3000
+//var port = process.env.PORT || 3000
     // http = require('http'),
     // fs = require('fs'),
     // html = fs.readFileSync('consent.html');
@@ -8,17 +8,6 @@ var port = process.env.PORT || 3000
 // var log = function(entry) {
 //     fs.appendFileSync('/tmp/sample-app.log', new Date().toISOString() + ' - ' + entry + '\n');
 // };
-
-
-
-
-
-
-
-
-
-
-
 
 
 const express = require('express');
@@ -40,7 +29,7 @@ var consent = require('./public/consent');
 //app.use('/public', express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/public/consent.html'));
+    res.sendFile(path.join(__dirname + './consent.html'));
 });
 
 // exports.index = function(req, res) {
@@ -55,9 +44,10 @@ app.get('/', function(req, res) {
 
 
 
-app.listen(3000, () => {
-    console.log("hello log");
-})
+app.listen(3000);
+// , () => {
+//     console.log("hello log");
+// })
 
 
 // var AWS = require('aws-sdk');
