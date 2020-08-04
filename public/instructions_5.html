@@ -1,0 +1,75 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Grids research</title>
+  <meta name="description" content="Grids research">
+  <meta name="" content="">
+
+  <link rel='stylesheet' href='./style.css' />
+  <script src="introduction.js"></script>
+  <script src="index.js"></script>
+
+</head>
+
+  <!-- <div id="myDIV"></div>
+
+  <p id="2">Click the “start” button when you are ready.<br>
+    <br>
+  Please determine which icon array, A (the left one) or B (the right one), has a greater percentage of black circles.<br>
+  <br>
+  Please respond as accurately and as fast as you can.<br>
+  <br>
+  The experiment will take approximately XX minutes.
+  </p> -->
+
+
+
+<!-- <section class = "s3" id="s3">
+  <button id="Next" onclick="go_to_experiment()">Start Experiment</button>
+</section> -->
+
+<body>
+  <div id="container">
+    <div id="header">
+      <p id="header_text_instruction">
+        <b>Experiment Instructions (4/4) </b>
+        <br>
+        <br>
+        Which has higher percentage black?
+      </p>
+    </div>
+    <div id="content">
+      <div id="left">
+        <img
+          class="instruction_imgs"
+          id="instruction_img_left"
+          src="Example4_A.png"
+          alt=""
+        />
+        <label id="icon_labelA">A</label>
+        <button id="L" onclick="wrong_answer(3)">Left</button>
+      </div>
+      <div id="right">
+        <img
+          class="instruction_imgs"
+          id="instruction_img_right"
+          src="Example4_B.png"
+          alt=""
+        />
+        <label id="icon_labelB">B</label>
+        <button id="R" onclick="right_answer(3)">Right</button>
+      </div>
+    </div>
+    <div id="footer">
+      <!-- <p id="1"><br>
+        In this example, A and B both have 100 circles. <br>A has 50% black circles while B has 25% black circles; thus you should choose A.
+      </p> -->
+      <button id="Next" onclick="go_to_fast_practice()">Next</button>
+      <p id="end_of_intruction_text" hidden>That's the end of the instructions. Click Next to try a couple of practice trials.</p>
+    </div>
+  </div>
+</body>
+</html>

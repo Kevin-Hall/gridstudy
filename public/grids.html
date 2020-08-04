@@ -1,0 +1,58 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Grids research</title>
+  <meta name="description" content="Grids research">
+  <meta name="Kevin" content="">
+
+  <link rel='stylesheet' href='./style.css' />
+
+  <script src="p5.min.js"></script>
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <div id="exp_container">
+    <div id="header">
+      <p id="exp_header_question"><br>Which has a higher <b>percentage</b> black?<br><br><br></p>
+    </div>
+    <div id="content">
+      <div id="left">
+        <img
+          class="exp_imgs"
+          id="l_img"
+          src="blank.svg"
+          alt=""
+        />
+        <button id="experiment_btn_left" onclick="leftImage()" hidden>Left (s)</button>
+      </div>
+      <div id="center_div">
+        <img
+          id="cross"
+          src="cross_cursor.png"
+          alt=""
+        />
+      </div>
+      <div id="right">
+        <img
+          class="exp_imgs"
+          id="r_img"
+          src="blank.svg"
+          alt=""
+        />
+        <button id="experiment_btn_right" onclick="rightImage()" hidden>Right (k)</button>
+      </div>
+    </div>
+    <div id="footer">
+
+      <button id="Begin" onclick="start()">Begin</button>
+      <button id="timer" onclick="finishBreak()" hidden></button>
+
+      <p id="end_of_intruction_text" hidden>This is the end of the experiment. <br><br>Please complete this survey regarding your experience to wrap up the study and get your credit. <br> https://weinberg.co1.qualtrics.com/jfe/form/SV_0p95kSFV2U5zUfH</p>
+    </div>
+  </div>
+</body>
+</html>

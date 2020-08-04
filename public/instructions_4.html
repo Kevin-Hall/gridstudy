@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Grids research</title>
+  <meta name="description" content="Grids research">
+  <meta name="" content="">
+
+  <link rel='stylesheet' href='./style.css' />
+  <script src="introduction.js"></script>
+  <script src="index.js"></script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="header">
+      <p id="header_text_instruction">
+        <b>Experiment Instructions (3/4) </b>
+        <br>
+        <br>
+        Which has higher percentage black?
+      </p>
+    </div>
+    <div id="content">
+      <div id="left">
+        <img
+          class="instruction_imgs"
+          id="2"
+          src="Example3_A.png"
+          alt=""
+        />
+        <label id="icon_label">A</label>
+        <button id="L" onclick="right_answer(2)">Left</button>
+      </div>
+      <div id="right">
+        <img
+          class="instruction_imgs"
+          id="2"
+          src="Example3_B.png"
+          alt=""
+        />
+        <label id="icon_label">B</label>
+        <button id="R" onclick="wrong_answer(2)">Right</button>
+      </div>
+    </div>
+    <div id="footer">
+      <p id="practiceResult"> </p>
+      <button id="Next" onclick="go_page_five()">Next</button>
+    </div>
+  </div>
+</body>
+</html>

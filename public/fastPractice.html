@@ -1,0 +1,62 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Grids research</title>
+  <meta name="description" content="Grids research">
+  <meta name="" content="">
+
+  <link href="StyleSheet.css" rel="stylesheet">
+  <script src="introduction.js"></script>
+  <script src="index.js"></script>
+
+</head>
+
+<body>
+  <div id="exp_container">
+    <div id="header">
+      <p id="fast_practice_instruction_p">
+        <b id="header_text_instruction">Practice</b>
+        <br><br>
+        Keep your eyes fixated on the cross in the middle of the screen throughout the experiment.<br><br>
+        Which has higher <b>percentage</b> black?
+      </p>
+    </div>
+    <div id="content">
+      <div id="left">
+        <img
+          class="exp_imgs"
+          id="left_img"
+          src="blank.svg"
+          alt=""
+        />
+        <button id="fast_lbtn" onclick="next_icon_grids()" hidden>Left <br>(or press s)<br></button>
+      </div>
+      <div id="right">
+        <img
+          class="exp_imgs"
+          id="right_img"
+          src="blank.svg"
+          alt=""
+        />
+        <button id="fast_rbtn" onclick="next_icon_grids()" hidden>Right <br>(or press k)<br></button>
+      </div>
+    </div>
+    <div id="footer">
+      <!-- <p id="1"><br>
+        In this example, A and B both have 100 circles. <br>A has 50% black circles while B has 25% black circles; thus you should choose A.
+      </p> -->
+      <button id="Begin" onclick="begin_fast_practice()">Begin</button>
+      <img
+        id="cross"
+        hidden
+        src="cross_cursor.png"
+        alt=""
+      />
+      <p id="end_of_intruction_text" hidden>That's the end of the practice trials. The next page will be the real experiment, start when you are ready.<br><br> This study will take approximately <b>45 minutes</b>.</p>
+    </div>
+  </div>
+</body>
+</html>
