@@ -41,8 +41,7 @@ if (cluster.isMaster) {
 
     // app.set('public', __dirname + '/public');
     // app.use(bodyParser.urlencoded({extended:false}));
-    const publicDirectoryPath = path.join(__dirname, '../public/')
-    app.use(express.static(publicDirectoryPath))
+    app.use(express.static(__dirname + '/public'));
 
     app.get('/', function(req, res) {
       res.sendFile(path.join(__dirname + './consent.html'));
