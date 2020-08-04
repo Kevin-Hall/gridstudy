@@ -38,11 +38,11 @@ if (cluster.isMaster) {
     var ddbTable =  process.env.STARTUP_SIGNUP_TABLE;
     var snsTopic =  process.env.NEW_SIGNUP_TOPIC;
     var app = express();
-    
+
     app.use(express.static(__dirname + '/public'));
 
     app.get('/', function(req, res) {
-      res.sendFile(path.join(__dirname + 'consent.html'));
+      res.sendFile(path.join(__dirname + './consent.html'));
     });
 
     // app.post('/signup', function(req, res) {

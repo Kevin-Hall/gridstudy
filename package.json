@@ -2,9 +2,10 @@
   "name": "grid_experiment",
   "version": "1.0.0",
   "description": "grid experiment",
-  "main": "index.js",
+  "main": "introduction.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "introduction.js"
   },
   "author": "Kevin Hall",
   "license": "ISC",
