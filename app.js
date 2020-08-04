@@ -39,12 +39,13 @@ if (cluster.isMaster) {
     var snsTopic =  process.env.NEW_SIGNUP_TOPIC;
     var app = express();
 
-    app.set('public', __dirname + '/public');
-    app.use(bodyParser.urlencoded({extended:false}));
+    // app.set('public', __dirname + '/public');
+    // app.use(bodyParser.urlencoded({extended:false}));
+    const publicDirectoryPath = path.join(__dirname, '../public/')
+    app.use(express.static(publicDirectoryPath))
 
     app.get('/', function(req, res) {
-      res.send('Hello World!');
-      res.sendFile(path.join(__dirname + 'public/consent.html'));
+      res.sendFile(path.join(__dirname + './consent.html'));
     });
 
     // app.post('/signup', function(req, res) {
