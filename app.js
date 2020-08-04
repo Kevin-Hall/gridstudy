@@ -27,6 +27,7 @@ if (cluster.isMaster) {
 // Code to run if we're in a worker process
 } else {
     var AWS = require('aws-sdk');
+    var path = require('path');
     var express = require('express');
     var bodyParser = require('body-parser');
 
