@@ -46,10 +46,10 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-// const publicDirectoryPath = path.join(__dirname, 'public')
+const publicDirectoryPath = path.join(__dirname, 'public')
 
-app.use(express.static('public'));
-app.get('/consent.html', function (req, res) {
+app.use(express.static(publicDirectoryPath));
+app.get('/', function (req, res) {
    res.sendFile( __dirname + "/" + "consent.html" );
 })
 
