@@ -18,16 +18,16 @@ var consent = require('./public/consent');
 //app.use(express.static(path.join(__dirname, '/')));
 //app.use('/public', express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, 'public')));
-// app.get('/', function(req, res) {
-//     res.sendFile(path.join(__dirname + '/public/consent.html'));
-// });
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/public/consent.html'));
+});
 
-exports.index = function(req, res) {
- res.render('consent', {title: 'consent page'});
-};
-
-exports.add_consent = function(req, res) {
-};
+// exports.index = function(req, res) {
+//  res.render('consent', {title: 'consent page'});
+// };
+//
+// exports.add_consent = function(req, res) {
+// };
 
 app.get('/consent', consent.index);
 app.post('/add_consent', consent.add_hike);
