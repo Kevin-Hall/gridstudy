@@ -45,7 +45,7 @@ if (cluster.isMaster) {
     app.use(express.static(__dirname + '/public'));
 
     app.get('/', function(req, res) {
-      res.sendFile(path.join(__dirname + './consent.html'));
+      res.sendFile(path.join(__dirname + 'consent.html'));
     });
 
     // app.post('/signup', function(req, res) {
