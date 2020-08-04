@@ -52,7 +52,7 @@
 //     });
 // }
 
-var AWS = require('aws-sdk');
+//var AWS = require('aws-sdk');
 
 var port = process.env.PORT || 3000,
     http = require('http'),
