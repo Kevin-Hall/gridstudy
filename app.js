@@ -1,6 +1,8 @@
 
 
 var AWS = require('aws-sdk');
+const app = express();
+app.use(express.static(__dirname + '/public'));
 
 var port = process.env.PORT || 3000,
     http = require('http'),
