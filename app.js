@@ -30,6 +30,7 @@ if (cluster.isMaster) {
     var path = require('path');
     var express = require('express');
     var bodyParser = require('body-parser');
+    var fs = require('fs');
 
     AWS.config.region = process.env.REGION
 
@@ -45,7 +46,12 @@ if (cluster.isMaster) {
     app.use(express.static(__dirname + '/public'));
 
     app.get('/', function(req, res) {
-      res.sendFile(path.join(__dirname + 'consent.html'));
+        fs.readFile('consent.html', function (err, html) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(html);
+        res.end();
+
+      }
     });
 
     // app.post('/signup', function(req, res) {
