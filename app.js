@@ -39,16 +39,12 @@ if (cluster.isMaster) {
     var snsTopic =  process.env.NEW_SIGNUP_TOPIC;
     var app = express();
 
-    app.set('view engine', 'ejs');
-    app.set('views', __dirname + '/views');
+    app.set('public', __dirname + '/public');
     app.use(bodyParser.urlencoded({extended:false}));
 
     app.get('/', function(req, res) {
-        res.render('consent', {
-            static_path: 'static',
-            theme: process.env.THEME || 'flatly',
-            flask_debug: process.env.FLASK_DEBUG || 'false'
-        });
+      res.send('Hello World!');
+      res.sendFile(path.join(__dirname + './consent.html'));
     });
 
     // app.post('/signup', function(req, res) {
