@@ -7,13 +7,6 @@ var port = process.env.PORT || 3000,
     fs = require('fs'),
     html = fs.readFileSync('index.html');
 
-    fs.readFile(__dirname + '/public/style.css', function (err, data) {
-      if (err) console.log(err);
-      res.writeHead(200, {'Content-Type': 'text/css'});
-      res.write(data);
-      res.end();
-    });
-
 
 var server = http.createServer(function (req, res) {
     if (req.method === 'POST') {
