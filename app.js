@@ -21,20 +21,23 @@ app.get('/', function(req,res) {
 
 const fileName = 'Eto.csv';
 
-const uploadFile = () => {
-  fs.readFile(fileName, (err, data) => {
-     if (err) throw err;
+app.post('/api/uploadCsv', uploadCsv);
+
+function uploadCsv(datacontents){
+  const uploadFile = () => {
      const params = {
          Bucket: 'gridstudy', // pass your bucket name
          Key: 'test.csv', // file will be saved as testBucket/contacts.csv
-         Body: JSON.stringify(data, null, 2)
+         Body: datacontents
      };
      s3.upload(params, function(s3Err, data) {
          if (s3Err) throw s3Err
          console.log(`File uploaded successfully at ${data.Location}`)
      });
-  });
+  };
 };
+
+
 
 uploadFile();
 
