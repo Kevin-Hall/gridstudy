@@ -97,9 +97,9 @@ function setup() {
     var right = Right_id + "_" + Right_Arrangement + "_" + Right_Percentage + "_" + Right_Size;
 
     var l = new Image();
-    l.src = left + ".svg";;
+    l.src = "./svgs/" + left + ".svg";;
     var r = new Image();
-    r.src = right + ".svg";
+    r.src = "./svgs/" + right + ".svg";
 
     l_images.push(l);
     r_images.push(r);
