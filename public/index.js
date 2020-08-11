@@ -1,4 +1,7 @@
 
+var csvFileContent;
+
+
 var trialOrder;
 var l_images = [];
 var r_images = [];
@@ -8,47 +11,75 @@ var shuffled_r_images = [];
 
 var trialCount = 1;
 
+// csv setup
 let table;
 var words_raw = [];
 var wordscount = 0;
 var comparisons = [];
 
 var buttons_busy = false;
-
 var interval;
+
+// bucket setup
+const ID = 'AKIARN7TL5YNDCDNOQVT';
+const SECRET = '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';
+
+// The name of the bucket that you have created
+const BUCKET_NAME = 'gridstudy';
 
 
 var comparisons_test = [["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"]]
 
 var AWS = require('aws-sdk');
-var s3 = new AWS.S3();
-var params = {
-    Bucket: 'gridstudy',
-    Key: 'output.csv',
-    Body: csvFileContent,
-    ContentType: 'application/octet-stream',
-    ContentDisposition: contentDisposition(filePath, {
-        type: 'inline'
-    }),
-    CacheControl: 'public, max-age=86400'
-}
-s3.putObject(params, function(err, data) {
-    if (err) {
-        console.log("Error at uploadCSVFileOnS3Bucket function", err);
-        next(err);
-    } else {
-        console.log("File uploaded Successfully");
-        next(null, filePath);
-    }
+const s3 = new AWS.S3({
+    accessKeyId: ID,
+    secretAccessKey: SECRET
 });
+// var s3 = new AWS.S3();
+// var params = {
+//     Bucket: BUCKET_NAME,
+//     Key: 'output.csv',
+//     Body: csvFileContent,
+//     ContentType: 'application/octet-stream',
+//     ContentDisposition: contentDisposition(filePath, {
+//         type: 'inline'
+//     }),
+//     CacheControl: 'public, max-age=86400'
+// }
+// s3.putObject(params, function(err, data) {
+//     if (err) {
+//         console.log("Error at uploadCSVFileOnS3Bucket function", err);
+//         next(err);
+//     } else {
+//         console.log("File uploaded Successfully");
+//         next(null, filePath);
+//     }
+// });
 
 function setImages(size){
   var lImg = document.getElementById("l_img");
   var rImg = document.getElementById("r_img");
 
-  if (trialCount == 2 || trialCount == 7) {
+  if (trialCount == 10 || trialCount == 129) {
     takeBreak();
     trialCount++;
+    const uploadFile = (csvFileContent) => {
+
+    // Setting up S3 upload parameters
+    const params = {
+        Bucket: BUCKET_NAME,
+        Key: 'test.csv', // File name you want to save as in S3
+        Body: arrayToCSV(comparisons_test)
+    };
+
+    // Uploading files to the bucket
+    s3.upload(params, function(err, data) {
+        if (err) {
+            throw err;
+        }
+        console.log(`File uploaded successfully. ${data.Location}`);
+    });
+  };
   } else {
     lImg.src = l_images[trialCount].src;
     rImg.src = r_images[trialCount].src;
