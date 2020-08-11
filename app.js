@@ -19,14 +19,6 @@ app.get('/', function(req,res) {
   res.sendfile('public/index.html');
 });
 
-AWS.config.getCredentials(function(err) {
-  if (err) console.log(err.stack);
-  // credentials not loaded
-  else {
-    console.log("Access key:", AWS.config.credentials.accessKeyId);
-  }
-});
-
 const fileName = 'Eto.csv';
 
 const uploadFile = () => {
