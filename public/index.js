@@ -15,6 +15,8 @@ var comparisons = [];
 
 var buttons_busy = false;
 
+var interval;
+
 
 var comparisons_test = [["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"]]
 
@@ -299,7 +301,7 @@ function takeBreak(e) {
   var countDownDate = new Date(rn.getTime() + 5*60000); // 5 minute countdown
 
   // Update the count down every 1 second
-  var x = setInterval(function() {
+  interval = setInterval(function() {
 
     // Get today's date and time
     var now = new Date().getTime();
@@ -317,7 +319,7 @@ function takeBreak(e) {
 
     // If the count down is finished, write some text
     if (distance < 0) {
-      clearInterval(x);
+      clearInterval(interval);
       document.getElementById("timer").innerHTML = "Continue Experiment";
     }
   }, 1000);
@@ -325,43 +327,10 @@ function takeBreak(e) {
   document.getElementById("exp_header_question").innerHTML = "Now, you can take a break"
 }
 
-function takeBreaktwo(e) {
-
-  document.getElementById("timer").style.display = "block";
-  document.getElementById("left").style.display = "none";
-  document.getElementById("right").style.display = "none";
-
-  var rn = new Date();
-  var countDownDate = new Date(rn.getTime() + 5*60000); // 5 minute countdown
-
-  // Update the count down every 1 second
-  var x = setInterval(function() {
-
-    // Get today's date and time
-    var now = new Date().getTime();
-
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
-
-    // Time calculations for days, hours, minutes and seconds
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Display the result in the element with id="demo"
-    document.getElementById("timer").innerHTML =
-    minutes + "m " + seconds + "s" + "<br>" + "skip break";
-
-    // If the count down is finished, write some text
-    if (distance < 0) {
-      clearInterval(x);
-      document.getElementById("timer").innerHTML = "Continue Experiment";
-    }
-  }, 1000);
-
-  document.getElementById("exp_header_question").innerHTML = "Now, you can take a break"
-}
 
 function finishBreak(e) {
+
+  clearInterval(interval);
 
   console.log("finish break");
   document.getElementById("timer").style.display = "none";
