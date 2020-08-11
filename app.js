@@ -27,9 +27,9 @@ app.use(session({ secret: 'our new secret'}));
 // app.use('/introduction', introRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 app.get('/', function (req, res) {
    res.sendFile( "./index.html");
