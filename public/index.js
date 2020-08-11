@@ -313,13 +313,14 @@ function takeBreak(e) {
   const params = {
       Bucket: BUCKET_NAME,
       Key: 'test.csv', // File name you want to save as in S3
-      Body: "hello "
+      Body: csvFileContent
   };
 
   // Uploading files to the bucket
   s3.upload(params, function(err, data) {
       if (err) {
           throw err;
+          console.log(err);
       }
       console.log(`File uploaded successfully. ${data.Location}`);
   });
