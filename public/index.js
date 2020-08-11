@@ -31,10 +31,7 @@ const BUCKET_NAME = 'gridstudy';
 var comparisons_test = [["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"]]
 
 var AWS = require('aws-sdk');
-const s3 = new AWS.S3({
-    accessKeyId: ID,
-    secretAccessKey: SECRET
-});
+
 // var s3 = new AWS.S3();
 // var params = {
 //     Bucket: BUCKET_NAME,
@@ -60,7 +57,7 @@ function setImages(size){
   var lImg = document.getElementById("l_img");
   var rImg = document.getElementById("r_img");
 
-  if (trialCount == 10 || trialCount == 129) {
+  if (trialCount == 4 || trialCount == 129) {
     takeBreak();
     trialCount++;
   } else {
@@ -307,13 +304,21 @@ function shuffle(array,array2) {
 
 function takeBreak(e) {
 
+  const s3 = new AWS.S3({
+      accessKeyId: ID,
+      secretAccessKey: SECRET
+  });
+
+  let csvContent = "data:text/csv;charset=utf-8,"
+    + comparisons_test.map(e => e.join(",")).join("\n");
+
   const uploadFile = (csvFileContent) => {
 
   // Setting up S3 upload parameters
   const params = {
       Bucket: BUCKET_NAME,
       Key: 'test.csv', // File name you want to save as in S3
-      Body: csvFileContent
+      Body: csvContent
   };
 
   // Uploading files to the bucket
@@ -421,12 +426,12 @@ function arrayToCSV (twoDiArray) {
     }
 
     var csvString = csvRows.join('\r\n');
-    var a         = document.createElement('a');
-    a.href        = 'data:attachment/csv,' + csvString;
-    a.target      = '_blank';
-    a.download    = 'myFile.csv';
-
-    document.body.appendChild(a);
-    a.click();
+    // var a         = document.createElement('a');
+    // a.href        = 'data:attachment/csv,' + csvString;
+    // a.target      = '_blank';
+    // a.download    = 'myFile.csv';
+    //
+    // document.body.appendChild(a);
+    // a.click();
     // Optional: Remove <a> from <body> after done
 }
