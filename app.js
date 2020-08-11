@@ -32,10 +32,9 @@ app.use('/introduction', introRouter);
 // });
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/views/index.html'));
+    res.sendFile(path.join(__dirname + './views/index.html'));
 });
 
-app.listen(3000);
 // error handler
 // app.use(function(err, req, res, next) {
 //   // set locals, only providing error in development
@@ -167,31 +166,32 @@ app.listen(3000);
 // var bucketRegion = "REGION";
 // var IdentityPoolId = "IDENTITY_POOL_ID";
 //
-// var consent = require('./public/consent');
+
+//var consent = require('./views');
+
+//app.use(express.static(path.join(__dirname, '/')));
+//app.use('/public', express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + './views/index.html'));
+});
+
+// exports.index = function(req, res) {
+//  res.render('consent', {title: 'consent page'});
+// };
 //
-// //app.use(express.static(path.join(__dirname, '/')));
-// //app.use('/public', express.static(path.join(__dirname, "public")));
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.get('/', function(req, res) {
-//     res.sendFile(path.join(__dirname + './consent.html'));
-// });
-//
-// // exports.index = function(req, res) {
-// //  res.render('consent', {title: 'consent page'});
-// // };
-// //
-// // exports.add_consent = function(req, res) {
-// // };
-//
-// // app.get('/consent', consent.index);
-// // app.post('/add_consent', consent.add_hike);
-//
-//
-//
-// app.listen(3000);
-// , () => {
-//     console.log("hello log");
-// })
+// exports.add_consent = function(req, res) {
+// };
+
+// app.get('/consent', consent.index);
+// app.post('/add_consent', consent.add_hike);
+
+
+
+app.listen(3000);
+, () => {
+    console.log("hello log");
+})
 
 
 
