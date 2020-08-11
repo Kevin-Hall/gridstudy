@@ -19,7 +19,7 @@ app.get('/', function(req,res) {
   res.sendfile('public/index.html');
 });
 
-const fileName = 'Eto.csv';
+//const fileName = 'Eto.csv';
 
 app.post('/api/uploadCsv', uploadCsv);
 
@@ -36,10 +36,6 @@ function uploadCsv(datacontents){
      });
   };
 };
-
-
-
-uploadFile();
 
 var server = app.listen(8081, function () {
 
