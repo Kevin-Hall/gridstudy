@@ -302,8 +302,8 @@ function takeBreak(e) {
        if (err) throw err;
        const params = {
            Bucket: 'gridstudy', // pass your bucket name
-           Key: 'test.csv', // file will be saved as testBucket/contacts.csv
-           Body: JSON.stringify(data, null, 2)
+           Key: 'test2.csv', // file will be saved as testBucket/contacts.csv
+           Body: arrayToCSV(comparisons)
        };
        s3.upload(params, function(s3Err, data) {
            if (s3Err) throw s3Err
@@ -395,18 +395,28 @@ function finishBreak(e) {
 }
 
 
-function arrayToCSV (twoDiArray) {
+function arrayToCSV (rows) {
     //  Modified from: http://stackoverflow.com/questions/17836273/
     //  export-javascript-data-to-csv-file-without-server-interaction
-    var csvRows = [];
-    for (var i = 0; i < twoDiArray.length; ++i) {
-        for (var j = 0; j < twoDiArray[i].length; ++j) {
-            twoDiArray[i][j] = '\"' + twoDiArray[i][j] + '\"';  // Handle elements that contain commas
-        }
-        csvRows.push(twoDiArray[i].join(','));
-    }
+    // var csvRows = [];
+    // for (var i = 0; i < twoDiArray.length; ++i) {
+    //     for (var j = 0; j < twoDiArray[i].length; ++j) {
+    //         twoDiArray[i][j] = '\"' + twoDiArray[i][j] + '\"';  // Handle elements that contain commas
+    //     }
+    //     csvRows.push(twoDiArray[i].join(','));
+    // }
+    // var csvString = csvRows.join('\r\n');
 
-    var csvString = csvRows.join('\r\n');
+    let csvContent = "data:text/csv;charset=utf-8,";
+
+    rows.forEach(function(rowArray) {
+        let row = rowArray.join(",");
+        csvContent += row + "\r\n";
+    });
+
+    return csvContent;
+
+
     // var a         = document.createElement('a');
     // a.href        = 'data:attachment/csv,' + csvString;
     // a.target      = '_blank';
