@@ -32,7 +32,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function (req, res) {
-   res.sendFile( __dirname + "/" + "consent.html" );
+   res.sendFile( __dirname + "/" + "index.html" );
 })
 
 // error handler
