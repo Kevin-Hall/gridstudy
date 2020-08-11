@@ -7,31 +7,42 @@ var port = process.env.PORT || 3000,
     fs = require('fs'),
     html = fs.readFileSync('index.html');
 
+http.createServer(function (req, res) {
+        if(req.url.indexOf('.html') != -1){ //req.url has the pathname, check if it conatins '.html'
 
-var server = http.createServer(function (req, res) {
-    if (req.method === 'POST') {
-        var body = '';
-
-        req.on('data', function(chunk) {
-            body += chunk;
-        });
-
-        req.on('end', function() {
-            if (req.url === '/') {
-                log('Received message: ' + body);
-            } else if (req.url = '/scheduled') {
-                log('Received task ' + req.headers['x-aws-sqsd-taskname'] + ' scheduled at ' + req.headers['x-aws-sqsd-scheduled-at']);
-            }
-
-            res.writeHead(200, 'OK', {'Content-Type': 'text/plain'});
+          fs.readFile(__dirname + '/public/index.html', function (err, data) {
+            if (err) console.log(err);
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.write(data);
             res.end();
-        });
-    } else {
-        res.writeHead(200);
-        res.write(html);
-        res.end();
-    }
-});
+          });
+
+        }
+
+        if(req.url.indexOf('.js') != -1){ //req.url has the pathname, check if it conatins '.js'
+
+          fs.readFile(__dirname + '/public/introduction.js', function (err, data) {
+            if (err) console.log(err);
+            res.writeHead(200, {'Content-Type': 'text/javascript'});
+            res.write(data);
+            res.end();
+          });
+
+        }
+
+        if(req.url.indexOf('.css') != -1){ //req.url has the pathname, check if it conatins '.css'
+
+          fs.readFile(__dirname + '/public/style.css', function (err, data) {
+            if (err) console.log(err);
+            res.writeHead(200, {'Content-Type': 'text/css'});
+            res.write(data);
+            res.end();
+          });
+
+        }
+
+    }).listen(3000);
+    console.log('Server running at http://127.0.0.1:1337/');
 
 
 
