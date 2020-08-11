@@ -1,64 +1,92 @@
 var AWS = require('aws-sdk');
 
-var port = process.env.PORT || 3000,
-    http = require('http'),
-    fs = require('fs'),
-    html = fs.readFileSync('index.html');
+var express = require('express')
+var app = express()
+
+app.use(express.static('public'));
+
+var server = app.listen(3000, function () {
+
+    var host = server.address().address
+    var port = server.address().port
+
+    console.log('Express app listening at http://%s:%s', host, port)
+
+})
+
+// var port = process.env.PORT || 3000,
+//     http = require('http'),
+//     fs = require('fs'),
+//     html = fs.readFileSync('index.html');
+//
+//
+// var server = http.createServer(function(request, response) {
+//   console.log('connected');
+//   var path = url.parse(request.url).pathname;
+//
+//   switch(path) {
+//       case "/index.html":
+//           fs.readFile(__dirname + path, function(error, data) {
+//               if(error) {
+//                   response.writeHead(404);
+//                   response.write("404 not found");
+//               } else {
+//                   console.log("before");
+//                   response.writeHead(200, {"Content-Type": "text/html"});
+//                   response.write(data, "utf-8");
+//                   console.log("after");
+//               }
+//           });
+//           break;
+//       default:
+//           fs.readFile('./' + request.url, function(err, data) {
+//               if (!err) {
+//                   var dotoffset = request.url.lastIndexOf('.');
+//                   var mimetype = dotoffset == -1
+//                                   ? 'text/plain'
+//                                   : {
+//                                       '.html' : 'text/html',
+//                                       '.ico' : 'image/x-icon',
+//                                       '.jpg' : 'image/jpeg',
+//                                       '.png' : 'image/png',
+//                                       '.gif' : 'image/gif',
+//                                       '.css' : 'text/css',
+//                                       '.js' : 'text/javascript'
+//                                       }[ request.url.substr(dotoffset) ];
+//                   response.setHeader('Content-type' , mimetype);
+//                   response.end(data);
+//                   console.log( request.url, mimetype );
+//               } else {
+//                   console.log ('file not found: ' + request.url);
+//                   response.writeHead(404, "Not Found");
+//                   response.end();
+//               }
+//           });
+//           break;
+//   }
+//   response.end();
+// });
+//
+//
+// // Listen on port 3000, IP defaults to 127.0.0.1
+// server.listen(port);
+//
+// // Put a friendly message on the terminal
+// console.log('Server running at http://127.0.0.1:' + port + '/');
 
 
-var server = http.createServer(function(request, response) {
-  console.log('connected');
-  var path = url.parse(request.url).pathname;
-
-  switch(path) {
-      case "/index.html":
-          fs.readFile(__dirname + path, function(error, data) {
-              if(error) {
-                  response.writeHead(404);
-                  response.write("404 not found");
-              } else {
-                  console.log("before");
-                  response.writeHead(200, {"Content-Type": "text/html"});
-                  response.write(data, "utf-8");
-                  console.log("after");
-              }
-          });
-          break;
-      default:
-          fs.readFile('./' + request.url, function(err, data) {
-              if (!err) {
-                  var dotoffset = request.url.lastIndexOf('.');
-                  var mimetype = dotoffset == -1
-                                  ? 'text/plain'
-                                  : {
-                                      '.html' : 'text/html',
-                                      '.ico' : 'image/x-icon',
-                                      '.jpg' : 'image/jpeg',
-                                      '.png' : 'image/png',
-                                      '.gif' : 'image/gif',
-                                      '.css' : 'text/css',
-                                      '.js' : 'text/javascript'
-                                      }[ request.url.substr(dotoffset) ];
-                  response.setHeader('Content-type' , mimetype);
-                  response.end(data);
-                  console.log( request.url, mimetype );
-              } else {
-                  console.log ('file not found: ' + request.url);
-                  response.writeHead(404, "Not Found");
-                  response.end();
-              }
-          });
-          break;
-  }
-  response.end();
-});
 
 
-// Listen on port 3000, IP defaults to 127.0.0.1
-server.listen(port);
 
-// Put a friendly message on the terminal
-console.log('Server running at http://127.0.0.1:' + port + '/');
+
+
+
+
+
+
+
+
+
 
 // var createError = require('http-errors');
 // var express = require('express');
