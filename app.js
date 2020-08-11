@@ -8,23 +8,24 @@ var port = process.env.PORT || 3000,
     html = fs.readFileSync('index.html');
 
 
+app.use(express.static(__dirname + '/public'));
+
 var server = http.createServer(function (req, res) {
     if (req.method === 'POST') {
-        // var body = '';
-        //
-        // req.on('data', function(chunk) {
-        //     body += chunk;
-        // });
-        //
-        // req.on('end', function() {
-        //     res.writeHead(200, 'OK', {'Content-Type': 'text/plain'});
-        //     res.end();
-        // });
+        var body = '';
+
+        req.on('data', function(chunk) {
+            body += chunk;
+        });
+
+        req.on('end', function() {
+            res.writeHead(200, 'OK', {'Content-Type': 'text/plain'});
+            res.end();
+        });
+    } else {
+        res.writeHead(200);
         res.write(html);
         res.end();
-    } else {
-        //res.writeHead(200);
-
     }
 });
 
