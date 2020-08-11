@@ -1,39 +1,78 @@
 
+var port = process.env.PORT || 3000,
+    http = require('http'),
+    fs = require('fs'),
+    html = fs.readFileSync('./views/index.html');
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-let session = require('express-session');
-var indexRouter = require('./routes/index');
-var introRouter = require('./routes/introduction');
-// let flash = require('connect-flash')
+var log = function(entry) {
+    fs.appendFileSync('/tmp/sample-app.log', new Date().toISOString() + ' - ' + entry + '\n');
+};
 
-var app = express();
+var server = http.createServer(function (req, res) {
+    if (req.method === 'POST') {
+        var body = '';
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'html');
-// app.use(flash())
-// app.use(logger('dev'));
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+        req.on('data', function(chunk) {
+            body += chunk;
+        });
 
-app.use(session({ secret: 'our new secret'}));
+        req.on('end', function() {
+            if (req.url === '/') {
+                log('Received message: ' + body);
+            } else if (req.url = '/scheduled') {
+                log('Received task ' + req.headers['x-aws-sqsd-taskname'] + ' scheduled at ' + req.headers['x-aws-sqsd-scheduled-at']);
+            }
 
-app.use('/', indexRouter);
-app.use('/introduction', introRouter);
-
-// catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   next(createError(404));
-// });
-
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + './views/index.html'));
+            res.writeHead(200, 'OK', {'Content-Type': 'text/plain'});
+            res.end();
+        });
+    } else {
+        res.set('Content-Type', 'text/javascript')
+        res.writeHead(200);
+        res.write(html);
+        res.end();
+    }
 });
+
+// Listen on port 3000, IP defaults to 127.0.0.1
+server.listen(port);
+
+// Put a friendly message on the terminal
+console.log('Server running at http://127.0.0.1:' + port + '/');
+// var createError = require('http-errors');
+// var express = require('express');
+// var path = require('path');
+// var cookieParser = require('cookie-parser');
+// let session = require('express-session');
+// var indexRouter = require('./routes/index');
+// var introRouter = require('./routes/introduction');
+// // let flash = require('connect-flash')
+//
+// var app = express();
+//
+// // view engine setup
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'html');
+// // app.use(flash())
+// // app.use(logger('dev'));
+// // app.use(express.json());
+// // app.use(express.urlencoded({ extended: false }));
+// // app.use(cookieParser());
+// app.use(express.static(path.join(__dirname, 'public')));
+//
+// app.use(session({ secret: 'our new secret'}));
+//
+// app.use('/', indexRouter);
+// app.use('/introduction', introRouter);
+//
+// // catch 404 and forward to error handler
+// // app.use(function(req, res, next) {
+// //   next(createError(404));
+// // });
+//
+// app.get('/', function(req, res) {
+//     res.sendFile(path.join(__dirname + './views/index.html'));
+// });
 
 // error handler
 // app.use(function(err, req, res, next) {
@@ -171,10 +210,10 @@ app.get('/', function(req, res) {
 
 //app.use(express.static(path.join(__dirname, '/')));
 //app.use('/public', express.static(path.join(__dirname, "public")));
-app.use(express.static(path.join(__dirname, 'public')));
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + './views/index.html'));
-});
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.get('/', function(req, res) {
+//     res.sendFile(path.join(__dirname + './views/index.html'));
+// });
 
 // exports.index = function(req, res) {
 //  res.render('consent', {title: 'consent page'});
@@ -188,10 +227,10 @@ app.get('/', function(req, res) {
 
 
 
-app.listen(3000);
-, () => {
-    console.log("hello log");
-})
+// app.listen(3000);
+// , () => {
+//     console.log("hello log");
+// })
 
 
 
