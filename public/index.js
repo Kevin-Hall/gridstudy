@@ -394,7 +394,7 @@ function finishBreak(e) {
 }
 
 
-function arrayToCSV (infoArray) {
+function arrayToCSV (data) {
   var lineArray = [];
   data.forEach(function (infoArray, index) {
     var line = infoArray.join(",");
