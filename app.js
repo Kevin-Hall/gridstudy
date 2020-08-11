@@ -34,7 +34,11 @@ app.use('/introduction', introRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
+  res.render('index');
 });
+// app.get('/', function (req, res) {
+//    res.sendFile( __dirname + "/" + "consent.html" );
+// })
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -47,7 +51,17 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+//module.exports = app;
+
+async function startServer() {
+  app.listen(3000, err => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log(`Your server is ready !`);
+  });
+}
 
 // var AWS = require('aws-sdk');
 // // const app = express();
