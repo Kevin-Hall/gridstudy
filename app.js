@@ -4,29 +4,24 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-let passport = require('passport');
 let session = require('express-session');
 var indexRouter = require('./routes/index');
 var introRouter = require('./routes/introduction');
-let flash = require('connect-flash')
-require('./passport_setup')(passport);
+// let flash = require('connect-flash')
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
-//app.use(flash())
-//app.use(logger('dev'));
+// app.use(flash())
+// app.use(logger('dev'));
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(session({ secret: 'our new secret'}));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(session({ secret: 'our new secret'}));
 
 app.use('/', indexRouter);
 app.use('/introduction', introRouter);
@@ -35,9 +30,10 @@ app.use('/introduction', introRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
-// app.get('/', function (req, res) {
-//    res.sendFile( __dirname + "/" + "consent.html" );
-// })
+
+app.get('/', function (req, res) {
+   res.sendFile( __dirname + "/" + "consent.html" );
+})
 
 // error handler
 app.use(function(err, req, res, next) {

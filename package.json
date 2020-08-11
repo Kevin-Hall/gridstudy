@@ -2,7 +2,7 @@
   "name": "grid_experiment",
   "version": "0.0.0",
   "description": "grid experiment",
-  "main": "./bin/www",
+  "main": "./app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
