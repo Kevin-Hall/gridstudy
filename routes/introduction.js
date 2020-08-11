@@ -2,9 +2,6 @@
 var csvComparisonData;
 
 
-
-
-
 // used to ungray button when correct answer is chosen
 var tutorial_passed = false;
 
@@ -13,7 +10,7 @@ var buttons_busy = false;
 
 
 function loadCSV(){
-    Papa.parse("http://localhost:9000/Eto.csv", {
+    Papa.parse("http://localhost:3000/Eto.csv", {
         download: true,
         complete: function(results) {
             i = 1;
