@@ -1,6 +1,4 @@
 var AWS = require('aws-sdk');
-const app = express();
-app.use(express.static(__dirname + '/public'));
 
 var port = process.env.PORT || 3000,
     http = require('http'),
@@ -8,26 +6,31 @@ var port = process.env.PORT || 3000,
     html = fs.readFileSync('index.html');
 
 
-var server = http.createServer(function (req, res) {
-    if (req.method === 'POST') {
-        var body = '';
-
-        req.on('data', function(chunk) {
-            body += chunk;
+    var server = http.createServer(function (request, response) {
+        fs.readFile('./' + request.url, function(err, data) {
+            if (!err) {
+                var dotoffset = request.url.lastIndexOf('.');
+                var mimetype = dotoffset == -1
+                                ? 'text/plain'
+                                : {
+                                    '.html' : 'text/html',
+                                    '.ico' : 'image/x-icon',
+                                    '.jpg' : 'image/jpeg',
+                                    '.png' : 'image/png',
+                                    '.gif' : 'image/gif',
+                                    '.css' : 'text/css',
+                                    '.js' : 'text/javascript'
+                                    }[ request.url.substr(dotoffset) ];
+                response.setHeader('Content-type' , mimetype);
+                response.end(data);
+                console.log( request.url, mimetype );
+            } else {
+                console.log ('file not found: ' + request.url);
+                response.writeHead(404, "Not Found");
+                response.end();
+            }
         });
-
-        req.on('end', function() {
-            res.writeHead(200, 'OK', {'Content-Type': 'text/plain'});
-            res.end();
-        });
-    } else {
-        res.writeHead(200);
-        res.write(html);
-        res.end();
-    }
-});
-
-
+    })
 
 
 // Listen on port 3000, IP defaults to 127.0.0.1
