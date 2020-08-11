@@ -1,6 +1,7 @@
 
 var express = require('express')
-var AWS = require("aws-sdk");
+const fs = require('fs');
+const AWS = require("aws-sdk");
 var app = express()
 
 // bucket setup
@@ -26,23 +27,24 @@ AWS.config.getCredentials(function(err) {
   }
 });
 
-const uploadFile = (csvFileContent) => {
-  // Setting up S3 upload parameters
-  const params = {
-      Bucket: BUCKET_NAME,
-      Key: 'test.csv', // File name you want to save as in S3
-      Body: "hello,hi,test"
-  };
+const fileName = 'Eto.csv';
 
-  // Uploading files to the bucket
-  s3.upload(params, function(err, data) {
-      if (err) {
-          throw err;
-          console.log(err);
-      }
-      console.log(`File uploaded successfully. ${data.Location}`);
+const uploadFile = () => {
+  fs.readFile(fileName, (err, data) => {
+     if (err) throw err;
+     const params = {
+         Bucket: 'gridstudy', // pass your bucket name
+         Key: 'test.csv', // file will be saved as testBucket/contacts.csv
+         Body: JSON.stringify(data, null, 2)
+     };
+     s3.upload(params, function(s3Err, data) {
+         if (s3Err) throw s3Err
+         console.log(`File uploaded successfully at ${data.Location}`)
+     });
   });
 };
+
+uploadFile();
 
 var server = app.listen(8081, function () {
 
