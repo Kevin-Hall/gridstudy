@@ -94,19 +94,19 @@
 // console.log('Server running at http://127.0.0.1:' + port + '/');
 
 
-const express = require('express');
-const path = require('path');
-//var consent = require('./routes/hike');
-const app = express();
-//
-app.use(express.static(path.join(__dirname, 'public')));
-app.get('/', function (req, res) {
-   res.sendFile( __dirname + "/" + "index.html" );
-})
-//
-app.listen(3000, () => {
-    console.log('Server running at http://127.0.0.1:3000/');
-})
+// const express = require('express');
+// const path = require('path');
+// //var consent = require('./routes/hike');
+// const app = express();
+// //
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.get('/', function (req, res) {
+//    res.sendFile( __dirname + "/" + "index.html" );
+// })
+// //
+// app.listen(3000, () => {
+//     console.log('Server running at http://127.0.0.1:3000/');
+// })
 
 // var port = process.env.PORT || 3000,
 //     http = require('http'),
@@ -156,8 +156,8 @@ app.listen(3000, () => {
 
 
 
-// const express = require('express');
-// const app = express();
+const express = require('express');
+const app = express();
 //
 //
 // // -- public keys
@@ -167,14 +167,14 @@ app.listen(3000, () => {
 // var IdentityPoolId = "IDENTITY_POOL_ID";
 //
 
-//var consent = require('./views');
+//var consent = require('./routes/introduction');
 
 //app.use(express.static(path.join(__dirname, '/')));
 //app.use('/public', express.static(path.join(__dirname, "public")));
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.get('/', function(req, res) {
-//     res.sendFile(path.join(__dirname + './views/index.html'));
-// });
+//app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
 
 // exports.index = function(req, res) {
 //  res.render('consent', {title: 'consent page'});
@@ -187,11 +187,10 @@ app.listen(3000, () => {
 // app.post('/add_consent', consent.add_hike);
 
 
-
-// app.listen(3000);
-// , () => {
-//     console.log("hello log");
-// })
+app.listen(3000);
+, () => {
+    console.log("listening port 3000");
+})
 
 
 
