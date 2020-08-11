@@ -20,17 +20,8 @@ var comparisons = [];
 var buttons_busy = false;
 var interval;
 
-// bucket setup
-const ID = 'AKIARN7TL5YNDCDNOQVT';
-const SECRET = '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';
-
-// The name of the bucket that you have created
-const BUCKET_NAME = 'gridstudy';
-
 
 var comparisons_test = [["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"]]
-
-var AWS = require('aws-sdk');
 
 // var s3 = new AWS.S3();
 // var params = {
@@ -304,32 +295,6 @@ function shuffle(array,array2) {
 
 function takeBreak(e) {
 
-  const s3 = new AWS.S3({
-      accessKeyId: ID,
-      secretAccessKey: SECRET
-  });
-
-  let csvContent = "data:text/csv;charset=utf-8,"
-    + comparisons_test.map(e => e.join(",")).join("\n");
-
-  const uploadFile = (csvFileContent) => {
-
-  // Setting up S3 upload parameters
-  const params = {
-      Bucket: BUCKET_NAME,
-      Key: 'test.csv', // File name you want to save as in S3
-      Body: csvContent
-  };
-
-  // Uploading files to the bucket
-  s3.upload(params, function(err, data) {
-      if (err) {
-          throw err;
-          console.log(err);
-      }
-      console.log(`File uploaded successfully. ${data.Location}`);
-  });
-};
 
   document.getElementById("timer").style.display = "block";
   document.getElementById("left").style.display = "none";
