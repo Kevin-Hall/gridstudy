@@ -1,14 +1,12 @@
 var AWS = require('aws-sdk');
-// const app = express();
-// app.use(express.static(__dirname + '/public'));
+const app = express();
+app.use(express.static(__dirname + '/public'));
 
 var port = process.env.PORT || 3000,
     http = require('http'),
     fs = require('fs'),
     html = fs.readFileSync('index.html');
 
-
-app.use(express.static(__dirname + '/public'));
 
 var server = http.createServer(function (req, res) {
     if (req.method === 'POST') {
