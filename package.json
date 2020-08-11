@@ -2,7 +2,7 @@
   "name": "grid_experiment",
   "version": "0.0.0",
   "description": "grid experiment",
-  "main": "./app.js",
+  "main": "app",
   "scripts": {
     "start": "node app.js"
   },
