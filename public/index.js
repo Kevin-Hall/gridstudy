@@ -310,9 +310,9 @@ function takeBreak(e) {
   // };
   //
   // uploadFile();
-  $.post("/api/uploadCsv", function(arrayToCSV(comparisons_test)) {
-    console.log( "uploadcsv function");
-  });
+  // $.post("/api/uploadCsv", function(arrayToCSV(comparisons_test)) {
+  //   console.log( "uploadcsv function");
+  // });
 
   document.getElementById("timer").style.display = "block";
   document.getElementById("left").style.display = "none";

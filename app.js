@@ -21,21 +21,21 @@ app.get('/', function(req,res) {
 
 //const fileName = 'Eto.csv';
 
-app.post('/api/uploadCsv', uploadCsv);
-
-function uploadCsv(datacontents){
-  const uploadFile = () => {
-     const params = {
-         Bucket: 'gridstudy', // pass your bucket name
-         Key: 'test.csv', // file will be saved as testBucket/contacts.csv
-         Body: datacontents
-     };
-     s3.upload(params, function(s3Err, data) {
-         if (s3Err) throw s3Err
-         console.log(`File uploaded successfully at ${data.Location}`)
-     });
-  };
-};
+// app.post('/api/uploadCsv', uploadCsv);
+//
+// function uploadCsv(datacontents){
+//   const uploadFile = () => {
+//      const params = {
+//          Bucket: 'gridstudy', // pass your bucket name
+//          Key: 'test.csv', // file will be saved as testBucket/contacts.csv
+//          Body: datacontents
+//      };
+//      s3.upload(params, function(s3Err, data) {
+//          if (s3Err) throw s3Err
+//          console.log(`File uploaded successfully at ${data.Location}`)
+//      });
+//   };
+// };
 
 var server = app.listen(8081, function () {
 
