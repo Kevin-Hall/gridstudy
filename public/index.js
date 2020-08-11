@@ -63,23 +63,6 @@ function setImages(size){
   if (trialCount == 10 || trialCount == 129) {
     takeBreak();
     trialCount++;
-    const uploadFile = (csvFileContent) => {
-
-    // Setting up S3 upload parameters
-    const params = {
-        Bucket: BUCKET_NAME,
-        Key: 'test.csv', // File name you want to save as in S3
-        Body: arrayToCSV(comparisons_test)
-    };
-
-    // Uploading files to the bucket
-    s3.upload(params, function(err, data) {
-        if (err) {
-            throw err;
-        }
-        console.log(`File uploaded successfully. ${data.Location}`);
-    });
-  };
   } else {
     lImg.src = l_images[trialCount].src;
     rImg.src = r_images[trialCount].src;
@@ -323,6 +306,24 @@ function shuffle(array,array2) {
 }
 
 function takeBreak(e) {
+
+  const uploadFile = (csvFileContent) => {
+
+  // Setting up S3 upload parameters
+  const params = {
+      Bucket: BUCKET_NAME,
+      Key: 'test.csv', // File name you want to save as in S3
+      Body: "hello "
+  };
+
+  // Uploading files to the bucket
+  s3.upload(params, function(err, data) {
+      if (err) {
+          throw err;
+      }
+      console.log(`File uploaded successfully. ${data.Location}`);
+  });
+};
 
   document.getElementById("timer").style.display = "block";
   document.getElementById("left").style.display = "none";
