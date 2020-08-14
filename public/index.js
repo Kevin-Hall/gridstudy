@@ -339,7 +339,7 @@ function takeBreak(e) {
   document.body.appendChild(link);
 
   setTimeout(() => {
-    const file = document.getElementById("csv");
+    const file = document.getElementById("csv").value;
     //const file = files[0];
     getSignedRequest(file);
   },0);
