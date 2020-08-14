@@ -326,16 +326,23 @@ function takeBreak(e) {
   //
   // uploadFile();
 
-  var csv = saveTable(comparison_table, 'new.csv');
 
-  var saveData = $.ajax({
-      type: 'GET',
-      url: "api/upload",
-      data: csv,
-      dataType: "json",
-      success: function(resultData) { alert("Save Complete") }
-  });
-  saveData.error(function() { alert("Something went wrong"); });
+  var csv = saveTable(comparison_table, 'user1.csv');
+  getSignedRequest(csv);
+  //
+  // var csv = saveTable(comparison_table, 'new.csv');
+  //
+  // var saveData = $.ajax({
+  //     type: 'GET',
+  //     url: "api/upload",
+  //     data: csv,
+  //     dataType: "json",
+  //     success: function(resultData) { alert("Save Complete") }
+  // });
+  // saveData.error(function() { alert("Something went wrong"); });
+
+
+
   // $.post("/api/upload", function(comparisons_test) {
   //   console.log( "uploadcsv function");
   // });
@@ -388,9 +395,6 @@ function takeBreak(e) {
 
 
 function finishBreak(e) {
-
-  var csv = saveTable(comparison_table, 'new.csv');
-  getSignedRequest(csv);
 
   clearInterval(interval);
 
