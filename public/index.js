@@ -278,6 +278,7 @@ function rightImage(element){
   }, 2000);
 
   let newRow = comparison_table.addRow();
+  newRow.setNum('index', trialCount);
   newRow.setString('left', comparisons.slice(-2)[0]);
   newRow.setString('right', comparisons.slice(-1)[0]);
   newRow.setString('choice', 'right');
