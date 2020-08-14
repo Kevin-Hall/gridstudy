@@ -22,6 +22,10 @@ app.get('/', function(req,res) {
   res.sendfile('public/index.html');
 });
 
+app.post('/', function(req,res) {
+  res.redirect('/yer');
+});
+
 // router.post('/api/upload', (req, res) => {
 //   const params = {
 //        Bucket: 'gridstudy', // pass your bucket name
