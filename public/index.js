@@ -339,12 +339,10 @@ function takeBreak(e) {
   document.body.appendChild(link);
 
   setTimeout(() => {
-    const files = document.getElementById("csv").files;
-    const file = files[0];
+    const file = document.getElementById("csv");
+    //const file = files[0];
     getSignedRequest(file);
   },0);
-
-
 
   //
   // var csv = saveTable(comparison_table, 'new.csv');
