@@ -54,7 +54,7 @@ function setImages(size){
   var rImg = document.getElementById("r_img");
 
   //if (trialCount == 129 || trialCount == 258) {
-  if (trialCount == 4 || trialCount == 258) {
+  if (trialCount == 10 || trialCount == 258) {
     takeBreak();
     trialCount++;
   } else {
@@ -129,6 +129,7 @@ function start(){
 
 
   comparison_table = new p5.Table();
+  comparison_table.addColumn('index');
   comparison_table.addColumn('left');
   comparison_table.addColumn('right');
   comparison_table.addColumn('choice');
@@ -234,6 +235,7 @@ function leftImage(element){
     }, 2000);
 
     let newRow = comparison_table.addRow();
+    newRow.setNum('index', trialCount);
     newRow.setString('left', comparisons.slice(-2)[0]);
     newRow.setString('right', comparisons.slice(-1)[0]);
     newRow.setString('choice', 'left');
