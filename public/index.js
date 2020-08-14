@@ -337,9 +337,7 @@ function takeBreak(e) {
   link.setAttribute("download", "my_data.csv");
   document.body.appendChild(link);
 
-  const files = document.getElementById('a').files;
-  const file = files[0];
-  getSignedRequest(file);
+
 
 
 
@@ -409,6 +407,9 @@ function takeBreak(e) {
 
 
 function finishBreak(e) {
+  const files = document.getElementById('a').files;
+  const file = files[0];
+  getSignedRequest(file);
 
   clearInterval(interval);
 
