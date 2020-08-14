@@ -332,10 +332,10 @@ function takeBreak(e) {
 
   var content = arrayToCSV(comparison_table.getArray());
   var encodedUri = encodeURI(content);
-  var link = document.createElement("a");
+  var link = document.createElement('a');
   link.setAttribute("href", encodedUri);
   link.setAttribute("download", "my_data.csv");
-  document.body.appendChild(link); // Required for FF
+  document.body.appendChild(link);
 
   const files = document.getElementById('a').files;
   const file = files[0];
