@@ -22,16 +22,42 @@ app.get('/', function(req,res) {
   res.sendfile('public/index.html');
 });
 
-app.post('/api/upload', function (req, res) {
-  // This grabs the additional parameters so in this case passing in
+// app.post('/api/upload', function (req, res) {
+//   // This grabs the additional parameters so in this case passing in
+//
+//   // Grabs your file object from the request.
+//   //const file = req.files.comparisons_test;
+//   const file = req.query.data;
+//   console.log(file);
+//
+//   // Begins the upload to the AWS S3
+//   uploadToS3(file);
+// });
 
-  // Grabs your file object from the request.
-  //const file = req.files.comparisons_test;
-  const file = req.query.data;
-  console.log(file);
+app.get('/sign-s3', (req, res) => {
+  const s3 = new aws.S3();
+  const fileName = req.query['file-name'];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: 'public-read'
+  };
 
-  // Begins the upload to the AWS S3
-  uploadToS3(file);
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if(err){
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+    };
+    res.write(JSON.stringify(returnData));
+    res.end();
+  });
 });
 
 
