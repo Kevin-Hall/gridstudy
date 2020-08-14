@@ -144,10 +144,10 @@ function right_answer(index){
     alert("Correct. \n\n A has a lower absolute number of black dots, but a higher percentage black dots. So in this case, A is the right choice.");
     document.getElementById("Next").style.background='#808080';
   } else if (index == 2){
-    alert("Correct. \n\n Another case showing that arrangement shouldn’t matter. In this case, it should be B since it almost has 50% black dots, whereas A as far fewer than 50%)! ");
+    alert("Correct. \n\n Another case showing that arrangement shouldn’t matter. In this case, it should be B since it almost has 50% black dots, whereas A has far fewer than 50%! ");
     document.getElementById("Next").style.background='#808080';
   } else if (index == 3){
-    alert("Correct. \n\n Another case showing that arrangement shouldn’t matter. In this case, it should be B since it almost has 50% black dots, whereas A as far fewer than 50%)! ");
+    alert("Correct. \n\n Another case showing that arrangement shouldn’t matter. In this case, it should be B since it almost has 50% black dots, whereas A has far fewer than 50%! ");
     document.getElementById("Next").style.background='#808080';
   }
   tutorial_passed = true;
