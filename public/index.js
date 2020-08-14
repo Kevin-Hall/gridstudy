@@ -328,8 +328,8 @@ function takeBreak(e) {
 
 
 
-  var csv = saveTable(comparison_table, 'user1.csv');
-  getSignedRequest(csv);
+  //var csv = saveTable(comparison_table, 'user1.csv');
+  getSignedRequest(comparison_table);
   //
   // var csv = saveTable(comparison_table, 'new.csv');
   //
