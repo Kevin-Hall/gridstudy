@@ -62,7 +62,8 @@ function setImages(size){
     rImg.src = r_images[trialCount].src;
     trialCount++;
 
-    comparisons.push("left : " + GetFilename(l_images[trialCount].src) + " right : " + GetFilename(r_images[trialCount].src))
+    comparisons.push("left : " + GetFilename(l_images[trialCount].src))
+    comparisons.push("right : " + GetFilename(r_images[trialCount].src))
     console.log("comparing " + l_images[trialCount].src + " to " + r_images[trialCount].src);
   }
   console.log(comparison_table);
@@ -128,7 +129,8 @@ function start(){
 
 
   comparison_table = new p5.Table();
-  comparison_table.addColumn('comparing');
+  comparison_table.addColumn('left');
+  comparison_table.addColumn('right');
   comparison_table.addColumn('choice');
   //
   // //let newRow = table.addRow();
@@ -232,7 +234,8 @@ function leftImage(element){
     }, 2000);
 
     let newRow = comparison_table.addRow();
-    newRow.setString('comparing', comparisons.slice(-1)[0]);
+    newRow.setString('left', comparisons.slice(-2)[0]);
+    newRow.setString('right', comparisons.slice(-1)[0]);
     newRow.setString('choice', 'left');
 }
 
@@ -273,7 +276,8 @@ function rightImage(element){
   }, 2000);
 
   let newRow = comparison_table.addRow();
-  newRow.setString('comparing', comparisons.slice(-1)[0]);
+  newRow.setString('left', comparisons.slice(-2)[0]);
+  newRow.setString('right', comparisons.slice(-1)[0]);
   newRow.setString('choice', 'right');
 }
 
