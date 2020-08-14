@@ -314,7 +314,7 @@ function takeBreak(e) {
   // uploadFile();
 
   var saveData = $.ajax({
-      type: 'POST',
+      type: 'GET',
       url: "api/upload",
       data: "hello",
       dataType: "text",
