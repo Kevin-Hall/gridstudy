@@ -22,23 +22,34 @@ app.get('/', function(req,res) {
   res.sendfile('public/index.html');
 });
 
-app.post('/api/upload', function(req,res) {
-  console.log(req);
-  res.redirect('/yer');
+app.post('/api/upload', function (req, res, next) {
+  // This grabs the additional parameters so in this case passing in
+
+  // Grabs your file object from the request.
+  const file = req.files.comparisons_test;
+  console.log(file);
+
+  // Begins the upload to the AWS S3
+  uploadToS3(file);
 });
 
-// router.post('/api/upload', (req, res) => {
-//   const params = {
-//        Bucket: 'gridstudy', // pass your bucket name
-//        Key: 'test.csv', // file will be saved as testBucket/contacts.csv
-//        Body: datacontents
-//    };
-//    s3.upload(params, function(s3Err, data) {
-//        if (s3Err) throw s3Err
-//        console.log(`File uploaded successfully at ${data.Location}`)
-//    });
-//    res.redirect('/'))
-// });
+function uploadToS3(file) {
+  s3.createBucket(function () {
+      var params = {
+        Bucket: BUCKET_NAME,
+        Key: file.name,
+        Body: file.data
+      };
+      s3.upload(params, function (err, data) {
+        if (err) {
+          console.log('error in callback');
+          console.log(err);
+        }
+        console.log('success');
+        console.log(data);
+      });
+  });
+}
 
 //const fileName = 'Eto.csv';
 
