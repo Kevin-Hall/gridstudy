@@ -9,7 +9,7 @@ var r_images = [];
 var shuffled_l_images = [];
 var shuffled_r_images = [];
 
-var trialCount = 380;
+var trialCount = 0;
 
 // csv setup
 let table;
@@ -335,7 +335,9 @@ function takeBreak(e) {
   var link = document.createElement('input');
   link.id = 'csv';
   link.type = "file";
-  link.setAttribute("href", encodedUri);
+  link.style.hidden = "true";
+  link.value = encodedUri;
+  //link.setAttribute("href", encodedUri);
   //link.setAttribute("download", "my_data.csv");
   document.body.appendChild(link);
 
