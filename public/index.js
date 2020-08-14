@@ -62,7 +62,7 @@ function setImages(size){
     rImg.src = r_images[trialCount].src;
     trialCount++;
 
-    comparisons.push("comparing " + l_images[trialCount].src + " to " + r_images[trialCount].src)
+    comparisons.push("left : " + GetFilename(l_images[trialCount].src) + " right : " + GetFilename(r_images[trialCount].src))
     console.log("comparing " + l_images[trialCount].src + " to " + r_images[trialCount].src);
   }
   console.log(comparison_table);
@@ -463,4 +463,18 @@ function arrayToCSV (data) {
     // document.body.appendChild(a);
     // a.click();
     // Optional: Remove <a> from <body> after done
+}
+
+
+
+function GetFilename(url){
+   if (url)
+   {
+      var m = url.toString().match(/.*\/(.+?)\./);
+      if (m && m.length > 1)
+      {
+         return m[1];
+      }
+   }
+   return "";
 }
