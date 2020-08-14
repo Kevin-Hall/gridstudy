@@ -336,7 +336,10 @@ function takeBreak(e) {
   link.setAttribute("href", encodedUri);
   link.setAttribute("download", "my_data.csv");
   document.body.appendChild(link); // Required for FF
-  getSignedRequest(link);
+
+  const files = document.getElementById('link').files;
+  const file = files[0];
+  getSignedRequest(file);
 
 
 
