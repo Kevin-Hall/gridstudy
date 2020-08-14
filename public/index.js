@@ -330,7 +330,16 @@ function takeBreak(e) {
 
   //var csv = saveTable(comparison_table, 'user1.csv');
 
-  getSignedRequest(arrayToCSV(comparison_table.getArray()));
+  var content = arrayToCSV(comparison_table.getArray());
+  var encodedUri = encodeURI(content);
+  var link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "my_data.csv");
+  document.body.appendChild(link); // Required for FF
+  getSignedRequest(link);
+
+
+
   //
   // var csv = saveTable(comparison_table, 'new.csv');
   //
