@@ -327,7 +327,7 @@ function takeBreak(e) {
   var saveData = $.ajax({
       type: 'GET',
       url: "api/upload",
-      data: {"hello"},
+      data: "hello",
       dataType: "json",
       success: function(resultData) { alert("Save Complete") }
   });
