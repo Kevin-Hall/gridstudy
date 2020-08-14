@@ -449,7 +449,7 @@ function arrayToCSV (data) {
     var line = infoArray.join(",");
     lineArray.push(index == 0 ? "data:text/csv;charset=utf-8," + line : line);
   });
-  var csvContent = lineArray.join("\n");
+  var csvFile = lineArray.join("\n");
   return csvFile;
     // var csvRows = [];
     // for (var i = 0; i < twoDiArray.length; ++i) {
