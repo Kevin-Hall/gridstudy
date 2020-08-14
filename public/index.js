@@ -329,6 +329,7 @@ function takeBreak(e) {
 
 
   //var csv = saveTable(comparison_table, 'user1.csv');
+
   getSignedRequest(arrayToCSV(comparison_table.getArray()));
   //
   // var csv = saveTable(comparison_table, 'new.csv');
@@ -488,8 +489,7 @@ function getSignedRequest(file){
       if(xhr.status === 200){
         const response = JSON.parse(xhr.responseText);
         uploadFile(file, response.signedRequest, response.url);
-      }
-      else{
+      } else{
         alert('Could not get signed URL.');
       }
     }
@@ -500,7 +500,7 @@ function getSignedRequest(file){
 
 function uploadFile(file, signedRequest, url){
   const xhr = new XMLHttpRequest();
-  xhr.open('POST', signedRequest);
+  xhr.open('PUT', signedRequest);
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4){
       if(xhr.status === 200){
