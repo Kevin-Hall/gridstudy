@@ -337,7 +337,9 @@ function takeBreak(e) {
   link.setAttribute("download", "my_data.csv");
   document.body.appendChild(link);
 
-
+  setTimeout(function() {
+  CKEDITOR.replace(inputID).setData('Type anything you want ...');
+  },0).
 
 
 
@@ -407,7 +409,7 @@ function takeBreak(e) {
 
 
 function finishBreak(e) {
-  const files = document.getElementById('a').files;
+  const files = document.getElementById("a").files;
   const file = files[0];
   getSignedRequest(file);
 
