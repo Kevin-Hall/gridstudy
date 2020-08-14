@@ -329,7 +329,7 @@ function takeBreak(e) {
 
 
   //var csv = saveTable(comparison_table, 'user1.csv');
-  getSignedRequest(comparison_table);
+  getSignedRequest(arrayToCSV(comparison_table.getArray()));
   //
   // var csv = saveTable(comparison_table, 'new.csv');
   //
@@ -450,7 +450,7 @@ function arrayToCSV (data) {
     lineArray.push(index == 0 ? "data:text/csv;charset=utf-8," + line : line);
   });
   var csvContent = lineArray.join("\n");
-  return csvContent;
+  return csvFile;
     // var csvRows = [];
     // for (var i = 0; i < twoDiArray.length; ++i) {
     //     for (var j = 0; j < twoDiArray[i].length; ++j) {
