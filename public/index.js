@@ -21,6 +21,9 @@ var buttons_busy = false;
 var interval;
 
 
+var array = [0,9,8]
+
+
 var comparisons_test = [["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"]]
 
 // var s3 = new AWS.S3();
@@ -266,7 +269,6 @@ function rightImage(element){
       lButton.style.background = '#808080';
       rButton.style.background = '#808080';
   }, 2000);
-
 }
 
 // shuffle the arrays
@@ -310,9 +312,9 @@ function takeBreak(e) {
   // };
   //
   // uploadFile();
-  // $.post("/api/uploadCsv", function(arrayToCSV(comparisons_test)) {
-  //   console.log( "uploadcsv function");
-  // });
+  $.post("/api/uploadCsv", function(comparisons_test) {
+    console.log( "uploadcsv function");
+  });
 
   document.getElementById("timer").style.display = "block";
   document.getElementById("left").style.display = "none";

@@ -2,7 +2,9 @@
 var express = require('express')
 const fs = require('fs');
 const AWS = require("aws-sdk");
+const router = express.Router();
 var app = express()
+
 
 // bucket setup
 const ID = 'AKIARN7TL5YNDCDNOQVT';
@@ -15,14 +17,28 @@ const s3 = new AWS.S3({
 
 app.use(express.static('public'));
 
+app.use("/", router);
 app.get('/', function(req,res) {
   res.sendfile('public/index.html');
 });
 
+router.post('/api/upload', (req, res) => {
+  const params = {
+       Bucket: 'gridstudy', // pass your bucket name
+       Key: 'test.csv', // file will be saved as testBucket/contacts.csv
+       Body: datacontents
+   };
+   s3.upload(params, function(s3Err, data) {
+       if (s3Err) throw s3Err
+       console.log(`File uploaded successfully at ${data.Location}`)
+   });
+   res.redirect('/'))
+});
+
 //const fileName = 'Eto.csv';
 
-// app.post('/api/uploadCsv', uploadCsv);
-//
+app.post('/api/upload', uploadCsv);
+
 // function uploadCsv(datacontents){
 //   const uploadFile = () => {
 //      const params = {
@@ -35,6 +51,18 @@ app.get('/', function(req,res) {
 //          console.log(`File uploaded successfully at ${data.Location}`)
 //      });
 //   };
+// };
+
+// const uploadFile = () => {
+//   const params = {
+//       Bucket: 'gridstudy', // pass your bucket name
+//       Key: 'test2.csv', // file will be saved as testBucket/contacts.csv
+//       Body: arrayToCSV(comparisons_test)
+//   };
+//   s3.upload(params, function(s3Err, data) {
+//       if (s3Err) throw s3Err
+//       console.log(`File uploaded successfully at ${data.Location}`)
+//   });
 // };
 
 var server = app.listen(8081, function () {
