@@ -54,7 +54,7 @@ function setImages(size){
   var rImg = document.getElementById("r_img");
 
   //if (trialCount == 129 || trialCount == 258) {
-  if (trialCount == 10 || trialCount == 258 || 350) {
+  if (trialCount == 3 || trialCount == 258) {
     takeBreak();
     trialCount++;
   } else {
