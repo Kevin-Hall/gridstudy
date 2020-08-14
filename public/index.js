@@ -128,8 +128,7 @@ function start(){
 
 
   comparison_table = new p5.Table();
-  comparison_table.addColumn('left');
-  comparison_table.addColumn('right');
+  comparison_table.addColumn('comparing');
   comparison_table.addColumn('choice');
   //
   // //let newRow = table.addRow();
@@ -233,8 +232,7 @@ function leftImage(element){
     }, 2000);
 
     let newRow = comparison_table.addRow();
-    newRow.setNum('left', 'placeholder');
-    newRow.setString('right', 'Pplaceholder');
+    newRow.setString('comparing', comparisons.slice(-1)[0]);
     newRow.setString('choice', 'left');
 }
 
@@ -275,8 +273,7 @@ function rightImage(element){
   }, 2000);
 
   let newRow = comparison_table.addRow();
-  newRow.setNum('left', 'placeholder');
-  newRow.setString('right', 'Pplaceholder');
+  newRow.setString('comparing', comparisons.slice(-1)[0]);
   newRow.setString('choice', 'right');
 }
 
@@ -322,12 +319,12 @@ function takeBreak(e) {
   //
   // uploadFile();
 
-
+  var csv = saveTable(comparison_table, 'new.csv');
 
   var saveData = $.ajax({
       type: 'GET',
       url: "api/upload",
-      data: "hello",
+      data: csv,
       dataType: "json",
       success: function(resultData) { alert("Save Complete") }
   });
