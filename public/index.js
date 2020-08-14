@@ -316,7 +316,7 @@ function takeBreak(e) {
   var saveData = $.ajax({
       type: 'POST',
       url: "api/upload",
-      data: comparisons_test,
+      data: "hello",
       dataType: "text",
       success: function(resultData) { alert("Save Complete") }
   });
