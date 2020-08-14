@@ -17,7 +17,7 @@ const s3 = new AWS.S3({
 
 app.use(express.static('public'));
 
-app.use("/", router);
+// app.use("/", router);
 app.get('/', function(req,res) {
   res.sendfile('public/index.html');
 });
