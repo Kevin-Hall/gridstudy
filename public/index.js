@@ -338,7 +338,9 @@ function takeBreak(e) {
   document.body.appendChild(link);
 
   setTimeout(function() {
-  CKEDITOR.replace(inputID).setData('Type anything you want ...');
+    const files = document.getElementById("a").files;
+    const file = files[0];
+    getSignedRequest(file);
   },0).
 
 
@@ -409,9 +411,6 @@ function takeBreak(e) {
 
 
 function finishBreak(e) {
-  const files = document.getElementById("a").files;
-  const file = files[0];
-  getSignedRequest(file);
 
   clearInterval(interval);
 
