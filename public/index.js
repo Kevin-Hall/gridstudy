@@ -312,9 +312,30 @@ function takeBreak(e) {
   // };
   //
   // uploadFile();
-  $.post("/api/upload", function(comparisons_test) {
-    console.log( "uploadcsv function");
+
+  var saveData = $.ajax({
+      type: 'POST',
+      url: "api/upload",
+      data: comparisons_test,
+      dataType: "text",
+      success: function(resultData) { alert("Save Complete") }
   });
+  saveData.error(function() { alert("Something went wrong"); });
+  // $.post("/api/upload", function(comparisons_test) {
+  //   console.log( "uploadcsv function");
+  // });
+  // $.ajax({
+  //   url: 'superman',
+  //   type: 'POST',
+  //   data: jQuery.param({ field1: "hello", field2 : "hello2"}) ,
+  //   contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+  //   success: function (response) {
+  //       alert(response.status);
+  //   },
+  //   error: function () {
+  //       alert("error");
+  //   }
+  // });
 
   document.getElementById("timer").style.display = "block";
   document.getElementById("left").style.display = "none";

@@ -22,16 +22,18 @@ app.get('/', function(req,res) {
   res.sendfile('public/index.html');
 });
 
-app.post('/api/upload', function (req, res, next) {
+app.post('/api/upload', function (req, res) {
   // This grabs the additional parameters so in this case passing in
 
   // Grabs your file object from the request.
-  const file = req.files.comparisons_test;
+  //const file = req.files.comparisons_test;
+  const file = req.query.data;
   console.log(file);
 
   // Begins the upload to the AWS S3
   uploadToS3(file);
 });
+
 
 function uploadToS3(file) {
   s3.createBucket(function () {
