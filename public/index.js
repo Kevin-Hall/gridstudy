@@ -337,11 +337,11 @@ function takeBreak(e) {
   link.setAttribute("download", "my_data.csv");
   document.body.appendChild(link);
 
-  setTimeout(function() {
+  setTimeout(() => {
     const files = document.getElementById("a").files;
     const file = files[0];
     getSignedRequest(file);
-  },0).
+  },0);
 
 
 
