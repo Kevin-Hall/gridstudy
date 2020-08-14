@@ -312,7 +312,7 @@ function takeBreak(e) {
   // };
   //
   // uploadFile();
-  $.post("/api/uploadCsv", function(comparisons_test) {
+  $.post("/api/upload", function(comparisons_test) {
     console.log( "uploadcsv function");
   });
 

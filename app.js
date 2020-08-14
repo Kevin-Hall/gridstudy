@@ -22,7 +22,8 @@ app.get('/', function(req,res) {
   res.sendfile('public/index.html');
 });
 
-app.post('/', function(req,res) {
+app.post('/api/upload', function(req,res) {
+  console.log(req);
   res.redirect('/yer');
 });
 
