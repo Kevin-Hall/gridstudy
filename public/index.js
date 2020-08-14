@@ -62,8 +62,8 @@ function setImages(size){
     rImg.src = r_images[trialCount].src;
     trialCount++;
 
-    comparisons.push("left : " + GetFilename(l_images[trialCount].src))
-    comparisons.push("right : " + GetFilename(r_images[trialCount].src))
+    comparisons.push(GetFilename(l_images[trialCount].src))
+    comparisons.push(GetFilename(r_images[trialCount].src))
     console.log("comparing " + l_images[trialCount].src + " to " + r_images[trialCount].src);
   }
   console.log(comparison_table);
