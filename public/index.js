@@ -9,7 +9,7 @@ var r_images = [];
 var shuffled_l_images = [];
 var shuffled_r_images = [];
 
-var trialCount = 1;
+var trialCount = 380;
 
 // csv setup
 let table;
@@ -54,7 +54,7 @@ function setImages(size){
   var rImg = document.getElementById("r_img");
 
   //if (trialCount == 129 || trialCount == 258) {
-  if (trialCount == 10 || trialCount == 258) {
+  if (trialCount == 10 || trialCount == 258 || 350) {
     takeBreak();
     trialCount++;
   } else {
