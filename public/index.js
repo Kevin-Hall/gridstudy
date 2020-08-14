@@ -23,6 +23,8 @@ var interval;
 
 var array = [0,9,8]
 
+// the final csv table
+var comparison_table;
 
 var comparisons_test = [["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"]]
 
@@ -51,7 +53,8 @@ function setImages(size){
   var lImg = document.getElementById("l_img");
   var rImg = document.getElementById("r_img");
 
-  if (trialCount == 4 || trialCount == 129) {
+  //if (trialCount == 129 || trialCount == 258) {
+  if (trialCount == 4 || trialCount == 258) {
     takeBreak();
     trialCount++;
   } else {
@@ -62,6 +65,7 @@ function setImages(size){
     comparisons.push("comparing " + l_images[trialCount].src + " to " + r_images[trialCount].src)
     console.log("comparing " + l_images[trialCount].src + " to " + r_images[trialCount].src);
   }
+  console.log(comparison_table);
 }
 
 function preload() {
@@ -123,19 +127,15 @@ function start(){
   //arrayToCSV(comparisons_test);
 
 
-  // table = new p5.Table();
-  //
-  // table.addColumn('id');
-  // table.addColumn('species');
-  // table.addColumn('name');
+  comparison_table = new p5.Table();
+  comparison_table.addColumn('left');
+  comparison_table.addColumn('right');
+  comparison_table.addColumn('choice');
   //
   // //let newRow = table.addRow();
   // newRow.setNum('id', table.getRowCount() - 1);
   // newRow.setString('species', 'Panthera leo');
   // newRow.setString('name', 'Lion');
-  //
-  // // To save, un-comment next line then click 'run'
-  // saveTable(table, 'user_output.csv');
 
   preload();
   setup();
@@ -232,6 +232,10 @@ function leftImage(element){
         rButton.style.background = '#808080';
     }, 2000);
 
+    let newRow = comparison_table.addRow();
+    newRow.setNum('left', 'placeholder');
+    newRow.setString('right', 'Pplaceholder');
+    newRow.setString('choice', 'left');
 }
 
 function rightImage(element){
@@ -269,6 +273,11 @@ function rightImage(element){
       lButton.style.background = '#808080';
       rButton.style.background = '#808080';
   }, 2000);
+
+  let newRow = comparison_table.addRow();
+  newRow.setNum('left', 'placeholder');
+  newRow.setString('right', 'Pplaceholder');
+  newRow.setString('choice', 'right');
 }
 
 // shuffle the arrays
@@ -313,11 +322,13 @@ function takeBreak(e) {
   //
   // uploadFile();
 
+
+
   var saveData = $.ajax({
       type: 'GET',
       url: "api/upload",
-      data: "hello",
-      dataType: "text",
+      data: {"hello"},
+      dataType: "json",
       success: function(resultData) { alert("Save Complete") }
   });
   saveData.error(function() { alert("Something went wrong"); });
