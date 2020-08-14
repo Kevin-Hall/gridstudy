@@ -327,6 +327,7 @@ function takeBreak(e) {
   // uploadFile();
 
 
+
   var csv = saveTable(comparison_table, 'user1.csv');
   getSignedRequest(csv);
   //
@@ -499,7 +500,7 @@ function getSignedRequest(file){
 
 function uploadFile(file, signedRequest, url){
   const xhr = new XMLHttpRequest();
-  xhr.open('PUT', signedRequest);
+  xhr.open('POST', signedRequest);
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4){
       if(xhr.status === 200){
