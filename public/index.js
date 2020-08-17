@@ -58,14 +58,15 @@ function setImages(size){
     takeBreak();
     trialCount++;
   } else if (trialCount == 3){
+
+    // end of experiment
     document.getElementById("end_of_intruction_text").style.display = "block";
     document.getElementById("end_of_intruction_text").hidden = false;
     document.getElementById("survey_link").style.display = "block";
     document.getElementById("survey_link").hidden = false;
     document.getElementById("left").style.display = "none";
     document.getElementById("right").style.display = "none";
-
-
+    document.getElementById("cross").style.display = "none";
 
 
     var csv = saveTable(comparison_table, 'test.csv');
