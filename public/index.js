@@ -57,7 +57,7 @@ function setImages(size){
   if (trialCount == 129 || trialCount == 258) {
     takeBreak();
     trialCount++;
-  } else if (trialCount == 3){
+  } else if (trialCount == 387){
 
     // end of experiment
     document.getElementById("end_of_intruction_text").style.display = "block";
