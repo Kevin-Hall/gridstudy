@@ -331,28 +331,28 @@ function takeBreak(e) {
   //var csv = saveTable(comparison_table, 'user1.csv');
 
   var content = arrayToCSV(comparison_table.getArray());
-  // var encodedUri = encodeURI(content);
-  // var link = document.createElement('input');
-  // link.id = 'csv';
-  // link.type = "file";
-  // link.style.hidden = "true";
-  // //link.value = encodedUri;
-  // //link.setAttribute("href", encodedUri);
-  // //link.setAttribute("download", "my_data.csv");
-  // document.body.appendChild(link);
+  var encodedUri = encodeURI(content);
+  var link = document.createElement('input');
+  link.id = 'csv';
+  link.type = "file";
+  link.style.hidden = "true";
+  link.value = encodedUri;
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "my_data.csv");
+  document.body.appendChild(link);
 
   var blob = new Blob([JSON.stringify(content)]);
   var url = URL.createObjectURL(blob);
 
         // define new form
-  var formData = new FormData();
-  formData.append('csv', blob, 'newwww.csv');
-
-  setTimeout(() => {
-    // const files = document.getElementById("csv").files;
-    // const file = files[0];
-    getSignedRequest(formData);
-  },0);
+  // var formData = new FormData();
+  // formData.append('csv', blob, 'newwww.csv');
+  //
+  // setTimeout(() => {
+  //   // const files = document.getElementById("csv").files;
+  //   // const file = files[0];
+  //   getSignedRequest(formData);
+  // },0);
 
   //
   // var csv = saveTable(comparison_table, 'new.csv');
