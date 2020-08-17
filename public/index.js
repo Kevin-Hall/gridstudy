@@ -328,21 +328,21 @@ function takeBreak(e) {
 
 
 
-  //var csv = saveTable(comparison_table, 'user1.csv');
+  var csv = saveTable(comparison_table, 'test.csv');
 
-  var content = arrayToCSV(comparison_table.getArray());
-  var encodedUri = encodeURI(content);
-  var link = document.createElement('input');
-  link.id = 'csv';
-  link.type = "file";
-  link.style.hidden = "true";
-  link.value = encodedUri;
-  link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "my_data.csv");
-  document.body.appendChild(link);
-
-  var blob = new Blob([JSON.stringify(content)]);
-  var url = URL.createObjectURL(blob);
+  // var content = arrayToCSV(comparison_table.getArray());
+  // var encodedUri = encodeURI(content);
+  // var link = document.createElement('input');
+  // link.id = 'csv';
+  // link.type = "file";
+  // link.style.hidden = "true";
+  // link.value = encodedUri;
+  // link.setAttribute("href", encodedUri);
+  // link.setAttribute("download", "my_data.csv");
+  // document.body.appendChild(link);
+  //
+  // var blob = new Blob([JSON.stringify(content)]);
+  // var url = URL.createObjectURL(blob);
 
         // define new form
   // var formData = new FormData();
