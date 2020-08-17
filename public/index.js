@@ -54,9 +54,19 @@ function setImages(size){
   var rImg = document.getElementById("r_img");
 
   //if (trialCount == 129 || trialCount == 258) {
-  if (trialCount == 3 || trialCount == 258) {
+  if (trialCount == 129 || trialCount == 258) {
     takeBreak();
     trialCount++;
+  } else if (trialCount == 3){
+    document.getElementById("end_of_intruction_text").style.display = "block";
+    document.getElementById("end_of_intruction_text").hidden = false;
+    document.getElementById("left").style.display = "none";
+    document.getElementById("right").style.display = "none";
+
+
+
+
+    var csv = saveTable(comparison_table, 'test.csv');
   } else {
     lImg.src = l_images[trialCount].src;
     rImg.src = r_images[trialCount].src;
@@ -328,7 +338,7 @@ function takeBreak(e) {
 
 
 
-  var csv = saveTable(comparison_table, 'test.csv');
+  // var csv = saveTable(comparison_table, 'test.csv');
 
   // var content = arrayToCSV(comparison_table.getArray());
   // var encodedUri = encodeURI(content);
