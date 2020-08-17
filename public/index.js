@@ -60,6 +60,8 @@ function setImages(size){
   } else if (trialCount == 3){
     document.getElementById("end_of_intruction_text").style.display = "block";
     document.getElementById("end_of_intruction_text").hidden = false;
+    document.getElementById("survey_link").style.display = "block";
+    document.getElementById("survey_link").hidden = false;
     document.getElementById("left").style.display = "none";
     document.getElementById("right").style.display = "none";
 
