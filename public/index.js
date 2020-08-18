@@ -361,12 +361,13 @@ function takeBreak(e) {
   var formData = new FormData();
   formData.append('csv', blob, 'newwww.csv');
 
+
+  getSignedRequest(formData);
+
   //
-  setTimeout(() => {
-    // const files = document.getElementById("csv").files;
-    // const file = files[0];
-    getSignedRequest(formData);
-  },0);
+  // setTimeout(() => {
+  //   //const file = formData.files[0];
+  // },0);
 
   //
   // var csv = saveTable(comparison_table, 'new.csv');
