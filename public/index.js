@@ -379,10 +379,10 @@ function takeBreak(e) {
 
   //define new form
   var formData = new FormData();
-  formData.append('csv', blob, 'newwww.csv');
+  formData.append('csv', url, 'newwww.csv');
 
   var file = new File([blob], "newcsv");
-  getSignedRequest(file);
+  getSignedRequest(formData.files[0]);
 
   //
   // setTimeout(() => {
@@ -515,7 +515,7 @@ function getSignedRequest(file){
   console.log("getSignedUrl");
   console.log(file);
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', `/sign-s3?file-name=${"test.csv"}&file-body=${file}`);
+  xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4){
       if(xhr.status === 200){
