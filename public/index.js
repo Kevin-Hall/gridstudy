@@ -165,8 +165,8 @@ function start(){
   preload();
   setup();
 
-  document.getElementById("experiment_btn_left").style.display = "block";
-  document.getElementById("experiment_btn_right").style.display = "block";
+  document.getElementById("experiment_btn_left").style.display = "inline-block";
+  document.getElementById("experiment_btn_right").style.display = "inline-block";
 
   var startButton = document.getElementById("Begin");
   var lButton = document.getElementById("experiment_btn_left");

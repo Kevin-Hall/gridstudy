@@ -55,6 +55,7 @@
 	width: 10%;
 	float: center;
 	text-align: center;
+	display: inline-block;
 	background-color: yellow;
 }
 
