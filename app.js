@@ -37,23 +37,25 @@ app.get('/', function(req,res) {
 app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
-  const fileType = req.query['file-type'];
-  const s3Params = {
-    Bucket: BUCKET_NAME,
-    Key: `user-${new Date().getTime()}.csv`,
-    Expires: 60,
-    ContentType: fileType,
-    ACL: 'public-read'
-  };
+  const fileContent = req.query['file-content'];
 
-  s3.upload(params, function (s3Err, data) {
-                if (s3Err) throw s3Err;
-                else {
-                // return ResponseService.json(201, res, "File created successfully", {
-                //     redirectUri: data.Location,
-                // });
-                }
-            });
+  uploadToS3(fileContent);
+  // const s3Params = {
+  //   Bucket: BUCKET_NAME,
+  //   Key: `user-${new Date().getTime()}.csv`,
+  //   Expires: 60,
+  //   ContentType: fileType,
+  //   ACL: 'public-read'
+  // };
+
+  // s3.upload(params, function (err, data) {
+  //   if (err) {
+  //     console.log('error in callback');
+  //     console.log(err);
+  //   }
+  //   console.log('success');
+  //   console.log(data);
+  // });
 
   // s3.getSignedUrl('putObject', s3Params, (err, data) => {
   //   if(err){
@@ -70,23 +72,25 @@ app.get('/sign-s3', (req, res) => {
 });
 
 
-// function uploadToS3(file) {
-//   s3.createBucket(function () {
-//       var params = {
-//         Bucket: BUCKET_NAME,
-//         Key: file.name,
-//         Body: file.data
-//       };
-//       s3.upload(params, function (err, data) {
-//         if (err) {
-//           console.log('error in callback');
-//           console.log(err);
-//         }
-//         console.log('success');
-//         console.log(data);
-//       });
-//   });
-// }
+function uploadToS3(fileContent) {
+  s3.createBucket(function () {
+    const params = {
+      Bucket: BUCKET_NAME,
+      Key: `user-${new Date().getTime()}.csv`,
+      Expires: 60,
+      ContentType: fileType,
+      ACL: 'public-read'
+    };
+    s3.upload(params, function (err, data) {
+      if (err) {
+        console.log('error in callback');
+        console.log(err);
+      }
+      console.log('success');
+      console.log(data);
+    });
+  });
+}
 
 // const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
 // const records = require('../data');
