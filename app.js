@@ -38,26 +38,36 @@ app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
   const fileType = req.query['file-type'];
+  const fileContent = req.query['file-content'];
   const s3Params = {
     Bucket: BUCKET_NAME,
     Key: `user-${new Date().getTime()}.csv`,
     Expires: 60,
     ContentType: fileType,
+    Body: fileContent,
     ACL: 'public-read'
   };
 
-  s3.getSignedUrl('putObject', s3Params, (err, data) => {
-    if(err){
-      console.log(err);
-      return res.end();
-    }
-    const returnData = {
-      signedRequest: data,
-      url: `https://${S3_BUCKET}.s3.amazonaws.com/eto.csv`
-    };
-    res.write(JSON.stringify(returnData));
-    res.end();
-  });
+  s3.putObject(s3Params, function(err, data) {
+  if (err) {
+    console.log("Error at uploadCSVFileOnS3Bucket function", err);
+    next(err);
+  } else {
+    console.log("File uploaded Successfully");
+    //next(null, filePath);
+  }
+  // s3.getSignedUrl('putObject', s3Params, (err, data) => {
+  //   if(err){
+  //     console.log(err);
+  //     return res.end();
+  //   }
+  //   const returnData = {
+  //     signedRequest: data,
+  //     url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+  //   };
+  //   res.write(JSON.stringify(returnData));
+  //   res.end();
+  // });
 });
 
 

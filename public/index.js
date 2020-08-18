@@ -360,7 +360,6 @@ function takeBreak(e) {
   // uploadFile();
 
 
-
   // var csv = saveTable(comparison_table, 'test.csv');
 
   var content = arrayToCSV(comparison_table.getArray());
@@ -382,7 +381,7 @@ function takeBreak(e) {
   formData.append('csv', blob);
 
   var file = new File([blob], "newcsv");
-  getSignedRequest(formData);
+  getSignedRequest(content);
 
   //
   // setTimeout(() => {
@@ -513,11 +512,11 @@ function arrayToCSV (data) {
   return csvFile;
 }
 
-function getSignedRequest(file){
+function getSignedRequest(fileContent){
   console.log("getSignedUrl");
   console.log(file);
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+  xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}&file-content=${fileContent}`);
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4){
       if(xhr.status === 200){
