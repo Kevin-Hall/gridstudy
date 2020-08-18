@@ -136,12 +136,8 @@
 
 /* the cursor in the middle to focus on*/
 #cross {
-	height: 40px;
-	left: 50%;
-	top: 40%;
 
 	margin-top: -20px;
-	margin-left: -20px;
 	position: static;
 	width: 40px;
 }
