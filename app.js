@@ -49,12 +49,13 @@ app.get('/sign-s3', (req, res) => {
   };
 
   s3.putObject(s3Params, function(err, data) {
-  if (err) {
-    console.log("Error at uploadCSVFileOnS3Bucket function", err);
-    next(err);
-  } else {
-    console.log("File uploaded Successfully");
-    //next(null, filePath);
+    if (err) {
+      console.log("Error at uploadCSVFileOnS3Bucket function", err);
+      next(err);
+    } else {
+      console.log("File uploaded Successfully");
+      //next(null, filePath);
+    }
   }
   // s3.getSignedUrl('putObject', s3Params, (err, data) => {
   //   if(err){
