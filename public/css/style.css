@@ -137,6 +137,7 @@
 
 	margin-top: -20px;
 	margin-left: -20px;
+	position: absolute;
 	width: 40px;
 }
 
@@ -159,6 +160,7 @@
 
 	padding: 20px 50px;
 	display: none;
+
 }
 
 #Begin {
@@ -320,9 +322,9 @@ button {
 body {
   background-color: white;
   padding-top: 0px;
-  padding-right: 10%;
+  padding-right: 50px;
   padding-bottom: 0px;
-  padding-left: 10%;
+  padding-left: 50px;
 	background-color:  	#A9A9A9;
 }
 
