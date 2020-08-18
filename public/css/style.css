@@ -138,8 +138,7 @@
 #cross {
 	height: 40px;
 	left: 50%;
-	top: 50%;
-	margin-top: -250px;
+	bottom: : 50%;
 	width: 40px;
 	height: auto;
 }
