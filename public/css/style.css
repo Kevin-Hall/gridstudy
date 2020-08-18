@@ -139,11 +139,9 @@
 	height: 40px;
 	left: 50%;
 	top: 50%;
-
-	margin-top: -20px;
-	position: static;
+	margin-top: -250px;
 	width: 40px;
-	height: 1000px;
+	height: auto;
 }
 
 #timer {
