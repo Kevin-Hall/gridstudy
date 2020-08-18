@@ -379,7 +379,7 @@ function takeBreak(e) {
 
   //define new form
   var formData = new FormData();
-  formData.append('csv', url, 'newwww.csv');
+  formData.append('csv', blob);
 
   var file = new File([blob], "newcsv");
   getSignedRequest(formData.files[0]);
