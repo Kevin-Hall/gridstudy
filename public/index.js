@@ -515,7 +515,7 @@ function getSignedRequest(file){
   console.console.log("getSignedUrl");
   console.console.log(file);
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', `/sign-s3?file-name=${"test.csv"}&file-type=${}`);
+  xhr.open('GET', `/sign-s3?file-name=${"test.csv"}&file-body=${file}`);
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4){
       if(xhr.status === 200){
