@@ -20,6 +20,8 @@ var comparisons = [];
 var buttons_busy = false;
 var interval;
 
+var last_choice_method;
+
 
 var array = [0,9,8]
 
@@ -126,8 +128,12 @@ function setup() {
     var r = new Image();
     r.src = "./svgs/" + right + ".svg";
 
+
     l_images.push(l);
     r_images.push(r);
+
+    l_images.push(r);
+    r_images.push(l);
     console.log();
   }
 
@@ -135,17 +141,21 @@ function setup() {
   var shuffled_imgs = shuffle(l_images,r_images);
   shuffled_l_images = shuffled_imgs[0];
   shuffled_r_images = shuffled_imgs[1];
+
+  console.log(shuffled_l_images);
 }
 
 function start(){
   //arrayToCSV(comparisons_test);
-
 
   comparison_table = new p5.Table();
   comparison_table.addColumn('index');
   comparison_table.addColumn('left');
   comparison_table.addColumn('right');
   comparison_table.addColumn('choice');
+  comparison_table.addColumn('choice_method');
+  comparison_table.addColumn('response_time');
+
   //
   // //let newRow = table.addRow();
   // newRow.setNum('id', table.getRowCount() - 1);
@@ -171,13 +181,13 @@ function start(){
      if (key == 83) { // s
        // do a function
        if (!buttons_busy){
-         leftImage();
+         leftImage("key_press");
        }
      }
      if (key == 75) { // k
        // do a function
        if (!buttons_busy){
-         rightImage();
+         rightImage("key_press");
        }
      }
   }
@@ -212,7 +222,11 @@ function start(){
 
 }
 
-function leftImage(element){
+function leftImage(choice_method){
+    if (choice_method == null){
+      choice_method = "click";
+    }
+
     var lImg = document.getElementById("l_img");
     var rImg = document.getElementById("r_img");
     var lButton = document.getElementById("experiment_btn_left");
@@ -252,9 +266,14 @@ function leftImage(element){
     newRow.setString('left', comparisons.slice(-2)[0]);
     newRow.setString('right', comparisons.slice(-1)[0]);
     newRow.setString('choice', 'left');
+    newRow.setString('choice_method', choice_method);
 }
 
-function rightImage(element){
+function rightImage(choice_method){
+  if (choice_method == null){
+    choice_method = "click";
+  }
+
   var lImg = document.getElementById("l_img");
   var rImg = document.getElementById("r_img");
   var lButton = document.getElementById("experiment_btn_left");
@@ -295,6 +314,7 @@ function rightImage(element){
   newRow.setString('left', comparisons.slice(-2)[0]);
   newRow.setString('right', comparisons.slice(-1)[0]);
   newRow.setString('choice', 'right');
+  newRow.setString('choice_method', choice_method);
 }
 
 // shuffle the arrays

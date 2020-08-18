@@ -36,13 +36,13 @@ app.get('/', function(req,res) {
 
 app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
-  const fileName = req.query['file-name'];
-  const fileType = req.query['file-type'];
+  // const fileName = req.query['file-name'];
+  // const fileType = req.query['file-type'];
   const s3Params = {
     Bucket: S3_BUCKET,
     Key: `users-${new Date().getTime()}.csv`,
     Expires: 60,
-    ContentType: fileType,
+    ContentType: "text/csv",
     ACL: 'public-read'
   };
 
