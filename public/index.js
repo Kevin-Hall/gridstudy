@@ -364,14 +364,6 @@ function takeBreak(e) {
 
   var content = arrayToCSV(comparison_table.getArray());
   var encodedUri = encodeURI(content);
-  // var link = document.createElement('input');
-  // link.id = 'csv';
-  // link.type = "file";
-  // link.style.hidden = "true";
-  // link.value = encodedUri;
-  // link.setAttribute("href", encodedUri);
-  // link.setAttribute("download", "my_data.csv");
-  // document.body.appendChild(link);
   //
   var blob = new Blob([JSON.stringify(content)]);
   var url = URL.createObjectURL(blob);
@@ -381,9 +373,8 @@ function takeBreak(e) {
   formData.append('csv', blob);
 
   var file = new File([blob], "newcsv");
-  //getSignedRequest(content);
+  getSignedRequest(content);
 
-  uploadToS3(content);
 
   //
   // setTimeout(() => {

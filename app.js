@@ -72,7 +72,7 @@ app.get('/sign-s3', (req, res) => {
 });
 
 
-function uploadToS3(fileContent) {
+export function uploadToS3(fileContent) {
   s3.createBucket(function () {
     const params = {
       Bucket: BUCKET_NAME,
