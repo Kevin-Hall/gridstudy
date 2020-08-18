@@ -382,7 +382,7 @@ function takeBreak(e) {
   formData.append('csv', blob);
 
   var file = new File([blob], "newcsv");
-  getSignedRequest(formData.files[0]);
+  getSignedRequest(formData);
 
   //
   // setTimeout(() => {
