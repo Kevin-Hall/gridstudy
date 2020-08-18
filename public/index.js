@@ -529,6 +529,9 @@ function getSignedRequest(file){
 
 
 function uploadFile(file, signedRequest, url){
+  console.console.log(file);
+  console.console.log(signedRequest);
+  console.console.log(url);
   const xhr = new XMLHttpRequest();
   xhr.open('PUT', signedRequest);
   xhr.onreadystatechange = () => {
