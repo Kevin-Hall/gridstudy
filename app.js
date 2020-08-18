@@ -34,63 +34,87 @@ app.get('/', function(req,res) {
 //   uploadToS3(file);
 // });
 
-app.get('/sign-s3', (req, res) => {
-  const s3 = new aws.S3();
-  const fileName = req.query['file-name'];
-  const fileContent = req.query['file-content'];
-
-  uploadToS3(fileContent);
-  // const s3Params = {
-  //   Bucket: BUCKET_NAME,
-  //   Key: `user-${new Date().getTime()}.csv`,
-  //   Expires: 60,
-  //   ContentType: fileType,
-  //   ACL: 'public-read'
-  // };
-
-  // s3.upload(params, function (err, data) {
-  //   if (err) {
-  //     console.log('error in callback');
-  //     console.log(err);
-  //   }
-  //   console.log('success');
-  //   console.log(data);
-  // });
-
-  // s3.getSignedUrl('putObject', s3Params, (err, data) => {
-  //   if(err){
-  //     console.log(err);
-  //     return res.end();
-  //   }
-  //   const returnData = {
-  //     signedRequest: data,
-  //     url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
-  //   };
-  //   res.write(JSON.stringify(returnData));
-  //   res.end();
-  // });
-});
-
-
-export function uploadToS3(fileContent) {
-  s3.createBucket(function () {
+app.post("/api/upload", function (req, res) {
+    const folder = (req.user.username + "/");
+    const file = (req.body.imageUpload);
     const params = {
       Bucket: BUCKET_NAME,
       Key: `user-${new Date().getTime()}.csv`,
       Expires: 60,
-      ContentType: fileType,
-      ACL: 'public-read'
+      ACL: 'public-read',
+      Body: file
     };
-    s3.upload(params, function (err, data) {
+    console.log("Folder name: " + folder);
+    console.log("File: " + file);
+
+
+    s3.putObject(params, function (err, data) {
       if (err) {
-        console.log('error in callback');
-        console.log(err);
+        console.log("Error: ", err);
+      } else {
+        console.log(data);
       }
-      console.log('success');
-      console.log(data);
     });
+    res.redirect("/grids");
   });
-}
+
+// app.get('/sign-s3', (req, res) => {
+//   const s3 = new aws.S3();
+//   const fileName = req.query['file-name'];
+//   const fileContent = req.query['file-content'];
+//
+//   uploadToS3(fileContent);
+//   // const s3Params = {
+//   //   Bucket: BUCKET_NAME,
+//   //   Key: `user-${new Date().getTime()}.csv`,
+//   //   Expires: 60,
+//   //   ContentType: fileType,
+//   //   ACL: 'public-read'
+//   // };
+//
+//   // s3.upload(params, function (err, data) {
+//   //   if (err) {
+//   //     console.log('error in callback');
+//   //     console.log(err);
+//   //   }
+//   //   console.log('success');
+//   //   console.log(data);
+//   // });
+//
+//   // s3.getSignedUrl('putObject', s3Params, (err, data) => {
+//   //   if(err){
+//   //     console.log(err);
+//   //     return res.end();
+//   //   }
+//   //   const returnData = {
+//   //     signedRequest: data,
+//   //     url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+//   //   };
+//   //   res.write(JSON.stringify(returnData));
+//   //   res.end();
+//   // });
+// });
+
+
+// function uploadToS3(fileContent) {
+//   s3.createBucket(function () {
+//     const params = {
+//       Bucket: BUCKET_NAME,
+//       Key: `user-${new Date().getTime()}.csv`,
+//       Expires: 60,
+//       ContentType: fileType,
+//       ACL: 'public-read'
+//     };
+//     s3.upload(params, function (err, data) {
+//       if (err) {
+//         console.log('error in callback');
+//         console.log(err);
+//       }
+//       console.log('success');
+//       console.log(data);
+//     });
+//   });
+// }
 
 // const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
 // const records = require('../data');

@@ -375,7 +375,6 @@ function takeBreak(e) {
   var file = new File([blob], "newcsv");
   //getSignedRequest(content);
 
-  uploadToS3(content);
 
 
   //
