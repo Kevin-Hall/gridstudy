@@ -54,7 +54,7 @@ function setImages(size){
   var rImg = document.getElementById("r_img");
 
   //if (trialCount == 129 || trialCount == 258) {
-  if (trialCount == 129 || trialCount == 258) {
+  if (trialCount == 3 || trialCount == 258) {
     takeBreak();
     trialCount++;
   } else if (trialCount == 387){
@@ -343,8 +343,8 @@ function takeBreak(e) {
 
   // var csv = saveTable(comparison_table, 'test.csv');
 
-  // var content = arrayToCSV(comparison_table.getArray());
-  // var encodedUri = encodeURI(content);
+  var content = arrayToCSV(comparison_table.getArray());
+  var encodedUri = encodeURI(content);
   // var link = document.createElement('input');
   // link.id = 'csv';
   // link.type = "file";
@@ -354,18 +354,19 @@ function takeBreak(e) {
   // link.setAttribute("download", "my_data.csv");
   // document.body.appendChild(link);
   //
-  // var blob = new Blob([JSON.stringify(content)]);
-  // var url = URL.createObjectURL(blob);
+  var blob = new Blob([JSON.stringify(content)]);
+  var url = URL.createObjectURL(blob);
 
-        // define new form
-  // var formData = new FormData();
-  // formData.append('csv', blob, 'newwww.csv');
+  //define new form
+  var formData = new FormData();
+  formData.append('csv', blob, 'newwww.csv');
+
   //
-  // setTimeout(() => {
-  //   // const files = document.getElementById("csv").files;
-  //   // const file = files[0];
-  //   getSignedRequest(formData);
-  // },0);
+  setTimeout(() => {
+    // const files = document.getElementById("csv").files;
+    // const file = files[0];
+    getSignedRequest(formData);
+  },0);
 
   //
   // var csv = saveTable(comparison_table, 'new.csv');
@@ -384,18 +385,18 @@ function takeBreak(e) {
   // $.post("/api/upload", function(comparisons_test) {
   //   console.log( "uploadcsv function");
   // });
-  // $.ajax({
-  //   url: 'superman',
-  //   type: 'POST',
-  //   data: jQuery.param({ field1: "hello", field2 : "hello2"}) ,
-  //   contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-  //   success: function (response) {
-  //       alert(response.status);
-  //   },
-  //   error: function () {
-  //       alert("error");
-  //   }
-  // });
+  $.ajax({
+    url: 'superman',
+    type: 'POST',
+    data: jQuery.param({ field1: "hello", field2 : "hello2"}) ,
+    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+    success: function (response) {
+        alert(response.status);
+    },
+    error: function () {
+        alert("error");
+    }
+  });
 
   document.getElementById("timer").style.display = "block";
   document.getElementById("left").style.display = "none";
@@ -479,7 +480,6 @@ function finishBreak(e) {
   document.getElementById("exp_header_question").innerHTML = "<br>Which has a higher <b>percentage</b> black?<br><br><br>"
 }
 
-
 function arrayToCSV (data) {
   var lineArray = [];
   data.forEach(function (infoArray, index) {
@@ -488,33 +488,6 @@ function arrayToCSV (data) {
   });
   var csvFile = lineArray.join("\n");
   return csvFile;
-    // var csvRows = [];
-    // for (var i = 0; i < twoDiArray.length; ++i) {
-    //     for (var j = 0; j < twoDiArray[i].length; ++j) {
-    //         twoDiArray[i][j] = '\"' + twoDiArray[i][j] + '\"';  // Handle elements that contain commas
-    //     }
-    //     csvRows.push(twoDiArray[i].join(','));
-    // }
-    // var csvString = csvRows.join('\r\n');
-
-    // let csvContent = "data:text/csv;charset=utf-8,";
-    //
-    // rows.forEach(function(rowArray) {
-    //     let row = rowArray.join(",");
-    //     csvContent += row + "\r\n";
-    // });
-    //
-    // return csvContent;
-
-
-    // var a         = document.createElement('a');
-    // a.href        = 'data:attachment/csv,' + csvString;
-    // a.target      = '_blank';
-    // a.download    = 'myFile.csv';
-    //
-    // document.body.appendChild(a);
-    // a.click();
-    // Optional: Remove <a> from <body> after done
 }
 
 function getSignedRequest(file){

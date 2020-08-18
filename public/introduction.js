@@ -1,6 +1,6 @@
 
+// loaded in from eto.csv
 var csvComparisonData;
-
 
 // used to ungray button when correct answer is chosen
 var tutorial_passed = false;
@@ -8,21 +8,20 @@ var tutorial_passed = false;
 // used for blocking button press while changing trial images
 var buttons_busy = false;
 
-
-function loadCSV(){
-    Papa.parse("http://localhost:3000/Eto.csv", {
-        download: true,
-        complete: function(results) {
-            i = 1;
-            console.log(results);
-            //csvComparisonData = results.data;
-            results.data.forEach(function(entry){
-              csvComparisonData = entry;
-              console.console.log(entry);
-            });
-         }
-    });
-}
+/*
+* loads csv using papaparse
+*/
+// function loadCSV(){
+//     Papa.parse("http://localhost:3000/Eto.csv", {
+//         download: true,
+//         complete: function(results) {
+//             i = 1;
+//             results.data.forEach(function(entry){
+//               csvComparisonData = entry;
+//             });
+//          }
+//     });
+// }
 
 var index = 0;
 function next(e){
