@@ -35,7 +35,7 @@ app.get('/', function(req,res) {
 // });
 
 app.post("/api/upload", function (req, res) {
-    const folder = (req.user.username + "/");
+    //const folder = (req.user.username + "/");
     const file = (req.body.imageUpload);
     const params = {
       Bucket: BUCKET_NAME,
