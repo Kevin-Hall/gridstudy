@@ -381,7 +381,9 @@ function takeBreak(e) {
   formData.append('csv', blob);
 
   var file = new File([blob], "newcsv");
-  getSignedRequest(content);
+  //getSignedRequest(content);
+
+  uploadToS3(content);
 
   //
   // setTimeout(() => {
