@@ -37,26 +37,24 @@ app.get('/', function(req,res) {
 app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
-  //const fileType = req.query['file-type'];
-  const fileContent = req.query['file-content'];
+  const fileType = req.query['file-type'];
   const s3Params = {
     Bucket: BUCKET_NAME,
     Key: `user-${new Date().getTime()}.csv`,
     Expires: 60,
-    ContentType: "text/csv",
-    Body: fileContent,
+    ContentType: fileType,
     ACL: 'public-read'
   };
 
-  s3.putObject(s3Params, function(err, data) {
-    if (err) {
-      console.log("Error at uploadCSVFileOnS3Bucket function", err);
-      next(err);
-    } else {
-      console.log("File uploaded Successfully");
-      //next(null, filePath);
-    }
-  }
+  s3.upload(params, function (s3Err, data) {
+                if (s3Err) throw s3Err;
+                else {
+                // return ResponseService.json(201, res, "File created successfully", {
+                //     redirectUri: data.Location,
+                // });
+                }
+            });
+
   // s3.getSignedUrl('putObject', s3Params, (err, data) => {
   //   if(err){
   //     console.log(err);
