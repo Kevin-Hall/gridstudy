@@ -517,17 +517,17 @@ function getSignedRequest(fileContent){
   console.log(fileContent);
 
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', `/sign-s3?file-name=${"hey"}&file-content=${fileContent}`);
-  xhr.onreadystatechange = () => {
-    if(xhr.readyState === 4){
-      if(xhr.status === 200){
-        const response = JSON.parse(xhr.responseText);
-        uploadFile(file, response.signedRequest, response.url);
-      } else{
-        alert('Could not get signed URL.');
-      }
-    }
-  };
+  xhr.open('POST', `/sign-s3?file-name=${"hey"}&file-content=${fileContent}`);
+  // xhr.onreadystatechange = () => {
+  //   if(xhr.readyState === 4){
+  //     if(xhr.status === 200){
+  //       const response = JSON.parse(xhr.responseText);
+  //       //uploadFile(file, response.signedRequest, response.url);
+  //     } else{
+  //       alert('Could not get signed URL.');
+  //     }
+  //   }
+  // };
   xhr.send();
 }
 
