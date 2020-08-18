@@ -252,8 +252,8 @@ function leftImage(choice_method){
 
     // remove static image
     setTimeout(() => {
-        lImg.src = "blank.svg";
-        rImg.src = "blank.svg";
+        lImg.src = "static.jpg";
+        rImg.src = "static.jpg";
         buttons_busy = false;
         document.getElementById("experiment_btn_left").disabled = false;
         document.getElementById("experiment_btn_right").disabled = false;
@@ -299,8 +299,8 @@ function rightImage(choice_method){
 
   // remove static image
   setTimeout(() => {
-      lImg.src = "blank.svg";
-      rImg.src = "blank.svg";
+    lImg.src = "static.jpg";
+    rImg.src = "static.jpg";
 
       buttons_busy = false;
       lButton.disabled = false;
