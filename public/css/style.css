@@ -45,7 +45,7 @@
 }
 
 #left {
-	width: 10%;
+	width: 100%;
 	float: left;
 	text-align: center;
 }
@@ -57,7 +57,7 @@
 }
 
 #right {
-	width: 10%;
+	width: 100%;
 	float: right;
 	text-align: center;
 }
