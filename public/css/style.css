@@ -140,7 +140,7 @@
 
 	margin-top: -20px;
 	margin-left: -20px;
-	position: absolute;
+	position: static;
 	width: 40px;
 }
 
