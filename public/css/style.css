@@ -48,18 +48,21 @@
 	width: 45%;
 	float: left;
 	text-align: center;
+	background-color: red;
 }
 
 #center_div {
 	width: 10%;
 	float: center;
 	text-align: center;
+	background-color: yellow;
 }
 
 #right {
 	width: 45%;
 	float: right;
 	text-align: center;
+	background-color: blue;
 }
 
 #content_consent {
