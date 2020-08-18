@@ -512,8 +512,8 @@ function arrayToCSV (data) {
 }
 
 function getSignedRequest(file){
-  console.console.log("getSignedUrl");
-  console.console.log(file);
+  console.log("getSignedUrl");
+  console.log(file);
   const xhr = new XMLHttpRequest();
   xhr.open('GET', `/sign-s3?file-name=${"test.csv"}&file-body=${file}`);
   xhr.onreadystatechange = () => {
