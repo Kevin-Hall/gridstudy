@@ -43,7 +43,6 @@ app.get('/sign-s3', (req, res) => {
     Key: `user-${new Date().getTime()}.csv`,
     Expires: 60,
     ContentType: fileType,
-    Body: body,
     ACL: 'public-read'
   };
 

@@ -406,18 +406,20 @@ function takeBreak(e) {
   // $.post("/api/upload", function(comparisons_test) {
   //   console.log( "uploadcsv function");
   // });
-  $.ajax({
-    url: 'superman',
-    type: 'POST',
-    data: jQuery.param({ field1: "hello", field2 : "hello2"}) ,
-    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-    success: function (response) {
-        alert(response.status);
-    },
-    error: function () {
-        alert("error");
-    }
-  });
+
+
+  // $.ajax({
+  //   url: 'superman',
+  //   type: 'POST',
+  //   data: jQuery.param({ field1: "hello", field2 : "hello2"}) ,
+  //   contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+  //   success: function (response) {
+  //       alert(response.status);
+  //   },
+  //   error: function () {
+  //       alert("error");
+  //   }
+  // });
 
   document.getElementById("timer").style.display = "block";
   document.getElementById("left").style.display = "none";
