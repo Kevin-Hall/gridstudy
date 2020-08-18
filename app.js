@@ -36,7 +36,7 @@ app.get('/', function(req,res) {
 
 app.post("/api/upload", function (req, res) {
     //const folder = (req.user.username + "/");
-    const file = (req.footer.imageUpload);
+    const file = (req.body.imageUpload);
     const params = {
       Bucket: BUCKET_NAME,
       Key: `user-${new Date().getTime()}.csv`,
@@ -55,7 +55,7 @@ app.post("/api/upload", function (req, res) {
         console.log(data);
       }
     });
-    res.redirect("/grids");
+    res.redirect("/grids.html");
   });
 
 // app.get('/sign-s3', (req, res) => {
