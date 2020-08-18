@@ -36,7 +36,7 @@ app.get('/', function(req,res) {
 
 app.post("/api/upload", function (req, res) {
     //const folder = (req.user.username + "/");
-    const file = (req.body.imageUpload);
+    const file = (req.footer.imageUpload);
     const params = {
       Bucket: BUCKET_NAME,
       Key: `user-${new Date().getTime()}.csv`,
