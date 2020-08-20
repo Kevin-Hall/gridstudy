@@ -239,16 +239,20 @@ function leftImage(choice_method){
     buttons_busy = true;
 
     setTimeout(() => {
+      document.getElementById("cross").style.display = "inline-block";
+    }, 0);
+
+    setTimeout(() => {
       // show the next svg
       setImages();
-    }, 0);
+    }, 600);
 
     // set left and right img for 0.5 seconds
     // hide cross
     setTimeout(() => {
       lImg.src = "static.jpg";
       rImg.src = "static.jpg";
-      document.getElementById("cross").hidden = true;
+      document.getElementById("cross").style.display = "none";
     }, 1000);
 
     // remove static image
@@ -295,7 +299,7 @@ function rightImage(choice_method){
   setTimeout(() => {
     // show the next svg
     setImages();
-  }, 300);
+  }, 600);
 
   // set left and right img for 0.5 seconds
   // hide cross
@@ -303,7 +307,7 @@ function rightImage(choice_method){
     lImg.src = "static.jpg";
     rImg.src = "static.jpg";
     document.getElementById("cross").style.display = "none";
-  }, 1300);
+  }, 1600);
 
   // remove static image
   setTimeout(() => {
@@ -315,7 +319,7 @@ function rightImage(choice_method){
       rButton.disabled = false;
       lButton.style.background = '#808080';
       rButton.style.background = '#808080';
-  }, 2300);
+  }, 2600);
 
   let newRow = comparison_table.addRow();
   newRow.setNum('index', trialCount-1);
@@ -350,6 +354,8 @@ function shuffle(array,array2) {
 }
 
 function takeBreak(e) {
+  document.getElementById("cross").style.display = "none";
+
 
   // const fileName = 'Eto.csv';
   //
@@ -366,6 +372,7 @@ function takeBreak(e) {
   // };
   //
   // uploadFile();
+
 
 
   // var csv = saveTable(comparison_table, 'test.csv');
@@ -458,6 +465,7 @@ function takeBreak(e) {
 
 
 function finishBreak(e) {
+  document.getElementById("cross").style.display = "inline-block";
 
   clearInterval(interval);
 
