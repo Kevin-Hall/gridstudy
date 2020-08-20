@@ -380,7 +380,7 @@ function takeBreak(e) {
   var content = arrayToCSV(comparison_table.getArray());
   //var encodedUri = encodeURI(content);
   //
-  var blob = new Blob([content], {type: "text/csv", lastModified: Date()});
+  var blob = new Blob([comparison_table.getArray().join('\n')], {type: "text/csv"});
   //var url = URL.createObjectURL(blob);
 
   //define new form
@@ -584,8 +584,8 @@ function uploadFile(file, signedRequest, url){
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4){
       if(xhr.status === 200){
-        document.getElementById('preview').src = url;
-        document.getElementById('avatar-url').value = url;
+        // document.getElementById('preview').src = url;
+        // document.getElementById('avatar-url').value = url;
       }
       else{
         alert('Could not upload file.');
