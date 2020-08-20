@@ -203,7 +203,6 @@ var server = app.listen(8081, function () {
 
     var host = server.address().address
     var port = server.address().port
-    uploadToS3("hello");
 
     console.log('Express app listening at http://%s:%s', host, port)
 })
