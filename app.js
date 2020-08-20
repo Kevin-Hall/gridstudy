@@ -76,7 +76,7 @@ app.get('/sign-s3', (req, res) => {
   const fileName = req.query['file-name'];
   const fileType = req.query['file-type'];
   const s3Params = {
-    Bucket: S3_BUCKET,
+    Bucket: BUCKET_NAME,
     Key: fileName,
     Expires: 60,
     ContentType: fileType,
