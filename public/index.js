@@ -34,7 +34,7 @@ function setImages(size){
   var rImg = document.getElementById("r_img");
 
   //if (trialCount == 129 || trialCount == 258) {
-  if (trialCount == 3 || trialCount == 258) {
+  if (trialCount == 5 || trialCount == 258) {
     takeBreak();
     trialCount++;
   } else if (trialCount == 387){
@@ -201,6 +201,21 @@ function leftImage(choice_method){
     }
     rt_end = Date();
 
+    let newRow = comparison_table.addRow();
+    newRow.setNum('index', trialCount-1);
+    newRow.setString('left', comparisons.slice(-2)[0]);
+    newRow.setString('right', comparisons.slice(-1)[0]);
+    newRow.setString('choice', 'left');
+    newRow.setString('choice_method', choice_method);
+    var timeDiff = rt_end - rt_start; //in ms
+    // strip the ms
+    timeDiff /= 1000;
+
+    // get seconds
+    var seconds = Math.round(timeDiff);
+    console.log(timeDiff + " seconds");
+    newRow.setNum('response_time', timeDiff);
+
     var lImg = document.getElementById("l_img");
     var rImg = document.getElementById("r_img");
     var lButton = document.getElementById("experiment_btn_left");
@@ -242,12 +257,7 @@ function leftImage(choice_method){
 
     }, 3000);
 
-    let newRow = comparison_table.addRow();
-    newRow.setNum('index', trialCount-1);
-    newRow.setString('left', comparisons.slice(-2)[0]);
-    newRow.setString('right', comparisons.slice(-1)[0]);
-    newRow.setString('choice', 'left');
-    newRow.setString('choice_method', choice_method);
+
 }
 
 function rightImage(choice_method){
@@ -255,6 +265,21 @@ function rightImage(choice_method){
     choice_method = "click";
   }
   rt_end = Date();
+
+  let newRow = comparison_table.addRow();
+  newRow.setNum('index', trialCount-1);
+  newRow.setString('left', comparisons.slice(-2)[0]);
+  newRow.setString('right', comparisons.slice(-1)[0]);
+  newRow.setString('choice', 'right');
+  newRow.setString('choice_method', choice_method);
+  var timeDiff = rt_end - rt_start; //in ms
+  // strip the ms
+  timeDiff /= 1000;
+
+  // get seconds
+  var seconds = Math.round(timeDiff);
+  console.log(timeDiff + " seconds");
+  newRow.setNum('response_time', timeDiff);
 
   var lImg = document.getElementById("l_img");
   var rImg = document.getElementById("r_img");
@@ -297,20 +322,6 @@ function rightImage(choice_method){
       rButton.style.background = '#808080';
   }, 3000);
 
-  let newRow = comparison_table.addRow();
-  newRow.setNum('index', trialCount-1);
-  newRow.setString('left', comparisons.slice(-2)[0]);
-  newRow.setString('right', comparisons.slice(-1)[0]);
-  newRow.setString('choice', 'right');
-  newRow.setString('choice_method', choice_method);
-  var timeDiff = rt_end - rt_start; //in ms
-  // strip the ms
-  //timeDiff /= 1000;
-
-  // get seconds
-  //var seconds = Math.round(timeDiff);
-  console.log(timeDiff + " seconds");
-  newRow.setNum('response_time', timeDiff);
 }
 
 // shuffle the arrays
