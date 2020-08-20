@@ -540,19 +540,37 @@ function arrayToCSV (data) {
   return csvFile;
 }
 
-function getSignedRequest(fileContent){
-  console.log("getSignedUrl");
-  console.log(fileContent);
+// function getSignedRequest(fileContent){
+//   console.log("getSignedUrl");
+//   console.log(fileContent);
+//
+//   const xhr = new XMLHttpRequest();
+//   //xhr.open('POST', `/handleFile?file-name=${"hey"}&file-content=${fileContent}`);
+//   xhr.open('POST', '/handleFile');
+//   xhr.onreadystatechange = () => {
+//     if(xhr.readyState === 4){
+//       if(xhr.status === 200){
+//         const response = JSON.parse(xhr.responseText);
+//         //uploadFile(file, response.signedRequest, response.url);
+//       } else{
+//         alert('Could not get signed URL.');
+//       }
+//     }
+//   };
+//   xhr.send();
+// }
 
+
+function getSignedRequest(file){
   const xhr = new XMLHttpRequest();
-  //xhr.open('POST', `/handleFile?file-name=${"hey"}&file-content=${fileContent}`);
-  xhr.open('POST', '/handleFile');
+  xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4){
       if(xhr.status === 200){
         const response = JSON.parse(xhr.responseText);
-        //uploadFile(file, response.signedRequest, response.url);
-      } else{
+        uploadFile(file, response.signedRequest, response.url);
+      }
+      else{
         alert('Could not get signed URL.');
       }
     }
@@ -560,19 +578,14 @@ function getSignedRequest(fileContent){
   xhr.send();
 }
 
-
 function uploadFile(file, signedRequest, url){
-  console.console.log(file);
-  console.console.log(signedRequest);
-  console.console.log(url);
   const xhr = new XMLHttpRequest();
   xhr.open('PUT', signedRequest);
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4){
       if(xhr.status === 200){
-        //document.getElementById('preview').src = url;
-        //document.getElementById('avatar-url').value = url;
-        alert('upload success');
+        document.getElementById('preview').src = url;
+        document.getElementById('avatar-url').value = url;
       }
       else{
         alert('Could not upload file.');
@@ -581,6 +594,8 @@ function uploadFile(file, signedRequest, url){
   };
   xhr.send(file);
 }
+
+
 
 
 
