@@ -362,7 +362,10 @@ function takeBreak(e) {
   var csvContent = comparison_table.getArray().join('\n');
   console.log(content);
 
-  var blob = new Blob(["index,left,right,choice,choice_method,response_time\n" + content], {type: 'text/csv'});
+  var header = 'index,left,right,choice,choice_method,response_time\n';
+  var csv = header + csvContent;
+
+  var blob = new Blob([csv], {type: 'text/csv'});
   //var url = URL.createObjectURL(blob);
 
   //define new form
