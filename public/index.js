@@ -260,6 +260,15 @@ function leftImage(choice_method){
 
 }
 
+function format(seconds){
+var numhours = parseInt(Math.floor(((seconds % 31536000) % 86400) / 3600),10);
+var numminutes = parseInt(Math.floor((((seconds % 31536000) % 86400) % 3600) / 60),10);
+var numseconds = parseInt((((seconds % 31536000) % 86400) % 3600) % 60,10);
+    return ((numhours<10) ? "0" + numhours : numhours)
+    + ":" + ((numminutes<10) ? "0" + numminutes : numminutes)
+    + ":" + ((numseconds<10) ? "0" + numseconds : numseconds);
+}
+
 function rightImage(choice_method){
   if (choice_method == null){
     choice_method = "click";
@@ -267,19 +276,18 @@ function rightImage(choice_method){
   rt_end = Date();
 
   let newRow = comparison_table.addRow();
-  newRow.setNum('index', trialCount-1);
+  newRow.setNum('index', trialCount);
   newRow.setString('left', comparisons.slice(-2)[0]);
   newRow.setString('right', comparisons.slice(-1)[0]);
   newRow.setString('choice', 'right');
   newRow.setString('choice_method', choice_method);
-  var timeDiff = rt_end - rt_start; //in ms
+  var diff = rt_end - rt_start; //in ms
   // strip the ms
-  timeDiff /= 1000;
+  //timeDiff /= 1000;
 
   // get seconds
-  var seconds = Math.round(timeDiff);
-  console.log(timeDiff + " seconds");
-  newRow.setNum('response_time', timeDiff);
+  console.log(format(diff/1000));
+  newRow.setNum('response_time', format(diff/1000));
 
   var lImg = document.getElementById("l_img");
   var rImg = document.getElementById("r_img");
