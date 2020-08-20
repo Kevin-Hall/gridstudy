@@ -380,7 +380,7 @@ function takeBreak(e) {
   var content = arrayToCSV(comparison_table.getArray());
   //var encodedUri = encodeURI(content);
   //
-  var blob = new Blob([JSON.stringify(content)], {type: "text/csv", lastModified: Date()});
+  var blob = new Blob([content], {type: "text/csv", lastModified: Date()});
   //var url = URL.createObjectURL(blob);
 
   //define new form
