@@ -116,6 +116,26 @@ function uploadToS3(fileContent) {
   });
 }
 
+const uploadFile = ("test.csv") => {
+    // Read content from the file
+    const fileContent = fs.readFileSync(fileName);
+
+    // Setting up S3 upload parameters
+    const params = {
+        Bucket: BUCKET_NAME,
+        Key: `user-${new Date().getTime()}.csv`, // File name you want to save as in S3
+        Body: fileContent
+    };
+
+    // Uploading files to the bucket
+    s3.upload(params, function(err, data) {
+        if (err) {
+            throw err;
+        }
+        console.log(`File uploaded successfully. ${data.Location}`);
+    });
+};
+
 
 
 // const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
