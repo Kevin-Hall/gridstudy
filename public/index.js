@@ -25,6 +25,10 @@ var last_choice_method;
 // the final csv table
 var comparison_table;
 
+//response time vars
+var rt_start;
+var rt_end;
+
 function setImages(size){
   var lImg = document.getElementById("l_img");
   var rImg = document.getElementById("r_img");
@@ -179,6 +183,7 @@ function start(){
 
   // remove static image
   setTimeout(() => {
+      rt_start = Date();
       lImg.src = "blank.svg";
       rImg.src = "blank.svg";
       buttons_busy = false;
@@ -194,6 +199,7 @@ function leftImage(choice_method){
     if (choice_method == null){
       choice_method = "click";
     }
+    rt_end = Date();
 
     var lImg = document.getElementById("l_img");
     var rImg = document.getElementById("r_img");
@@ -225,6 +231,7 @@ function leftImage(choice_method){
 
     // remove static image
     setTimeout(() => {
+        rt_start = Date();
         lImg.src = "blank.svg";
         rImg.src = "blank.svg";
         buttons_busy = false;
@@ -247,6 +254,7 @@ function rightImage(choice_method){
   if (choice_method == null){
     choice_method = "click";
   }
+  rt_end = Date();
 
   var lImg = document.getElementById("l_img");
   var rImg = document.getElementById("r_img");
@@ -295,6 +303,14 @@ function rightImage(choice_method){
   newRow.setString('right', comparisons.slice(-1)[0]);
   newRow.setString('choice', 'right');
   newRow.setString('choice_method', choice_method);
+  var timeDiff = endTime - startTime; //in ms
+  // strip the ms
+  //timeDiff /= 1000;
+
+  // get seconds
+  //var seconds = Math.round(timeDiff);
+  console.log(timeDiff + " seconds");
+  newRow.setNum('response_time', timeDiff);
 }
 
 // shuffle the arrays
