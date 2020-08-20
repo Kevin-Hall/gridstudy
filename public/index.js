@@ -243,22 +243,24 @@ function leftImage(choice_method){
       setImages();
     }, 0);
 
-
     // set left and right img for 0.5 seconds
+    // hide cross
     setTimeout(() => {
       lImg.src = "static.jpg";
       rImg.src = "static.jpg";
+      document.getElementById("cross").hidden = true;
     }, 1000);
 
     // remove static image
     setTimeout(() => {
-        lImg.src = "static.jpg";
-        rImg.src = "static.jpg";
+        lImg.src = "blank.svg";
+        rImg.src = "blank.svg";
         buttons_busy = false;
         document.getElementById("experiment_btn_left").disabled = false;
         document.getElementById("experiment_btn_right").disabled = false;
         lButton.style.background = '#808080';
         rButton.style.background = '#808080';
+
     }, 2000);
 
     let newRow = comparison_table.addRow();
@@ -287,27 +289,33 @@ function rightImage(choice_method){
   buttons_busy = true;
 
   setTimeout(() => {
-    // show the next svg
-    setImages();
+    document.getElementById("cross").hidden = false;
   }, 0);
 
+  setTimeout(() => {
+    // show the next svg
+    setImages();
+  }, 300);
+
   // set left and right img for 0.5 seconds
+  // hide cross
   setTimeout(() => {
     lImg.src = "static.jpg";
     rImg.src = "static.jpg";
-  }, 1000);
+    document.getElementById("cross").hidden = true;
+  }, 1300);
 
   // remove static image
   setTimeout(() => {
-    lImg.src = "static.jpg";
-    rImg.src = "static.jpg";
+    lImg.src = "blank.svg";
+    rImg.src = "blank.svg";
 
       buttons_busy = false;
       lButton.disabled = false;
       rButton.disabled = false;
       lButton.style.background = '#808080';
       rButton.style.background = '#808080';
-  }, 2000);
+  }, 2300);
 
   let newRow = comparison_table.addRow();
   newRow.setNum('index', trialCount-1);
