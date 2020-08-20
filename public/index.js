@@ -388,23 +388,25 @@ function takeBreak(e) {
   // formData.append('csv', blob);
 
   var file = new File([blob], "newcsv");
-  //getSignedRequest(file);
+
 
   var formData=new FormData();
   formData.append("uploadCsv",file);
-  var request = new XMLHttpRequest();
+  //var request = new XMLHttpRequest();
 
-   //here you can set the request header to set the content type, this can be avoided.
-   //The browser sets the setRequestHeader and other headers by default based on the formData that is being passed in the request.
-   //request.setRequestHeader("Content-type", "multipart/form-data"); //----(*)
-   request.open('POST','/handleFile', true);
-   request.onreadystatechange = function (){
-      if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-      console.log("yey");
-      }
-    }
+  getSignedRequest(file);
 
-    request.send(formData);
+  //here you can set the request header to set the content type, this can be avoided.
+  //The browser sets the setRequestHeader and other headers by default based on the formData that is being passed in the request.
+  // request.open('POST','/handleFile', true);
+  // request.setRequestHeader("Content-type", "multipart/form-data"); //----(*)
+  // request.onreadystatechange = function (){
+  //   if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+  //   console.log("yey");
+  //   }
+  // }
+  //
+  // request.send(formData);
 
 
 
@@ -543,7 +545,8 @@ function getSignedRequest(fileContent){
   console.log(fileContent);
 
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', `/sign-s3?file-name=${"hey"}&file-content=${fileContent}`);
+  //xhr.open('POST', `/handleFile?file-name=${"hey"}&file-content=${fileContent}`);
+  xhr.open('POST', '/handleFile');
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4){
       if(xhr.status === 200){
