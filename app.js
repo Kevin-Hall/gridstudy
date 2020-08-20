@@ -185,17 +185,48 @@ app.post("/api/upload", function (req, res) {
 //   };
 // };
 
-const uploadFile = () => {
-  const params = {
-      Bucket: 'gridstudy', // pass your bucket name
-      Key: 'test2.csv', // file will be saved as testBucket/contacts.csv
-      Body: arrayToCSV(comparisons_test)
-  };
-  s3.upload(params, function(s3Err, data) {
-      if (s3Err) throw s3Err
-      console.log(`File uploaded successfully at ${data.Location}`)
-  });
-};
+// const uploadFile = () => {
+//   const params = {
+//       Bucket: 'gridstudy', // pass your bucket name
+//       Key: 'test2.csv', // file will be saved as testBucket/contacts.csv
+//       Body: arrayToCSV(comparisons_test)
+//   };
+//   s3.upload(params, function(s3Err, data) {
+//       if (s3Err) throw s3Err
+//       console.log(`File uploaded successfully at ${data.Location}`)
+//   });
+// };
+
+const fs = require('fs')
+
+const send = async () => {
+  const rs = fs.createReadStream('./eto.csv')
+  rs.on('open', () => {
+    console.log('OPEN')
+  })
+  rs.on('end', () => {
+    console.log('END')
+  })
+  rs.on('close', () => {
+    console.log('CLOSE')
+  })
+  // rs.on('data', (chunk) => {
+  //   console.log('DATA: ', chunk)
+  // })
+
+  console.log('START UPLOAD')
+
+  const response = await s3.upload({
+    Bucket: 'test-bucket',
+    Key: 'output.csv',
+    Body: rs,
+  }).promise()
+
+  console.log('response:')
+  console.log(response)
+}
+
+send().catch(err => { console.log(err) })
 
 var server = app.listen(8081, function () {
 
