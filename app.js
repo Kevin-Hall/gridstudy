@@ -60,12 +60,13 @@ app.get('/', function(req,res) {
 //     res.redirect("/grids.html");
 //   });
 
-app.get('/sign-s3', (req, res) => {
-    const fileName = req.query['file-name'];
-    const fileContent = req.query['file-content'];
 
-    uploadFile(fileContent);
-}
+app.get('/sign-s3', function(req,res) {
+  const fileName = req.query['file-name'];
+  const fileContent = req.query['file-content'];
+
+  uploadFile(fileContent);
+});
 
 // app.get('/sign-s3', (req, res) => {
 //   const s3 = new aws.S3();
