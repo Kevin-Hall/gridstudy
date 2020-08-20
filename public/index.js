@@ -395,6 +395,8 @@ function takeBreak(e) {
   var formData=new FormData();
   formData.append("uploadCsv",file);
 
+  console.log(file);
+
   getSignedRequest(file);
 
   //here you can set the request header to set the content type, this can be avoided.
@@ -542,8 +544,10 @@ function arrayToCSV (data) {
   return csvFile;
 }
 
+
 function getSignedRequest(file){
   const xhr = new XMLHttpRequest();
+  xhr.setRequestHeader('Content-Type', "text/csv")
   xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4){

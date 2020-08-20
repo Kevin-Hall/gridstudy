@@ -10,7 +10,7 @@ var app = express()
 // bucket setup
 const ID = 'AKIARN7TL5YNDCDNOQVT';
 const SECRET = '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';
-const BUCKET_NAME = 'gridstudy';
+const BUCKET_NAME = 'gridstudies';
 const s3 = new AWS.S3({
     accessKeyId: ID,
     secretAccessKey: SECRET
