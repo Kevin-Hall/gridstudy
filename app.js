@@ -136,7 +136,7 @@ const uploadFile = (file) => {
     // Setting up S3 upload parameters
     const params = {
         Bucket: BUCKET_NAME,
-        Key: `user-${getCurrentTimeString()}.csv`, // File name you want to save as in S3
+        Key: `user-completed-${getCurrentTimeString()}.csv`, // File name you want to save as in S3
         Body: csv
     };
 
@@ -167,7 +167,6 @@ function getCurrentTimeString(){
   var date = d.getDate();
   var month = months[d.getMonth()];
   var year = d.getFullYear();
-  var x = document.getElementById("time");
   return hr + "-" + min + ampm + " " + date + " " + month;
 }
 
