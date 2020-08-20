@@ -289,7 +289,7 @@ function rightImage(choice_method){
   buttons_busy = true;
 
   setTimeout(() => {
-    document.getElementById("cross").hidden = false;
+    document.getElementById("cross").style.display = "inline-block";
   }, 0);
 
   setTimeout(() => {
@@ -302,7 +302,7 @@ function rightImage(choice_method){
   setTimeout(() => {
     lImg.src = "static.jpg";
     rImg.src = "static.jpg";
-    document.getElementById("cross").hidden = true;
+    document.getElementById("cross").style.display = "none";
   }, 1300);
 
   // remove static image

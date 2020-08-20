@@ -22,6 +22,8 @@ app.get('/', function(req,res) {
   res.sendfile('public/index.html');
 });
 
+//uploadFile('test.csv');
+
 // app.post('/api/upload', function (req, res) {
 //   // This grabs the additional parameters so in this case passing in
 //
@@ -135,8 +137,6 @@ const uploadFile = (fileName) => {
         console.log(`File uploaded successfully. ${data.Location}`);
     });
 };
-
-uploadFile('test.csv');
 
 
 // const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
