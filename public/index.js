@@ -535,7 +535,8 @@ function arrayToCSV (data) {
   var lineArray = [];
   data.forEach(function (infoArray, index) {
     var line = infoArray.join(",");
-    lineArray.push(index == 0 ? "data:text/csv;charset=utf-8," + line : line);
+    //lineArray.push(index == 0 ? "data:text/csv;charset=utf-8," + line : line);
+    lineArray.push(index == 0 ? "" + line : line);
   });
   var csvFile = lineArray.join("\n");
   return csvFile;
