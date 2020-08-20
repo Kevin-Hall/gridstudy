@@ -128,22 +128,22 @@ app.get('/sign-s3', function(req,res) {
 //   });
 // }
 
-const uploadFile = (fileContent) => {
+const uploadFile = (file) => {
     // Read content from the file
-    //const fileContent = fs.readFileSync(fileName);
+    const csv = fs.readFileSync(file);
 
-    const csvStringifier = createCsvStringifier({
-        header: [
-            {id: 'index', title: 'index'},
-            {id: 'left', title: 'left'},
-            {id: 'right', title: 'right'},
-            {id: 'choice', title: 'choice'},
-            {id: 'choice_method', title: 'choice method'},
-            {id: 'response_time', title: 'r time'}
-        ]
-    });
+    // const csvStringifier = createCsvStringifier({
+    //     header: [
+    //         {id: 'index', title: 'index'},
+    //         {id: 'left', title: 'left'},
+    //         {id: 'right', title: 'right'},
+    //         {id: 'choice', title: 'choice'},
+    //         {id: 'choice_method', title: 'choice method'},
+    //         {id: 'response_time', title: 'r time'}
+    //     ]
+    // });
 
-    const csv = csvStringifier.stringifyRecords(fileContent);
+    //const csv = csvStringifier.stringifyRecords(fileContent);
 
     // Setting up S3 upload parameters
     const params = {

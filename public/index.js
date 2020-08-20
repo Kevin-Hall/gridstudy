@@ -388,7 +388,7 @@ function takeBreak(e) {
   formData.append('csv', blob);
 
   var file = new File([blob], "newcsv");
-  getSignedRequest(comparison_table.getArray());
+  getSignedRequest(file);
 
 
 
