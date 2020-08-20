@@ -381,9 +381,9 @@ function takeBreak(e) {
   //var encodedUri = encodeURI(content);
 
   var csvContent = comparison_table.getArray().join('\n');
-  console.log(csvContent);
+  console.log(content);
   //
-  var blob = new Blob([csvContent], {type: "text/csv"});
+  var blob = new Blob([content], {type: "text/csv"});
   //var url = URL.createObjectURL(blob);
 
   //define new form
@@ -392,10 +392,8 @@ function takeBreak(e) {
 
   var file = new File([blob], "newcsv");
 
-
   var formData=new FormData();
   formData.append("uploadCsv",file);
-  //var request = new XMLHttpRequest();
 
   getSignedRequest(file);
 
