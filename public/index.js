@@ -145,6 +145,9 @@ function setup() {
   console.log(shuffled_l_images);
 }
 
+preload();
+setup();
+
 function start(){
   //arrayToCSV(comparisons_test);
 
@@ -155,15 +158,6 @@ function start(){
   comparison_table.addColumn('choice');
   comparison_table.addColumn('choice_method');
   comparison_table.addColumn('response_time');
-
-  //
-  // //let newRow = table.addRow();
-  // newRow.setNum('id', table.getRowCount() - 1);
-  // newRow.setString('species', 'Panthera leo');
-  // newRow.setString('name', 'Lion');
-
-  preload();
-  setup();
 
   document.getElementById("experiment_btn_left").style.display = "inline-block";
   document.getElementById("experiment_btn_right").style.display = "inline-block";
@@ -245,7 +239,7 @@ function leftImage(choice_method){
     setTimeout(() => {
       // show the next svg
       setImages();
-    }, 600);
+    }, 1000);
 
     // set left and right img for 0.5 seconds
     // hide cross
@@ -253,7 +247,7 @@ function leftImage(choice_method){
       lImg.src = "static.jpg";
       rImg.src = "static.jpg";
       document.getElementById("cross").style.display = "none";
-    }, 1000);
+    }, 2000);
 
     // remove static image
     setTimeout(() => {
@@ -265,7 +259,7 @@ function leftImage(choice_method){
         lButton.style.background = '#808080';
         rButton.style.background = '#808080';
 
-    }, 2000);
+    }, 3000);
 
     let newRow = comparison_table.addRow();
     newRow.setNum('index', trialCount-1);
@@ -299,7 +293,7 @@ function rightImage(choice_method){
   setTimeout(() => {
     // show the next svg
     setImages();
-  }, 600);
+  }, 1000);
 
   // set left and right img for 0.5 seconds
   // hide cross
@@ -307,7 +301,7 @@ function rightImage(choice_method){
     lImg.src = "static.jpg";
     rImg.src = "static.jpg";
     document.getElementById("cross").style.display = "none";
-  }, 1600);
+  }, 2000);
 
   // remove static image
   setTimeout(() => {
@@ -319,7 +313,7 @@ function rightImage(choice_method){
       rButton.disabled = false;
       lButton.style.background = '#808080';
       rButton.style.background = '#808080';
-  }, 2600);
+  }, 3000);
 
   let newRow = comparison_table.addRow();
   newRow.setNum('index', trialCount-1);
