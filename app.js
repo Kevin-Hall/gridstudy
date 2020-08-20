@@ -116,7 +116,7 @@ function uploadToS3(fileContent) {
   });
 }
 
-const uploadFile = ("test.csv") => {
+const uploadFile = (fileName) => {
     // Read content from the file
     const fileContent = fs.readFileSync(fileName);
 
@@ -136,6 +136,7 @@ const uploadFile = ("test.csv") => {
     });
 };
 
+uploadFile('test.csv');
 
 
 // const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
