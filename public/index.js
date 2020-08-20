@@ -59,7 +59,7 @@ function setImages(size){
     comparisons.push(GetFilename(r_images[trialCount].src))
     console.log("comparing " + l_images[trialCount].src + " to " + r_images[trialCount].src);
   }
-  console.log(comparison_table);
+  //console.log(comparison_table);
 }
 
 function preload() {
@@ -112,7 +112,7 @@ function setup() {
 
     l_images.push(r);
     r_images.push(l);
-    console.log();
+    //console.log();
   }
 
   // shuffle the array to show comparisons in different order each time
@@ -120,7 +120,8 @@ function setup() {
   shuffled_l_images = shuffled_imgs[0];
   shuffled_r_images = shuffled_imgs[1];
 
-  console.log(shuffled_l_images);
+  console.log(shuffled_l_images.size());
+  //console.log(shuffled_l_images);
 }
 
 preload();
