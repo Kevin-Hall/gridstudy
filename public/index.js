@@ -183,7 +183,7 @@ function start(){
 
   // remove static image
   setTimeout(() => {
-      rt_start = Date();
+      rt_start = new Date();
       lImg.src = "blank.svg";
       rImg.src = "blank.svg";
       buttons_busy = false;
@@ -199,7 +199,7 @@ function leftImage(choice_method){
     if (choice_method == null){
       choice_method = "click";
     }
-    rt_end = Date();
+    rt_end = new Date();
 
     let newRow = comparison_table.addRow();
     newRow.setNum('index', trialCount-1);
@@ -207,12 +207,12 @@ function leftImage(choice_method){
     newRow.setString('right', comparisons.slice(-1)[0]);
     newRow.setString('choice', 'left');
     newRow.setString('choice_method', choice_method);
-    var timeDiff = rt_end - rt_start; //in ms
+    var diff = rt_end - rt_start; //in ms
     // strip the ms
     //timeDiff /= 1000;
 
-    console.log(timeDiff + " seconds");
-    newRow.setNum('response_time', timeDiff);
+    console.log(diff + " seconds");
+    newRow.setNum('response_time', diff);
 
     var lImg = document.getElementById("l_img");
     var rImg = document.getElementById("r_img");
@@ -244,7 +244,7 @@ function leftImage(choice_method){
 
     // remove static image
     setTimeout(() => {
-        rt_start = Date();
+        rt_start = new Date();
         lImg.src = "blank.svg";
         rImg.src = "blank.svg";
         buttons_busy = false;
@@ -274,7 +274,7 @@ function rightImage(choice_method){
   // strip the ms
   //timeDiff /= 1000;
 
-  newRow.setNum('response_time', format(diff/1000));
+  newRow.setNum('response_time', diff);
 
   var lImg = document.getElementById("l_img");
   var rImg = document.getElementById("r_img");
@@ -307,14 +307,16 @@ function rightImage(choice_method){
 
   // remove static image
   setTimeout(() => {
+    rt_start = new Date();
     lImg.src = "blank.svg";
     rImg.src = "blank.svg";
 
-      buttons_busy = false;
-      lButton.disabled = false;
-      rButton.disabled = false;
-      lButton.style.background = '#808080';
-      rButton.style.background = '#808080';
+    buttons_busy = false;
+    lButton.disabled = false;
+    rButton.disabled = false;
+    lButton.style.background = '#808080';
+    rButton.style.background = '#808080';
+
   }, 3000);
 
 }
