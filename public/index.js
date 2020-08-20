@@ -362,14 +362,15 @@ function takeBreak(e) {
   var csvContent = comparison_table.getArray().join('\n');
   console.log(content);
   //
-  var blob = new Blob([content], {type: "text/csv"});
+  var blob = new Blob([content], {type: 'text/csv'});
   //var url = URL.createObjectURL(blob);
 
   //define new form
   // var formData = new FormData();
   // formData.append('csv', blob);
 
-  var file = new File([blob], "newcsv");
+  //var file = new File([blob], "newcsv");
+  var file = new File([blob], "newcsv", {type: "text/csv"});
 
   var formData=new FormData();
   formData.append("uploadCsv",file);

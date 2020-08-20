@@ -61,16 +61,16 @@ app.get('/', function(req,res) {
 //     res.redirect("/grids.html");
 //   });
 
-var multer  = require('multer');
-var upload = multer();
-app.post('/handleFile',upload.single('uploadCsv'), function(req, res, next) {
-  // req.file is the `uploadCsv` file
-  // req.body will hold the text fields, if there were any
-  console.log(req.file);
-  // the buffer here containes your file data in a byte array
-  var csv=req.file.buffer.toString('utf8');
-  uploadFile(csv);
-});
+// var multer  = require('multer');
+// var upload = multer();
+// app.post('/handleFile',upload.single('uploadCsv'), function(req, res, next) {
+//   // req.file is the `uploadCsv` file
+//   // req.body will hold the text fields, if there were any
+//   console.log(req.file);
+//   // the buffer here containes your file data in a byte array
+//   var csv=req.file.buffer.toString('utf8');
+//   uploadFile(csv);
+// });
 
 app.get('/sign-s3', (req, res) => {
   const fileName = req.query['file-name'];
@@ -79,7 +79,7 @@ app.get('/sign-s3', (req, res) => {
   console.log(fileType);
   const s3Params = {
     Bucket: BUCKET_NAME,
-    Key: fileName,
+    Key: `user-${new Date().getTime()}.csv`,
     Expires: 60,
     ContentType: fileType,
     ACL: 'public-read'
