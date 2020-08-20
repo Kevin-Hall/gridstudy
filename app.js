@@ -19,7 +19,6 @@ app.use(express.static('public'));
 
 // app.use("/", router);
 app.get('/', function(req,res) {
-  //uploadCsv("hello,test\n");
   res.sendfile('public/index.html');
 });
 
@@ -35,29 +34,29 @@ app.get('/', function(req,res) {
 //   uploadToS3(file);
 // });
 
-app.post("/api/upload", function (req, res) {
-    //const folder = (req.user.username + "/");
-    const file = (req.body.imageUpload);
-    const params = {
-      Bucket: BUCKET_NAME,
-      Key: `user-${new Date().getTime()}.csv`,
-      Expires: 60,
-      ACL: 'public-read',
-      Body: file
-    };
-    console.log("Folder name: " + folder);
-    console.log("File: " + file);
-
-
-    s3.putObject(params, function (err, data) {
-      if (err) {
-        console.log("Error: ", err);
-      } else {
-        console.log(data);
-      }
-    });
-    res.redirect("/grids.html");
-  });
+// app.post("/api/upload", function (req, res) {
+//     //const folder = (req.user.username + "/");
+//     const file = (req.body.imageUpload);
+//     const params = {
+//       Bucket: BUCKET_NAME,
+//       Key: `user-${new Date().getTime()}.csv`,
+//       Expires: 60,
+//       ACL: 'public-read',
+//       Body: file
+//     };
+//     console.log("Folder name: " + folder);
+//     console.log("File: " + file);
+//
+//
+//     s3.putObject(params, function (err, data) {
+//       if (err) {
+//         console.log("Error: ", err);
+//       } else {
+//         console.log(data);
+//       }
+//     });
+//     res.redirect("/grids.html");
+//   });
 
 // app.get('/sign-s3', (req, res) => {
 //   const s3 = new aws.S3();
@@ -200,7 +199,7 @@ app.post("/api/upload", function (req, res) {
 const fs = require('fs')
 
 const send = async () => {
-  const rs = fs.createReadStream('./eto.csv')
+  const rs = fs.createReadStream('/public/Eto.csv')
   rs.on('open', () => {
     console.log('OPEN')
   })
@@ -218,7 +217,7 @@ const send = async () => {
 
   const response = await s3.upload({
     Bucket: 'test-bucket',
-    Key: 'output.csv',
+    Key: 'eto.csv',
     Body: rs,
   }).promise()
 
