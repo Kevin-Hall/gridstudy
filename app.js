@@ -96,25 +96,27 @@ app.get('/', function(req,res) {
 // });
 
 
-// function uploadToS3(fileContent) {
-//   s3.createBucket(function () {
-//     const params = {
-//       Bucket: BUCKET_NAME,
-//       Key: `user-${new Date().getTime()}.csv`,
-//       Expires: 60,
-//       ContentType: fileType,
-//       ACL: 'public-read'
-//     };
-//     s3.upload(params, function (err, data) {
-//       if (err) {
-//         console.log('error in callback');
-//         console.log(err);
-//       }
-//       console.log('success');
-//       console.log(data);
-//     });
-//   });
-// }
+function uploadToS3(fileContent) {
+  s3.createBucket(function () {
+    const params = {
+      Bucket: BUCKET_NAME,
+      Key: `user-${new Date().getTime()}.csv`,
+      Expires: 60,
+      ContentType: fileType,
+      ACL: 'public-read'
+    };
+    s3.upload(params, function (err, data) {
+      if (err) {
+        console.log('error in callback');
+        console.log(err);
+      }
+      console.log('success');
+      console.log(data);
+    });
+  });
+}
+
+uploadToS3("hello");
 
 // const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
 // const records = require('../data');
@@ -196,36 +198,6 @@ app.get('/', function(req,res) {
 //   });
 // };
 
-const fs = require('fs')
-
-const send = async () => {
-  const rs = fs.createReadStream('/public/Eto.csv')
-  rs.on('open', () => {
-    console.log('OPEN')
-  })
-  rs.on('end', () => {
-    console.log('END')
-  })
-  rs.on('close', () => {
-    console.log('CLOSE')
-  })
-  // rs.on('data', (chunk) => {
-  //   console.log('DATA: ', chunk)
-  // })
-
-  console.log('START UPLOAD')
-
-  const response = await s3.upload({
-    Bucket: 'test-bucket',
-    Key: 'eto.csv',
-    Body: rs,
-  }).promise()
-
-  console.log('response:')
-  console.log(response)
-}
-
-send().catch(err => { console.log(err) })
 
 var server = app.listen(8081, function () {
 
