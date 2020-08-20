@@ -75,15 +75,13 @@ app.post('/handleFile',upload.single('uploadCsv'), function(req, res, next) {
 app.get('/sign-s3', (req, res) => {
   const fileName = req.query['file-name'];
   const fileType = req.query['file-type'];
-  console.log(file);
   console.log(fileName);
   console.log(fileType);
-
   const s3Params = {
     Bucket: BUCKET_NAME,
     Key: fileName,
     Expires: 60,
-    ContentType: "text/csv",
+    ContentType: fileType,
     ACL: 'public-read'
   };
 
