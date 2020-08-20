@@ -381,7 +381,7 @@ function takeBreak(e) {
   //var encodedUri = encodeURI(content);
 
   var csvContent = comparison_table.getArray().join('\n');
-  console.console.log(csvContent);
+  console.log(csvContent);
   //
   var blob = new Blob([csvContent], {type: "text/csv"});
   //var url = URL.createObjectURL(blob);
