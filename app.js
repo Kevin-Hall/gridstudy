@@ -61,13 +61,23 @@ app.get('/', function(req,res) {
 //     res.redirect("/grids.html");
 //   });
 
-
-app.get('/sign-s3', function(req,res) {
-  const fileName = req.query['file-name'];
-  const fileContent = req.query['file-content'];
-
-  uploadFile(fileContent);
+var multer  = require('multer');
+var upload = multer();
+app.post('/handleFile',upload.single('uploadCsv'), function(req, res, next) {
+  // req.file is the `uploadCsv` file
+  // req.body will hold the text fields, if there were any
+  console.log(req.file);
+  // the buffer here containes your file data in a byte array
+  var csv=req.file.buffer.toString('utf8');
+  uploadFile(csv);
 });
+
+// app.get('/sign-s3', function(req,res) {
+//   const fileName = req.query['file-name'];
+//   const fileContent = req.query['file-content'];
+//
+//   uploadFile(fileContent);
+// });
 
 // app.get('/sign-s3', (req, res) => {
 //   const s3 = new aws.S3();

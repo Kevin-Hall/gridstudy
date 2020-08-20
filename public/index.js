@@ -378,17 +378,33 @@ function takeBreak(e) {
   // var csv = saveTable(comparison_table, 'test.csv');
 
   var content = arrayToCSV(comparison_table.getArray());
-  var encodedUri = encodeURI(content);
+  //var encodedUri = encodeURI(content);
   //
   var blob = new Blob([JSON.stringify(content)]);
-  var url = URL.createObjectURL(blob);
+  //var url = URL.createObjectURL(blob);
 
   //define new form
-  var formData = new FormData();
-  formData.append('csv', blob);
+  // var formData = new FormData();
+  // formData.append('csv', blob);
 
   var file = new File([blob], "newcsv");
   getSignedRequest(file);
+
+  var formData=new FormData();
+formData.append("uploadCsv",file);
+var request = new XMLHttpRequest();
+
+ //here you can set the request header to set the content type, this can be avoided.
+ //The browser sets the setRequestHeader and other headers by default based on the formData that is being passed in the request.
+ request.setRequestHeader("Content-type", "multipart/form-data"); //----(*)
+ request.open("POST","/handleFile", true);
+request.onreadystatechange = function (){
+    if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+    console.log("yey");
+    }
+}
+
+request.send(formData);
 
 
 
