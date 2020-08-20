@@ -23,54 +23,6 @@ app.get('/', function(req,res) {
   res.sendfile('public/index.html');
 });
 
-//uploadFile('test.csv');
-
-// app.post('/api/upload', function (req, res) {
-//   // This grabs the additional parameters so in this case passing in
-//
-//   // Grabs your file object from the request.
-//   //const file = req.files.comparisons_test;
-//   const file = req.query.data;
-//   console.log(file);
-//
-//   // Begins the upload to the AWS S3
-//   uploadToS3(file);
-// });
-
-// app.post("/api/upload", function (req, res) {
-//     //const folder = (req.user.username + "/");
-//     const file = (req.body.imageUpload);
-//     const params = {
-//       Bucket: BUCKET_NAME,
-//       Key: `user-${new Date().getTime()}.csv`,
-//       Expires: 60,
-//       ACL: 'public-read',
-//       Body: file
-//     };
-//     console.log("Folder name: " + folder);
-//     console.log("File: " + file);
-//
-//
-//     s3.putObject(params, function (err, data) {
-//       if (err) {
-//         console.log("Error: ", err);
-//       } else {
-//         console.log(data);
-//       }
-//     });
-//     res.redirect("/grids.html");
-//   });
-
-// var multer  = require('multer');
-// var upload = multer();
-// app.post('/handleFile',upload.single('uploadCsv'), function(req, res, next) {
-//   // req.file is the `uploadCsv` file
-//   // req.body will hold the text fields, if there were any
-//   console.log(req.file);
-//   // the buffer here containes your file data in a byte array
-//   var csv=req.file.buffer.toString('utf8');
-//   uploadFile(csv);
-// });
 
 app.get('/sign-s3', (req, res) => {
   const fileName = req.query['file-name'];
@@ -184,7 +136,7 @@ const uploadFile = (file) => {
     // Setting up S3 upload parameters
     const params = {
         Bucket: BUCKET_NAME,
-        Key: `user-${new Date().getTime()}.csv`, // File name you want to save as in S3
+        Key: `user-${getCurrentTimeString()}.csv`, // File name you want to save as in S3
         Body: csv
     };
 
@@ -197,87 +149,27 @@ const uploadFile = (file) => {
     });
 };
 
-
-// const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
-// const records = require('../data');
-// const ResponseService = require('../services/responseService');
-//
-//
-// module.exports = {
-//
-//     /**
-//      * This function will generate a stringified csv and upload to AWS S3 as a csv
-//      * @param {Object} req
-//      * @param {Object} res
-//      */
-//     generateCsv: (req, res) => {
-//
-//         try {
-//             const csvStringifier = createCsvStringifier({
-//                 header: [
-//                     {id: 'name', title: 'NAME'},
-//                     {id: 'lang', title: 'LANGUAGE'}
-//                 ]
-//             });
-//
-//             const csv = csvStringifier.stringifyRecords(records);
-//
-//             const params = {
-//                 Bucket: process.env.AWS_BUCKET, // pass your bucket name
-//                 Key: `users-${new Date().getTime()}.csv`, // file will be saved as testBucket/contacts.csv
-//                 ACL: "public-read",
-//                 Body: csv,
-//                 ContentType: "text/csv",
-//             };
-//
-//             s3.upload(params, function (s3Err, data) {
-//                 if (s3Err) throw s3Err;
-//                 else {
-//                 return ResponseService.json(201, res, "File created successfully", {
-//                     redirectUri: data.Location,
-//                 });
-//                 }
-//             });
-//
-//         } catch(e) {
-//             return ResponseService.error(
-//                 e,
-//                 res
-//             );
-//         }
-//     }
-// }
-
-//const fileName = 'Eto.csv';
-
-//app.post('/api/upload', uploadCsv);
-
-// function uploadCsv(datacontents){
-//   const uploadFile = () => {
-//      const params = {
-//          Bucket: 'gridstudy', // pass your bucket name
-//          Key: `user-${new Date().getTime()}.csv`, // file will be saved as testBucket/contacts.csv
-//          Body: datacontents
-//      };
-//      s3.upload(params, function(s3Err, data) {
-//          if (s3Err) throw s3Err
-//          console.log(`File uploaded successfully at ${data.Location}`)
-//      });
-//   };
-// };
-
-// const uploadFile = () => {
-//   const params = {
-//       Bucket: 'gridstudy', // pass your bucket name
-//       Key: 'test2.csv', // file will be saved as testBucket/contacts.csv
-//       Body: arrayToCSV(comparisons_test)
-//   };
-//   s3.upload(params, function(s3Err, data) {
-//       if (s3Err) throw s3Err
-//       console.log(`File uploaded successfully at ${data.Location}`)
-//   });
-// };
-
+function getCurrentTimeString(){
+  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  var d = new Date();
+  var day = days[d.getDay()];
+  var hr = d.getHours();
+  var min = d.getMinutes();
+  if (min < 10) {
+      min = "0" + min;
+  }
+  var ampm = "am";
+  if( hr > 12 ) {
+      hr -= 12;
+      ampm = "pm";
+  }
+  var date = d.getDate();
+  var month = months[d.getMonth()];
+  var year = d.getFullYear();
+  var x = document.getElementById("time");
+  return hr + "-" + min + ampm + " " + date + " " + month;
+}
 
 var server = app.listen(8081, function () {
 
