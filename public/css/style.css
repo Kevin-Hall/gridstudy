@@ -63,8 +63,9 @@
 	display: inline-block;
 	background-color: yellow;
 
-	margin: 0;
+	margin: 40px;
   top: 50%;
+	padding-top: 16%;
 }
 
 #right {
