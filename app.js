@@ -60,6 +60,13 @@ app.get('/', function(req,res) {
 //     res.redirect("/grids.html");
 //   });
 
+app.get('/sign-s3', (req, res) => {
+    const fileName = req.query['file-name'];
+    const fileContent = req.query['file-content'];
+
+    uploadFile(fileContent);
+}
+
 // app.get('/sign-s3', (req, res) => {
 //   const s3 = new aws.S3();
 //   const fileName = req.query['file-name'];
@@ -98,29 +105,29 @@ app.get('/', function(req,res) {
 // });
 
 
-function uploadToS3(fileContent) {
-  s3.createBucket(function () {
-    const params = {
-      Bucket: BUCKET_NAME,
-      Key: `user-${new Date().getTime()}.csv`,
-      Expires: 60,
-      ContentType: fileType,
-      ACL: 'public-read'
-    };
-    s3.upload(params, function (err, data) {
-      if (err) {
-        console.log('error in callback');
-        console.log(err);
-      }
-      console.log('success');
-      console.log(data);
-    });
-  });
-}
+// function uploadToS3(fileContent) {
+//   s3.createBucket(function () {
+//     const params = {
+//       Bucket: BUCKET_NAME,
+//       Key: `user-${new Date().getTime()}.csv`,
+//       Expires: 60,
+//       ContentType: fileType,
+//       ACL: 'public-read'
+//     };
+//     s3.upload(params, function (err, data) {
+//       if (err) {
+//         console.log('error in callback');
+//         console.log(err);
+//       }
+//       console.log('success');
+//       console.log(data);
+//     });
+//   });
+// }
 
-const uploadFile = (fileName) => {
+const uploadFile = (fileContent) => {
     // Read content from the file
-    const fileContent = fs.readFileSync(fileName);
+    //const fileContent = fs.readFileSync(fileName);
 
     // Setting up S3 upload parameters
     const params = {
