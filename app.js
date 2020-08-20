@@ -31,7 +31,7 @@ app.get('/sign-s3', (req, res) => {
   console.log(fileType);
   const s3Params = {
     Bucket: BUCKET_NAME,
-    Key: `user-${new Date().getTime()}.csv`,
+    Key: `user-completed-${getCurrentTimeString()}.csv`,
     Expires: 60,
     ContentType: fileType,
     ACL: 'public-read'
@@ -50,6 +50,37 @@ app.get('/sign-s3', (req, res) => {
     res.end();
   });
 });
+
+var server = app.listen(8081, function () {
+
+    var host = server.address().address
+    var port = server.address().port
+
+    console.log('Express app listening at http://%s:%s', host, port)
+})
+
+
+
+function getCurrentTimeString(){
+  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  var d = new Date();
+  var day = days[d.getDay()];
+  var hr = d.getHours();
+  var min = d.getMinutes();
+  if (min < 10) {
+      min = "0" + min;
+  }
+  var ampm = "am";
+  if( hr > 12 ) {
+      hr -= 12;
+      ampm = "pm";
+  }
+  var date = d.getDate();
+  var month = months[d.getMonth()];
+  var year = d.getFullYear();
+  return hr + "-" + min + ampm + " " + date + " " + month;
+}
 
 // app.get('/sign-s3', function(req,res) {
 //   const fileName = req.query['file-name'];
@@ -115,65 +146,3 @@ app.get('/sign-s3', (req, res) => {
 //     });
 //   });
 // }
-
-const uploadFile = (file) => {
-    // Read content from the file
-    const csv = fs.readFileSync(file);
-
-    // const csvStringifier = createCsvStringifier({
-    //     header: [
-    //         {id: 'index', title: 'index'},
-    //         {id: 'left', title: 'left'},
-    //         {id: 'right', title: 'right'},
-    //         {id: 'choice', title: 'choice'},
-    //         {id: 'choice_method', title: 'choice method'},
-    //         {id: 'response_time', title: 'r time'}
-    //     ]
-    // });
-
-    //const csv = csvStringifier.stringifyRecords(fileContent);
-
-    // Setting up S3 upload parameters
-    const params = {
-        Bucket: BUCKET_NAME,
-        Key: `user-completed-${getCurrentTimeString()}.csv`, // File name you want to save as in S3
-        Body: csv
-    };
-
-    // Uploading files to the bucket
-    s3.upload(params, function(err, data) {
-        if (err) {
-            throw err;
-        }
-        console.log(`File uploaded successfully. ${data.Location}`);
-    });
-};
-
-function getCurrentTimeString(){
-  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  var d = new Date();
-  var day = days[d.getDay()];
-  var hr = d.getHours();
-  var min = d.getMinutes();
-  if (min < 10) {
-      min = "0" + min;
-  }
-  var ampm = "am";
-  if( hr > 12 ) {
-      hr -= 12;
-      ampm = "pm";
-  }
-  var date = d.getDate();
-  var month = months[d.getMonth()];
-  var year = d.getFullYear();
-  return hr + "-" + min + ampm + " " + date + " " + month;
-}
-
-var server = app.listen(8081, function () {
-
-    var host = server.address().address
-    var port = server.address().port
-
-    console.log('Express app listening at http://%s:%s', host, port)
-})
