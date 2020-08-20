@@ -55,7 +55,7 @@ function go_page_one(e){
 var instructions_shown = false
 var ask_to_max = false
 function go_page_two(e){
-  if (!ask_to_max){
+  if (!ask_to_max && window.innerHeight != screen.height){
       alert("Please maximize your browser");
       ask_to_max = true;
   }else if (!instructions_shown){
