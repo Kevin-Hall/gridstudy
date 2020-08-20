@@ -26,8 +26,8 @@ var last_choice_method;
 var comparison_table;
 
 //response time vars
-var rt_start;
-var rt_end;
+var rt_start = new Date();
+var rt_end = new Date();
 
 function setImages(size){
   var lImg = document.getElementById("l_img");
@@ -183,7 +183,7 @@ function start(){
 
   // remove static image
   setTimeout(() => {
-      rt_start = new Date();
+      rt_start = Date();
       lImg.src = "blank.svg";
       rImg.src = "blank.svg";
       buttons_busy = false;
@@ -199,7 +199,7 @@ function leftImage(choice_method){
     if (choice_method == null){
       choice_method = "click";
     }
-    rt_end = new Date();
+    rt_end = Date();
 
     let newRow = comparison_table.addRow();
     newRow.setNum('index', trialCount-1);
@@ -209,10 +209,8 @@ function leftImage(choice_method){
     newRow.setString('choice_method', choice_method);
     var timeDiff = rt_end - rt_start; //in ms
     // strip the ms
-    timeDiff /= 1000;
+    //timeDiff /= 1000;
 
-    // get seconds
-    var seconds = Math.round(timeDiff);
     console.log(timeDiff + " seconds");
     newRow.setNum('response_time', timeDiff);
 
@@ -260,15 +258,6 @@ function leftImage(choice_method){
 
 }
 
-function format(seconds){
-var numhours = parseInt(Math.floor(((seconds % 31536000) % 86400) / 3600),10);
-var numminutes = parseInt(Math.floor((((seconds % 31536000) % 86400) % 3600) / 60),10);
-var numseconds = parseInt((((seconds % 31536000) % 86400) % 3600) % 60,10);
-    return ((numhours<10) ? "0" + numhours : numhours)
-    + ":" + ((numminutes<10) ? "0" + numminutes : numminutes)
-    + ":" + ((numseconds<10) ? "0" + numseconds : numseconds);
-}
-
 function rightImage(choice_method){
   if (choice_method == null){
     choice_method = "click";
@@ -285,8 +274,6 @@ function rightImage(choice_method){
   // strip the ms
   //timeDiff /= 1000;
 
-  // get seconds
-  console.log(format(diff/1000));
   newRow.setNum('response_time', format(diff/1000));
 
   var lImg = document.getElementById("l_img");
