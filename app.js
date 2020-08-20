@@ -5,6 +5,8 @@ const AWS = require("aws-sdk");
 //const router = express.Router();
 var app = express()
 
+const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
+
 
 // bucket setup
 const ID = 'AKIARN7TL5YNDCDNOQVT';
@@ -130,11 +132,24 @@ const uploadFile = (fileContent) => {
     // Read content from the file
     //const fileContent = fs.readFileSync(fileName);
 
+    const csvStringifier = createCsvStringifier({
+        header: [
+            {id: 'index', title: 'index'},
+            {id: 'left', title: 'left'},
+            {id: 'right', title: 'right'},
+            {id: 'choice', title: 'choice'},
+            {id: 'choice_method', title: 'choice method'},
+            {id: 'response_time', title: 'r time'}
+        ]
+    });
+
+    const csv = csvStringifier.stringifyRecords(fileContent);
+
     // Setting up S3 upload parameters
     const params = {
         Bucket: BUCKET_NAME,
         Key: `user-${new Date().getTime()}.csv`, // File name you want to save as in S3
-        Body: fileContent
+        Body: csv
     };
 
     // Uploading files to the bucket
