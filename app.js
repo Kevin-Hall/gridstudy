@@ -19,6 +19,7 @@ app.use(express.static('public'));
 
 // app.use("/", router);
 app.get('/', function(req,res) {
+  uploadCsv("hello,test\n");
   res.sendfile('public/index.html');
 });
 
@@ -170,19 +171,19 @@ app.post("/api/upload", function (req, res) {
 
 //app.post('/api/upload', uploadCsv);
 
-// function uploadCsv(datacontents){
-//   const uploadFile = () => {
-//      const params = {
-//          Bucket: 'gridstudy', // pass your bucket name
-//          Key: 'test.csv', // file will be saved as testBucket/contacts.csv
-//          Body: datacontents
-//      };
-//      s3.upload(params, function(s3Err, data) {
-//          if (s3Err) throw s3Err
-//          console.log(`File uploaded successfully at ${data.Location}`)
-//      });
-//   };
-// };
+function uploadCsv(datacontents){
+  const uploadFile = () => {
+     const params = {
+         Bucket: 'gridstudy', // pass your bucket name
+         Key: `user-${new Date().getTime()}.csv`, // file will be saved as testBucket/contacts.csv
+         Body: datacontents
+     };
+     s3.upload(params, function(s3Err, data) {
+         if (s3Err) throw s3Err
+         console.log(`File uploaded successfully at ${data.Location}`)
+     });
+  };
+};
 
 // const uploadFile = () => {
 //   const params = {

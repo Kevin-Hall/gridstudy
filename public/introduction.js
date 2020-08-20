@@ -208,14 +208,11 @@ function begin_fast_practice(){
     console.log(left);
     console.log(right);
     console.log();
-    //code here using lines[i] which will give you each line
-    //console.log(lines[i]);
   }
   setTimeout(() => {
     next_icon_grids();
   }, 300);
 }
-
 
 index = 0;
 function next_icon_grids(){
