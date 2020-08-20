@@ -209,7 +209,7 @@ function leftImage(choice_method){
     newRow.setString('choice_method', choice_method);
     var diff = rt_end - rt_start; //in ms
     // strip the ms
-    //timeDiff /= 1000;
+    diff /= 1000;
 
     console.log(diff + " seconds");
     newRow.setNum('response_time', diff);
@@ -273,6 +273,7 @@ function rightImage(choice_method){
   var diff = rt_end - rt_start; //in ms
   // strip the ms
   //timeDiff /= 1000;
+  diff /= 1000;
 
   newRow.setNum('response_time', diff);
 
