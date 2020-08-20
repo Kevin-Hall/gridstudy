@@ -544,7 +544,6 @@ function arrayToCSV (data) {
   return csvFile;
 }
 
-
 function getSignedRequest(file){
   const xhr = new XMLHttpRequest();
   //xhr.setRequestHeader('Content-Type', "text/csv")

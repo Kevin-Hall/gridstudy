@@ -79,9 +79,9 @@ app.get('/sign-s3', (req, res) => {
   console.log(fileType);
   const s3Params = {
     Bucket: BUCKET_NAME,
-    Key: fileName,
+    Key: `user-${new Date().getTime()}.csv`,
     Expires: 60,
-    ContentType: fileType,
+    ContentType: "text/csv",
     ACL: 'public-read'
   };
 
