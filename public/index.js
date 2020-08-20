@@ -124,11 +124,12 @@ function setup() {
   //console.log(shuffled_l_images);
 }
 
-preload();
-setup();
+
 
 function start(){
   //arrayToCSV(comparisons_test);
+  preload();
+  setup();
 
   comparison_table = new p5.Table();
   comparison_table.addColumn('index');
