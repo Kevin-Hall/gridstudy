@@ -303,7 +303,7 @@ function rightImage(choice_method){
   newRow.setString('right', comparisons.slice(-1)[0]);
   newRow.setString('choice', 'right');
   newRow.setString('choice_method', choice_method);
-  var timeDiff = endTime - startTime; //in ms
+  var timeDiff = rt_end - rt_start; //in ms
   // strip the ms
   //timeDiff /= 1000;
 
