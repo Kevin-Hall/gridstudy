@@ -19,7 +19,7 @@ app.use(express.static('public'));
 
 // app.use("/", router);
 app.get('/', function(req,res) {
-  uploadCsv("hello,test\n");
+  //uploadCsv("hello,test\n");
   res.sendfile('public/index.html');
 });
 
