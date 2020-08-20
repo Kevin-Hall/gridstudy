@@ -356,27 +356,6 @@ function shuffle(array,array2) {
 function takeBreak(e) {
   document.getElementById("cross").style.display = "none";
 
-
-  // const fileName = 'Eto.csv';
-  //
-  // const uploadFile = () => {
-  //   const params = {
-  //       Bucket: 'gridstudy', // pass your bucket name
-  //       Key: 'test2.csv', // file will be saved as testBucket/contacts.csv
-  //       Body: arrayToCSV(comparisons_test)
-  //   };
-  //   s3.upload(params, function(s3Err, data) {
-  //       if (s3Err) throw s3Err
-  //       console.log(`File uploaded successfully at ${data.Location}`)
-  //   });
-  // };
-  //
-  // uploadFile();
-
-
-
-  // var csv = saveTable(comparison_table, 'test.csv');
-
   var content = arrayToCSV(comparison_table.getArray());
   //var encodedUri = encodeURI(content);
 
