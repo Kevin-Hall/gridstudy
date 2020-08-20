@@ -116,7 +116,7 @@ function uploadToS3(fileContent) {
   });
 }
 
-uploadToS3("hello");
+
 
 // const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
 // const records = require('../data');
@@ -203,6 +203,7 @@ var server = app.listen(8081, function () {
 
     var host = server.address().address
     var port = server.address().port
+    uploadToS3("hello");
 
     console.log('Express app listening at http://%s:%s', host, port)
 })
