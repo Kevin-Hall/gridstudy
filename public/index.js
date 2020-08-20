@@ -22,34 +22,8 @@ var interval;
 
 var last_choice_method;
 
-
-var array = [0,9,8]
-
 // the final csv table
 var comparison_table;
-
-var comparisons_test = [["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"],["grid1","grid2","grid1"]]
-
-// var s3 = new AWS.S3();
-// var params = {
-//     Bucket: BUCKET_NAME,
-//     Key: 'output.csv',
-//     Body: csvFileContent,
-//     ContentType: 'application/octet-stream',
-//     ContentDisposition: contentDisposition(filePath, {
-//         type: 'inline'
-//     }),
-//     CacheControl: 'public, max-age=86400'
-// }
-// s3.putObject(params, function(err, data) {
-//     if (err) {
-//         console.log("Error at uploadCSVFileOnS3Bucket function", err);
-//         next(err);
-//     } else {
-//         console.log("File uploaded Successfully");
-//         next(null, filePath);
-//     }
-// });
 
 function setImages(size){
   var lImg = document.getElementById("l_img");
@@ -458,7 +432,7 @@ function takeBreak(e) {
     }
   }, 1000);
 
-  document.getElementById("exp_header_question").innerHTML = "Now, you can take a break"
+  document.getElementById("exp_header_question").innerHTML = "Now you can take a break if you need<br> Or you can skip the break."
 }
 
 
