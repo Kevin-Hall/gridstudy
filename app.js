@@ -5,8 +5,7 @@ const AWS = require("aws-sdk");
 //const router = express.Router();
 var app = express()
 
-const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
-
+// const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
 
 // bucket setup
 const ID = 'AKIARN7TL5YNDCDNOQVT';
