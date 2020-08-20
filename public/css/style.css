@@ -141,6 +141,8 @@
 	bottom: : 50%;
 	width: 40px;
 	height: auto;
+	display: block;
+  margin: auto;
 }
 
 #timer {
