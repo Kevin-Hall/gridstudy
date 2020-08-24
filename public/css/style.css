@@ -266,13 +266,6 @@ p {
 }
 
 #end_of_intruction_text {
-	height: 60px;
-	left: 50%;
-	margin-top: -30px;
-	margin-left: -200px;
-	position: absolute;
-	top: 35%;
-	width: 400px;
 	color: black;
 }
 
