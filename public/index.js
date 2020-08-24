@@ -43,7 +43,7 @@ function setImages(size){
   if (trialCount == 258 || trialCount == 516) {
     takeBreak();
     trialCount++;
-  } else if (trialCount == 774){
+  } else if (trialCount == 773){
     // end of experiment
 
     //display end info and link to qualtrics survey
