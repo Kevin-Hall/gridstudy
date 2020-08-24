@@ -9,7 +9,7 @@ var r_images = [];
 var shuffled_l_images = [];
 var shuffled_r_images = [];
 
-var trialCount = 770;
+var trialCount = 1;
 
 // csv setup
 let table;
