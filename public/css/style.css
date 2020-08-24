@@ -135,7 +135,7 @@
 	background-color: #808080;
 	color: white;
 	font-size: 30px;
-	font-family: Impact, Charcoal, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 	width: 60%;
 }
 
@@ -148,7 +148,7 @@
 	background-color: #808080;
 	color: white;
 	font-size: 30px;
-	font-family: "Lucida Console", Courier, monospace;
+	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 	width: 60%;
 }
 
