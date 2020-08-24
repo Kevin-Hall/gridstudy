@@ -29,6 +29,11 @@ var comparison_table;
 var rt_start = new Date();
 var rt_end = new Date();
 
+
+// used to keep track of shuffled locations
+var indicies = [];
+
+
 //
 function setImages(size){
   var lImg = document.getElementById("l_img");
@@ -131,7 +136,9 @@ function setup() {
   }
 
   // shuffle the array to show comparisons in different order each time
-  shuffle(l_images,r_images);
+  //shuffle(l_images,r_images);
+  shuffleLeft(l_images);
+  shuffleRight(r_images);
   //shuffled_l_images = shuffled_imgs[0];
   //shuffled_r_images = shuffled_imgs[1];
   // console.log("l_images len :" + l_images.length);
@@ -344,13 +351,10 @@ function rightImage(choice_method){
 }
 
 // shuffle the arrays
-function shuffle(array,right) {
+function shuffleLeft(array) {
   var currentIndex = array.length;
   var temporaryValue;
   var randomIndex;
-  var indicies = [];
-
-
 
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
@@ -367,8 +371,13 @@ function shuffle(array,right) {
 
     indicies[currentIndex] = randomIndex;
   }
+}
 
-  var currentIndex = right.length;
+// shuffle the arrays
+function shuffleRight(array) {
+  var currentIndex = array.length;
+  var temporaryValue;
+  var randomIndex;
 
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
@@ -377,11 +386,11 @@ function shuffle(array,right) {
     randomIndex = indicies[currentIndex];
     currentIndex -= 1;
 
-    temporaryValue = right[currentIndex];
+    temporaryValue = array[currentIndex];
 
     // And swap it with the current element.
-    right[currentIndex] = right[randomIndex];
-    right[randomIndex] = temporaryValue;
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
 
   }
 
