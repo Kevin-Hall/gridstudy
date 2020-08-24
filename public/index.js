@@ -9,7 +9,7 @@ var r_images = [];
 var shuffled_l_images = [];
 var shuffled_r_images = [];
 
-var trialCount = 770;
+var trialCount = 0;
 
 // csv setup
 let table;
@@ -110,7 +110,7 @@ function setImages(size){
     //generate file
     var csvContent = comparison_table.getArray().join('\n');
     var header = 'index,left,right,choice,choice_method,response_time\n';
-    var csv = header + csvContent + "\n" + navigator + " " + screen;
+    var csv = header + csvContent + "\ninfo," + navigator.appCodeName + "," + navigator.oscpu + "," + "screen width : " + screen.width + ", availscreen width : " + screen.availWidth;
     var blob = new Blob([csv], {type: 'text/csv'});
     var file = new File([blob], "newcsv", {type: "text/csv"});
 
