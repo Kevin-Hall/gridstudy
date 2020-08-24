@@ -33,56 +33,6 @@ var rt_end = new Date();
 // used to keep track of shuffled locations
 var indicies = [];
 
-var info={
-
-    timeOpened:new Date(),
-    timezone:(new Date()).getTimezoneOffset()/60,
-
-    pageon(){return window.location.pathname},
-    referrer(){return document.referrer},
-    previousSites(){return history.length},
-
-    browserName(){return navigator.appName},
-    browserEngine(){return navigator.product},
-    browserVersion1a(){return navigator.appVersion},
-    browserVersion1b(){return navigator.userAgent},
-    browserLanguage(){return navigator.language},
-    browserOnline(){return navigator.onLine},
-    browserPlatform(){return navigator.platform},
-    javaEnabled(){return navigator.javaEnabled()},
-    dataCookiesEnabled(){return navigator.cookieEnabled},
-    dataCookies1(){return document.cookie},
-    dataCookies2(){return decodeURIComponent(document.cookie.split(";"))},
-    dataStorage(){return localStorage},
-
-    sizeScreenW(){return screen.width},
-    sizeScreenH(){return screen.height},
-    sizeDocW(){return document.width},
-    sizeDocH(){return document.height},
-    sizeInW(){return innerWidth},
-    sizeInH(){return innerHeight},
-    sizeAvailW(){return screen.availWidth},
-    sizeAvailH(){return screen.availHeight},
-    scrColorDepth(){return screen.colorDepth},
-    scrPixelDepth(){return screen.pixelDepth},
-
-
-    latitude(){return position.coords.latitude},
-    longitude(){return position.coords.longitude},
-    accuracy(){return position.coords.accuracy},
-    altitude(){return position.coords.altitude},
-    altitudeAccuracy(){return position.coords.altitudeAccuracy},
-    heading(){return position.coords.heading},
-    speed(){return position.coords.speed},
-    timestamp(){return position.timestamp},
-
-
-    };
-
-  console.log(info);
-  console.log(navigator);
-  console.log(screen);
-
 
 //
 function setImages(size){
@@ -244,18 +194,22 @@ function start(){
   startButton.style.display = "none";
 
   // show the next svg
-  setImages();
-  buttons_busy = true;
-  document.getElementById("experiment_btn_left").disabled = true;
-  document.getElementById("experiment_btn_right").disabled = true;
-  lButton.style.background = '#C4C4C4';
-  rButton.style.background = '#C4C4C4';
+  setTimeout(() => {
+    document.getElementById("cross").style.display = "inline-block";
+  }, 500);
 
-  // show static after 1 second
+  setTimeout(() => {
+    // show the next svg
+    setImages();
+  }, 1000);
+
+  // set left and right img for 0.5 seconds
+  // hide cross
   setTimeout(() => {
     lImg.src = "static.jpg";
     rImg.src = "static.jpg";
-  }, 1000);
+    document.getElementById("cross").style.display = "none";
+  }, 1500);
 
   // remove static image
   setTimeout(() => {
@@ -267,7 +221,8 @@ function start(){
       document.getElementById("experiment_btn_right").disabled = false;
       lButton.style.background = '#808080';
       rButton.style.background = '#808080';
-  }, 2000);
+
+  }, 2500);
 
 
   console.log(l_images);
@@ -307,7 +262,7 @@ function leftImage(choice_method){
 
     setTimeout(() => {
       document.getElementById("cross").style.display = "inline-block";
-    }, 0);
+    }, 500);
 
     setTimeout(() => {
       // show the next svg
@@ -320,7 +275,7 @@ function leftImage(choice_method){
       lImg.src = "static.jpg";
       rImg.src = "static.jpg";
       document.getElementById("cross").style.display = "none";
-    }, 2000);
+    }, 1500);
 
     // remove static image
     setTimeout(() => {
@@ -333,7 +288,7 @@ function leftImage(choice_method){
         lButton.style.background = '#808080';
         rButton.style.background = '#808080';
 
-    }, 3000);
+    }, 2500);
 
 
 }
