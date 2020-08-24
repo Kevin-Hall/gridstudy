@@ -347,7 +347,6 @@ function rightImage(choice_method){
 function shuffle(array,right) {
   var currentIndex = array.length;
   var temporaryValue;
-  var temporaryValue2;
   var randomIndex;
   var indicies = [];
 
@@ -361,17 +360,31 @@ function shuffle(array,right) {
     currentIndex -= 1;
 
     temporaryValue = array[currentIndex];
-    right_val = right[currentIndex];
 
     // And swap it with the current element.
     array[currentIndex] = array[randomIndex];
-    right[currentIndex] = right[randomIndex];
-
     array[randomIndex] = temporaryValue;
-    right[randomIndex] = right_val;
 
-    indicies.push(randomIndex);
+    indicies[currentIndex] = randomIndex;
   }
+
+  var currentIndex = right.length;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = indicies[currentIndex];
+    currentIndex -= 1;
+
+    temporaryValue = right[currentIndex];
+
+    // And swap it with the current element.
+    right[currentIndex] = right[randomIndex];
+    right[randomIndex] = temporaryValue;
+
+  }
+
   console.log(indicies);
 }
 
