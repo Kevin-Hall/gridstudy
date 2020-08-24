@@ -133,6 +133,7 @@ function setup() {
 
   // shuffle the array to show comparisons in different order each time
   var shuffled_imgs = shuffle(l_images,r_images);
+  console.log(shuffled_imgs);
   shuffled_l_images = shuffled_imgs[0];
   shuffled_r_images = shuffled_imgs[1];
 
