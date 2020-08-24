@@ -141,9 +141,6 @@
 
 /* the cursor in the middle to focus on*/
 #cross {
-	height: 40px;
-	left: 50%;
-	bottom: : 50%;
 	width: 40px;
 	height: auto;
 	display: block;
