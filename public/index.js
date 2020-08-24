@@ -131,7 +131,7 @@ function setup() {
   }
 
   // shuffle the array to show comparisons in different order each time
-  shuffle(r_images,l_images);
+  shuffle(l_images,r_images);
   //shuffled_l_images = shuffled_imgs[0];
   //shuffled_r_images = shuffled_imgs[1];
   // console.log("l_images len :" + l_images.length);
@@ -344,12 +344,13 @@ function rightImage(choice_method){
 }
 
 // shuffle the arrays
-function shuffle(array,array2) {
-  var currentIndex = array2.length;
+function shuffle(array,right) {
+  var currentIndex = array.length;
   var temporaryValue;
   var temporaryValue2;
   var randomIndex;
-  var randomIndicies = [];
+  var indicies = [];
+
 
 
   // While there remain elements to shuffle...
@@ -360,18 +361,18 @@ function shuffle(array,array2) {
     currentIndex -= 1;
 
     temporaryValue = array[currentIndex];
-    temporaryValue2 = array2[currentIndex];
+    right_val = right[currentIndex];
 
     // And swap it with the current element.
     array[currentIndex] = array[randomIndex];
-    array2[currentIndex] = array2[randomIndex];
+    right[currentIndex] = right[randomIndex];
 
     array[randomIndex] = temporaryValue;
-    array2[randomIndex] = temporaryValue2;
+    right[randomIndex] = right_val;
 
+    indicies.push(randomIndex);
   }
-
-  //return [array,array2];
+  console.log(indicies);
 }
 
 function takeBreak(e) {
