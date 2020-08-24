@@ -29,17 +29,19 @@ var comparison_table;
 var rt_start = new Date();
 var rt_end = new Date();
 
+//
 function setImages(size){
   var lImg = document.getElementById("l_img");
   var rImg = document.getElementById("r_img");
 
   //if (trialCount == 129 || trialCount == 258) {
-  if (trialCount == 5 || trialCount == 258) {
+  if (trialCount == 258 || trialCount == 516) {
     takeBreak();
     trialCount++;
-  } else if (trialCount == 387){
-
+  } else if (trialCount == 775){
     // end of experiment
+
+    //display end info and link to qualtrics survey
     document.getElementById("end_of_intruction_text").style.display = "block";
     document.getElementById("end_of_intruction_text").hidden = false;
     document.getElementById("survey_link").style.display = "block";
@@ -48,41 +50,53 @@ function setImages(size){
     document.getElementById("right").style.display = "none";
     document.getElementById("cross").style.display = "none";
 
+    //generate file
+    var csvContent = comparison_table.getArray().join('\n');
+    var header = 'index,left,right,choice,choice_method,response_time\n';
+    var csv = header + csvContent;
+    var blob = new Blob([csv], {type: 'text/csv'});
+    var file = new File([blob], "newcsv", {type: "text/csv"});
 
-    var csv = saveTable(comparison_table, 'test.csv');
+    var formData=new FormData();
+    formData.append("uploadCsv",file);
+
+    // upload file
+    getSignedRequest(file);
+
   } else {
     lImg.src = l_images[trialCount].src;
     rImg.src = r_images[trialCount].src;
     trialCount++;
 
+    // add the displayed svgs to the array tracking whats shown
     comparisons.push(GetFilename(l_images[trialCount].src))
     comparisons.push(GetFilename(r_images[trialCount].src))
-    console.log("comparing " + l_images[trialCount].src + " to " + r_images[trialCount].src);
+    //console.log("comparing " + l_images[trialCount].src + " to " + r_images[trialCount].src);
   }
   //console.log(comparison_table);
 }
 
+// loads the comparison info
 function preload() {
   table = loadTable('Eto.csv', 'csv', 'header');
 }
 
+// reads the comparison info and shuffle the arrays
 function setup() {
-  //table = loadTable('Eto.csv', 'csv', 'header');
 
   //count the columns
-  print(table.getRowCount() + ' total rows in table');
-  print(table.getColumnCount() + ' total columns in table');
+  //print(table.getRowCount() + ' total rows in table');
+  //print(table.getColumnCount() + ' total columns in table');
 
   //cycle through the table
   for (let r = 0; r < table.getRowCount(); r++)
     for (let c = 0; c < table.getColumnCount()-1; c++) {
-      print(table.getString(r, c));
+      //print(table.getString(r, c));
       words_raw[wordscount] = table.getString(r, c);
       wordscount++;
     }
 
   //console.log(words_raw); // prints the whole file contents
-
   var words = words_raw;
 
   for(var i = 0;i < words.length/8;i++){
@@ -121,13 +135,13 @@ function setup() {
   shuffled_r_images = shuffled_imgs[1];
 
   console.log(shuffled_l_images.length);
+  print(shuffled_l_images.length);
   //console.log(shuffled_l_images);
 }
 
-
-
+// called when begin is pressed
+//
 function start(){
-  //arrayToCSV(comparisons_test);
   preload();
   setup();
 
@@ -177,7 +191,7 @@ function start(){
   lButton.style.background = '#C4C4C4';
   rButton.style.background = '#C4C4C4';
 
-
+  // show static after 1 second
   setTimeout(() => {
     lImg.src = "static.jpg";
     rImg.src = "static.jpg";
@@ -350,89 +364,11 @@ function shuffle(array,array2) {
 
 function takeBreak(e) {
   document.getElementById("cross").style.display = "none";
-
-  var content = arrayToCSV(comparison_table.getArray());
-  //var encodedUri = encodeURI(content);
-
-  var csvContent = comparison_table.getArray().join('\n');
-  console.log(content);
-
-  var header = 'index,left,right,choice,choice_method,response_time\n';
-  var csv = header + csvContent;
-
-  var blob = new Blob([csv], {type: 'text/csv'});
-  //var url = URL.createObjectURL(blob);
-
-  //define new form
-  // var formData = new FormData();
-  // formData.append('csv', blob);
-
-  //var file = new File([blob], "newcsv");
-  var file = new File([blob], "newcsv", {type: "text/csv"});
-
-  var formData=new FormData();
-  formData.append("uploadCsv",file);
-
-  console.log(file);
-
-  getSignedRequest(file);
-
-  //here you can set the request header to set the content type, this can be avoided.
-  //The browser sets the setRequestHeader and other headers by default based on the formData that is being passed in the request.
-  // request.open('POST','/handleFile', true);
-  // request.setRequestHeader("Content-type", "multipart/form-data"); //----(*)
-  // request.onreadystatechange = function (){
-  //   if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-  //   console.log("yey");
-  //   }
-  // }
-  //
-  // request.send(formData);
-
-
-
-  //
-  // setTimeout(() => {
-  //   //const file = formData.files[0];
-  // },0);
-
-  //
-  // var csv = saveTable(comparison_table, 'new.csv');
-  //
-  // var saveData = $.ajax({
-  //     type: 'GET',
-  //     url: "api/upload",
-  //     data: csv,
-  //     dataType: "json",
-  //     success: function(resultData) { alert("Save Complete") }
-  // });
-  // saveData.error(function() { alert("Something went wrong"); });
-
-
-
-  // $.post("/api/upload", function(comparisons_test) {
-  //   console.log( "uploadcsv function");
-  // });
-
-
-  // $.ajax({
-  //   url: 'superman',
-  //   type: 'POST',
-  //   data: jQuery.param({ field1: "hello", field2 : "hello2"}) ,
-  //   contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-  //   success: function (response) {
-  //       alert(response.status);
-  //   },
-  //   error: function () {
-  //       alert("error");
-  //   }
-  // });
-
   document.getElementById("timer").style.display = "block";
   document.getElementById("left").style.display = "none";
   document.getElementById("right").style.display = "none";
 
-  var rn = new Date();
+  var rn = new Date(); // get the time right now
   var countDownDate = new Date(rn.getTime() + 5*60000); // 5 minute countdown
 
   // Update the count down every 1 second
@@ -459,7 +395,7 @@ function takeBreak(e) {
     }
   }, 1000);
 
-  document.getElementById("exp_header_question").innerHTML = "Now you can take a break if you need<br> Or you can skip the break."
+  document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like."
 }
 
 
@@ -511,9 +447,10 @@ function finishBreak(e) {
   document.getElementById("exp_header_question").innerHTML = "<br>Which has a higher <b>percentage</b> black?<br><br><br>"
 }
 
-function arrayToCSV (data) {
+// Generates the body for the CSV file using the array
+function arrayToCSV (array) {
   var lineArray = [];
-  data.forEach(function (infoArray, index) {
+  array.forEach(function (infoArray, index) {
     var line = infoArray.join(",");
     //lineArray.push(index == 0 ? "data:text/csv;charset=utf-8," + line : line);
     lineArray.push(index == 0 ? "" + line : line);
@@ -522,6 +459,7 @@ function arrayToCSV (data) {
   return csvFile;
 }
 
+// Get the signed request -> upload -> send the request
 function getSignedRequest(file){
   const xhr = new XMLHttpRequest();
   //xhr.setRequestHeader('Content-Type', "text/csv")
@@ -540,6 +478,7 @@ function getSignedRequest(file){
   xhr.send();
 }
 
+// Uploads file to s3 using PUT
 function uploadFile(file, signedRequest, url){
   const xhr = new XMLHttpRequest();
   xhr.open('PUT', signedRequest);
@@ -547,8 +486,7 @@ function uploadFile(file, signedRequest, url){
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4){
       if(xhr.status === 200){
-        // document.getElementById('preview').src = url;
-        // document.getElementById('avatar-url').value = url;
+        //console.log('upload to s3 success');
       }
       else{
         alert('Could not upload file.');
@@ -559,12 +497,11 @@ function uploadFile(file, signedRequest, url){
 }
 
 
+// returns the ending of a hyperlink https:gridstudy.com/GETS_THIS
 function GetFilename(url){
-   if (url)
-   {
+   if (url){
       var m = url.toString().match(/.*\/(.+?)\./);
-      if (m && m.length > 1)
-      {
+      if (m && m.length > 1){
          return m[1];
       }
    }
