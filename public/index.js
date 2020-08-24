@@ -145,7 +145,7 @@ function setup() {
   // console.log("l_images len :" + l_images.length);
   // console.log("shuffled left :" + shuffled_l_images);
   // console.log("shuffled left :" + shuffled_r_images);
-  
+
   //console.log(shuffled_l_images);
 }
 
@@ -350,7 +350,11 @@ function rightImage(choice_method){
 
 // shuffle the arrays
 function shuffle(array,array2) {
-  var currentIndex = array.length, temporaryValue, temporaryValue2, randomIndex;
+  var currentIndex = array.length;
+  var temporaryValue;
+  var temporaryValue2;
+  var randomIndex;
+
 
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
@@ -368,8 +372,6 @@ function shuffle(array,array2) {
     array2[currentIndex] = array2[randomIndex];
     array2[randomIndex] = temporaryValue2;
   }
-
-  console.log("shuffle arr len :" + array.length);
 
   return [array,array2];
 }
