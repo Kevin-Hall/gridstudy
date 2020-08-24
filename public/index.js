@@ -136,6 +136,8 @@ function setup() {
   shuffled_l_images = shuffled_imgs[0];
   shuffled_r_images = shuffled_imgs[1];
 
+  console.log(l_images.length);
+  console.log(shuffled_imgs.length);
   console.log(shuffled_l_images.length);
   //console.log(shuffled_l_images);
 }
