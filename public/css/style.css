@@ -87,6 +87,19 @@
 	background-color: #A9A9A9;
 }
 
+#survey_link {
+	border-radius: 5px;
+	color: white;
+	padding: 20px 50px;
+	text-align: center;
+	display: inline-block;
+	background-color: #808080;
+	color: white;
+	font-size: 35px;
+	font-family: Verdana, Geneva, sans-serif;
+	margin: 10px;
+}
+
 #header_text_instruction {
 	color: white;
 	padding: 3px;

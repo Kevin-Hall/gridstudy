@@ -9,7 +9,7 @@ var r_images = [];
 var shuffled_l_images = [];
 var shuffled_r_images = [];
 
-var trialCount = 0;
+var trialCount = 770;
 
 // csv setup
 let table;
@@ -47,6 +47,8 @@ function setImages(size){
     // end of experiment
 
     //display end info and link to qualtrics survey
+    document.getElementById("exp_header_question").style.display = "none";
+    document.getElementById("exp_header_question").hidden = true;
     document.getElementById("end_of_intruction_text").style.display = "block";
     document.getElementById("end_of_intruction_text").hidden = false;
     document.getElementById("survey_link").style.display = "block";
