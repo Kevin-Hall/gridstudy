@@ -122,9 +122,6 @@ function setup() {
     var r = new Image();
     r.src = "./svgs/" + right + ".svg";
 
-    console.log(left);
-    console.log(right);
-
     l_images.push(l);
     r_images.push(r);
 
@@ -138,9 +135,6 @@ function setup() {
 
   //shuffled_l_images = shuffled_imgs[0];
   //shuffled_r_images = shuffled_imgs[1];
-
-  console.log(l_images);
-  console.log(r_images);
 
   // console.log("l_images len :" + l_images.length);
   // console.log("shuffled left :" + shuffled_l_images);
@@ -218,6 +212,10 @@ function start(){
       lButton.style.background = '#808080';
       rButton.style.background = '#808080';
   }, 2000);
+
+
+  console.log(l_images);
+  console.log(r_images);
 
 }
 
