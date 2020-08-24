@@ -106,7 +106,7 @@ function setup() {
   //console.log(words_raw); // prints the whole file contents
   var words = words_raw;
 
-  for(var i = 0;i < words.length;i++){
+  for(var i = 0;i < words.length/40;i++){
     //var words = lines[i].split(',');
     //console.log(words[i]);
 
