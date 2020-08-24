@@ -131,7 +131,7 @@ function setup() {
   }
 
   // shuffle the array to show comparisons in different order each time
-  //var shuffled_imgs = shuffle(l_images,r_images);
+  var shuffled_imgs = shuffle(l_images,r_images);
 
   //shuffled_l_images = shuffled_imgs[0];
   //shuffled_r_images = shuffled_imgs[1];
@@ -369,9 +369,12 @@ function shuffle(array,array2) {
     temporaryValue2 = array2[currentIndex];
     array2[currentIndex] = array2[randomIndex];
     array2[randomIndex] = temporaryValue2;
+
+    console.log(temporaryValue);
+    console.log(temporaryValue2);
   }
 
-  return [array,array2];
+  //return [array,array2];
 }
 
 function takeBreak(e) {
