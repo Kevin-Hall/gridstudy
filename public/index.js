@@ -150,8 +150,8 @@ function setup() {
 // called when begin is pressed
 //
 function start(){
-  preload();
-  setup();
+  // preload();
+  // setup();
 
   comparison_table = new p5.Table();
   comparison_table.addColumn('index');
