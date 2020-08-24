@@ -106,7 +106,7 @@ function setup() {
   //console.log(words_raw); // prints the whole file contents
   var words = words_raw;
 
-  for(var i = 0;i < words.length/40;i++){
+  for(var i = 0;i < words.length/64;i++){
     //var words = lines[i].split(',');
     //console.log(words[i]);
 
@@ -378,12 +378,14 @@ function shuffleRight(array) {
   var currentIndex = array.length;
   var temporaryValue;
   var randomIndex;
+  var i = 0;
 
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
 
     // Pick a remaining element...
-    randomIndex = indicies[currentIndex];
+    randomIndex = indicies[i];
+    i += 1;
     currentIndex -= 1;
 
     temporaryValue = array[currentIndex];
