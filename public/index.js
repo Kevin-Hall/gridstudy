@@ -9,7 +9,7 @@ var r_images = [];
 var shuffled_l_images = [];
 var shuffled_r_images = [];
 
-var trialCount = 770;
+var trialCount = 0;
 
 // csv setup
 let table;
@@ -93,7 +93,7 @@ function setImages(size){
   if (trialCount == 258 || trialCount == 516) {
     takeBreak();
     trialCount++;
-  } else if (trialCount == 773){
+  } else if (trialCount == 774){
     // end of experiment
 
     //display end info and link to qualtrics survey
