@@ -79,7 +79,7 @@ var info={
 
     };
 
-  console.log(info);
+  console.log(info.sizeInH());
 
 
 //
