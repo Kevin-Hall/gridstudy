@@ -95,7 +95,6 @@ function setup() {
     for (let c = 0; c < table.getColumnCount()-1; c++) {
       //print(table.getString(r, c));
       words_raw[wordscount] = table.getString(r, c);
-      console.log(words_raw[wordscount]);
       wordscount++;
     }
 
@@ -123,6 +122,8 @@ function setup() {
     var r = new Image();
     r.src = "./svgs/" + right + ".svg";
 
+    console.log(left);
+    console.log(right);
 
     l_images.push(l);
     r_images.push(r);
@@ -132,19 +133,19 @@ function setup() {
     //console.log();
   }
 
-  console.log(l_images);
-  console.log(r_images);
   // shuffle the array to show comparisons in different order each time
   var shuffled_imgs = shuffle(l_images,r_images);
 
-  shuffled_l_images = shuffled_imgs[0];
-  shuffled_r_images = shuffled_imgs[1];
+  //shuffled_l_images = shuffled_imgs[0];
+  //shuffled_r_images = shuffled_imgs[1];
 
-  console.log("l_images len :" + l_images.length);
-  console.log(shuffled_imgs);
-  console.log("shuffled imgs leng :" + shuffled_imgs.length);
-  console.log("shuffled left :" + shuffled_l_images);
-  console.log("shuffled left :" + shuffled_r_images);
+  console.log(l_images);
+  console.log(r_images);
+
+  // console.log("l_images len :" + l_images.length);
+  // console.log("shuffled left :" + shuffled_l_images);
+  // console.log("shuffled left :" + shuffled_r_images);
+  
   //console.log(shuffled_l_images);
 }
 
