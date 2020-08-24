@@ -74,6 +74,8 @@ function setImages(size){
     //console.log("comparing " + l_images[trialCount].src + " to " + r_images[trialCount].src);
   }
   //console.log(comparison_table);
+  console.log(trialCount + "/" + shuffled_l_images.length);
+  console.log();
 }
 
 // loads the comparison info
@@ -135,7 +137,6 @@ function setup() {
   shuffled_r_images = shuffled_imgs[1];
 
   console.log(shuffled_l_images.length);
-  print(shuffled_l_images.length);
   //console.log(shuffled_l_images);
 }
 
