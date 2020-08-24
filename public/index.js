@@ -319,12 +319,12 @@ function rightImage(choice_method){
 
   setTimeout(() => {
     document.getElementById("cross").style.display = "inline-block";
-  }, 250);
+  }, 500);
 
   setTimeout(() => {
     // show the next svg
     setImages();
-  }, 750);
+  }, 1000);
 
   // set left and right img for 0.5 seconds
   // hide cross
@@ -332,7 +332,7 @@ function rightImage(choice_method){
     lImg.src = "static.jpg";
     rImg.src = "static.jpg";
     document.getElementById("cross").style.display = "none";
-  }, 1250);
+  }, 1500);
 
   // remove static image
   setTimeout(() => {
@@ -346,7 +346,7 @@ function rightImage(choice_method){
     lButton.style.background = '#808080';
     rButton.style.background = '#808080';
 
-  }, 1750);
+  }, 2500);
 
 }
 
