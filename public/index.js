@@ -79,7 +79,7 @@ function setImages(size){
     //console.log("comparing " + l_images[trialCount].src + " to " + r_images[trialCount].src);
   }
   //console.log(comparison_table);
-  console.log(trialCount + "/" + shuffled_l_images.length);
+  console.log(trialCount + "/" + l_images.length);
   console.log();
 }
 
