@@ -131,13 +131,17 @@ function setup() {
     //console.log();
   }
 
+  console.log(l_images);
+  console.log(r_images);
   // shuffle the array to show comparisons in different order each time
   var shuffled_imgs = shuffle(l_images,r_images);
-  console.log(shuffled_imgs);
+
   shuffled_l_images = shuffled_imgs[0];
   shuffled_r_images = shuffled_imgs[1];
 
   console.log("l_images len :" + l_images.length);
+  console.log(l_images);
+  console.log(r_images);
   console.log("shuffled imgs leng :" + shuffled_imgs.length);
   console.log("shuffled left :" + shuffled_l_images.length);
   //console.log(shuffled_l_images);
