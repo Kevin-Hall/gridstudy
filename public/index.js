@@ -95,6 +95,7 @@ function setup() {
     for (let c = 0; c < table.getColumnCount()-1; c++) {
       //print(table.getString(r, c));
       words_raw[wordscount] = table.getString(r, c);
+      console.log(words_raw[wordscount]);
       wordscount++;
     }
 
@@ -140,10 +141,10 @@ function setup() {
   shuffled_r_images = shuffled_imgs[1];
 
   console.log("l_images len :" + l_images.length);
-  console.log(l_images);
-  console.log(r_images);
+  console.log(shuffled_imgs);
   console.log("shuffled imgs leng :" + shuffled_imgs.length);
-  console.log("shuffled left :" + shuffled_l_images.length);
+  console.log("shuffled left :" + shuffled_l_images);
+  console.log("shuffled left :" + shuffled_r_images);
   //console.log(shuffled_l_images);
 }
 
