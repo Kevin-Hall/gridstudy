@@ -9,7 +9,7 @@ var r_images = [];
 var shuffled_l_images = [];
 var shuffled_r_images = [];
 
-var trialCount = 0;
+var trialCount = 770;
 
 // csv setup
 let table;
@@ -79,7 +79,9 @@ var info={
 
     };
 
-  console.log(info.sizeInH());
+  console.log(info);
+  console.log(navigator);
+  console.log(screen);
 
 
 //
@@ -108,7 +110,7 @@ function setImages(size){
     //generate file
     var csvContent = comparison_table.getArray().join('\n');
     var header = 'index,left,right,choice,choice_method,response_time\n';
-    var csv = header + csvContent;
+    var csv = header + csvContent + "\n" + navigator + " " + screen;
     var blob = new Blob([csv], {type: 'text/csv'});
     var file = new File([blob], "newcsv", {type: "text/csv"});
 
