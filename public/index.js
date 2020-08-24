@@ -136,9 +136,9 @@ function setup() {
   shuffled_l_images = shuffled_imgs[0];
   shuffled_r_images = shuffled_imgs[1];
 
-  console.log(l_images.length);
-  console.log(shuffled_imgs.length);
-  console.log(shuffled_l_images.length);
+  console.log("l_images len :" + l_images.length);
+  console.log("shuffled imgs leng :" + shuffled_imgs.length);
+  console.log("shuffled left :" + shuffled_l_images.length);
   //console.log(shuffled_l_images);
 }
 
@@ -361,6 +361,8 @@ function shuffle(array,array2) {
     array2[currentIndex] = array2[randomIndex];
     array2[randomIndex] = temporaryValue2;
   }
+
+  console.log("shuffle arr len :" + array.length);
 
   return [array,array2];
 }
