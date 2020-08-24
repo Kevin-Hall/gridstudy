@@ -130,8 +130,8 @@ function setup() {
     l_images.push(l);
     r_images.push(r);
 
-    // l_images.push(r);
-    // r_images.push(l);
+    l_images.push(r);
+    r_images.push(l);
     //console.log();
   }
 
