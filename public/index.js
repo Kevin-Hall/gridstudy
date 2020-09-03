@@ -288,8 +288,7 @@ function leftImage(choice_method){
         lButton.style.background = '#808080';
         rButton.style.background = '#808080';
 
-    }, 2500);
-
+    }, 2000);
 
 }
 

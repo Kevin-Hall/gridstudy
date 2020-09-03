@@ -124,29 +124,29 @@ function go_to_experiment(e){
 
 function wrong_answer(index){
   if (index == 0){
-    alert("Incorrect. \n B has half the amount of black filled in as A.");
+    alert("Incorrect. \n\nB has half the amount of black filled in as A.");
   } else if (index == 1){
-    alert("Incorrect. \n B has more black dots however A has more percentage of black");
+    alert("Incorrect. \n\nB has more black dots however A has more percentage of black");
   } else if (index == 2){
-    alert("Incorrect. \n B has more black dots however A has more percentage of black");
+    alert("Incorrect. \n\nB has more black dots however A has more percentage of black");
   } else if (index == 3){
-    alert("Incorrect. \n B has half the amount of black filled in as A.");
+    alert("Incorrect. \n\nA has half the amount of black filled in as B.");
   }
 }
 
 function right_answer(index){
 
   if (index == 0){
-    alert("Correct. \n\n A has more black filled in than B");
+    alert("Correct. \n\nA has more black filled in than B");
     document.getElementById("Next").style.background='#808080';
   } else if (index == 1){
-    alert("Correct. \n\n A has a lower absolute number of black dots, but a higher percentage black dots. So in this case, A is the right choice.");
+    alert("Correct. \n\nA has a lower absolute number of black dots, but a higher percentage black dots. So in this case, A is the right choice.");
     document.getElementById("Next").style.background='#808080';
   } else if (index == 2){
-    alert("Correct. \n\n Another case showing that arrangement shouldn’t matter. In this case, it should be B since it almost has 50% black dots, whereas A has far fewer than 50%! ");
+    alert("Correct. \n\nA has double the percentage of B. Arrangement of the dots should not matter.");
     document.getElementById("Next").style.background='#808080';
   } else if (index == 3){
-    alert("Correct. \n\n Another case showing that arrangement shouldn’t matter. In this case, it should be B since it almost has 50% black dots, whereas A has far fewer than 50%! ");
+    alert("Correct. \n\nAnother case showing that arrangement shouldn’t matter. In this case, it should be B since it almost has 50% black dots, whereas A has far fewer than 50%! ");
     document.getElementById("Next").style.background='#808080';
   }
   tutorial_passed = true;
