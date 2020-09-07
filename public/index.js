@@ -40,9 +40,8 @@ function setImages(size){
   var lImg = document.getElementById("l_img");
   var rImg = document.getElementById("r_img");
 
-  //if (trialCount == 129 || trialCount == 258) {
-  //if (trialCount == 155 || trialCount == 310 || trialCount == 465 || trialCount == 620) {
-  if (trialCount == 3 || trialCount == 5 || trialCount == 465 || trialCount == 620) {
+  if (trialCount == 155 || trialCount == 310 || trialCount == 465 || trialCount == 620) {
+  //if (trialCount == 3 || trialCount == 5 || trialCount == 465 || trialCount == 620) {
     breakCount++;
     takeBreak();
     trialCount++;
