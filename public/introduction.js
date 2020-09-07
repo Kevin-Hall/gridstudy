@@ -192,7 +192,7 @@ function begin_fast_practice(){
   document.getElementById("cross").style.display = "inline-block";
 
 
-  for(var i = 0;i <= 5;i++){
+  for(var i = 1;i >= 5;i++){
 
     var left = "FastExample" + i + "_A";
     var right = "FastExample" + i + "_B"
@@ -226,7 +226,7 @@ function next_icon_grids(){
   var eoi_text = document.getElementById("end_of_intruction_text");
 
 
-  if (index > 3){
+  if (index > 4){
     ldiv.style.display = "none";
     rdiv.style.display = "none";
     eoi_text.style.display = "block";
