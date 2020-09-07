@@ -41,7 +41,8 @@ function setImages(size){
   var rImg = document.getElementById("r_img");
 
   //if (trialCount == 129 || trialCount == 258) {
-  if (trialCount == 3 || trialCount == 4 || trialCount == 465 || trialCount == 620) {
+  //if (trialCount == 155 || trialCount == 310 || trialCount == 465 || trialCount == 620) {
+  if (trialCount == 3 || trialCount == 5 || trialCount == 465 || trialCount == 620) {
     breakCount++;
     takeBreak();
     trialCount++;
@@ -440,13 +441,13 @@ function takeBreak(e) {
   }, 1000);
 
   if (breakCount == 1){
-    document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like.\n\n1/5 of the trials complete."
+    document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like.<br><br>1/5 of the trials complete."
   } else if (breakCount == 2){
-    document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like.\n\n2/5 of the trials complete."
+    document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like.<br><br>2/5 of the trials complete."
   } else if (breakCount == 3){
-    document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like.\n\n3/5 of the trials complete."
+    document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like.<br><br>3/5 of the trials complete."
   } else if (breakCount == 4){
-    document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like.\n\n4/5 of the trials complete."
+    document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like.<br><br>4/5 of the trials complete."
   } else {
     document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like."
   }
