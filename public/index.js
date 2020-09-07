@@ -10,6 +10,7 @@ var shuffled_l_images = [];
 var shuffled_r_images = [];
 
 var trialCount = 0;
+var breakCount = 0;
 
 // csv setup
 let table;
@@ -40,7 +41,8 @@ function setImages(size){
   var rImg = document.getElementById("r_img");
 
   //if (trialCount == 129 || trialCount == 258) {
-  if (trialCount == 258 || trialCount == 516) {
+  if (trialCount == 3 || trialCount == 4 || trialCount == 465 || trialCount == 620) {
+    breakCount++;
     takeBreak();
     trialCount++;
   } else if (trialCount == 774){
@@ -222,7 +224,7 @@ function start(){
       lButton.style.background = '#808080';
       rButton.style.background = '#808080';
 
-  }, 2500);
+  }, 2000);
 
 
   console.log(l_images);
@@ -289,7 +291,6 @@ function leftImage(choice_method){
         rButton.style.background = '#808080';
 
     }, 2000);
-
 }
 
 function rightImage(choice_method){
@@ -352,7 +353,7 @@ function rightImage(choice_method){
     lButton.style.background = '#808080';
     rButton.style.background = '#808080';
 
-  }, 2500);
+  }, 2000);
 
 }
 
@@ -438,7 +439,17 @@ function takeBreak(e) {
     }
   }, 1000);
 
-  document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like."
+  if (breakCount == 1){
+    document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like.\n\n1/5 of the trials complete."
+  } else if (breakCount == 2){
+    document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like.\n\n2/5 of the trials complete."
+  } else if (breakCount == 3){
+    document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like.\n\n3/5 of the trials complete."
+  } else if (breakCount == 4){
+    document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like.\n\n4/5 of the trials complete."
+  } else {
+    document.getElementById("exp_header_question").innerHTML = "You can take a break, but feel free to skip it if you would like."
+  }
 }
 
 
@@ -461,6 +472,10 @@ function finishBreak(e) {
   rButton.style.display = "inline-block";
 
   setTimeout(() => {
+    document.getElementById("cross").style.display = "inline-block";
+  }, 500);
+
+  setTimeout(() => {
     // show the next svg
     setImages();
   }, 1000);
@@ -474,7 +489,8 @@ function finishBreak(e) {
   setTimeout(() => {
     lImg.src = "static.jpg";
     rImg.src = "static.jpg";
-  }, 2000);
+    document.getElementById("cross").style.display = "none";
+  }, 1500);
 
   // remove static image
   setTimeout(() => {
@@ -485,7 +501,7 @@ function finishBreak(e) {
       document.getElementById("experiment_btn_right").disabled = false;
       lButton.style.background = '#808080';
       rButton.style.background = '#808080';
-  }, 3000);
+  }, 2000);
 
   document.getElementById("exp_header_question").innerHTML = "<br>Which has a higher <b>percentage</b> black?<br><br><br>"
 }
