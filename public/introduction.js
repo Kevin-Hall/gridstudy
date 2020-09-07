@@ -226,7 +226,7 @@ function next_icon_grids(){
   var eoi_text = document.getElementById("end_of_intruction_text");
 
 
-  if (index > 4){
+  if (index >= 4){
     ldiv.style.display = "none";
     rdiv.style.display = "none";
     eoi_text.style.display = "block";
