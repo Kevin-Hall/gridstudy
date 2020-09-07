@@ -192,7 +192,7 @@ function begin_fast_practice(){
   document.getElementById("cross").style.display = "inline-block";
 
 
-  for(var i = 0;i >= 5;i++){
+  for(var i = 1;i <= 5;i++){
 
     var left = "FastExample" + i + "_A";
     var right = "FastExample" + i + "_B"
