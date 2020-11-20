@@ -40,12 +40,14 @@ function setImages(size){
   var lImg = document.getElementById("l_img");
   var rImg = document.getElementById("r_img");
 
-  if (trialCount == 155 || trialCount == 310 || trialCount == 465 || trialCount == 620) {
+  // if (trialCount == 155 || trialCount == 310 || trialCount == 465 || trialCount == 620) {
   //if (trialCount == 3 || trialCount == 5 || trialCount == 465 || trialCount == 620) {
+  if (trialCount == 200 || trialCount == 400) {
+
     breakCount++;
     takeBreak();
     trialCount++;
-  } else if (trialCount == 774){
+  } else if (trialCount == 594){
     // end of experiment
 
     //display end info and link to qualtrics survey
@@ -211,7 +213,7 @@ function start(){
     lImg.src = "static.jpg";
     rImg.src = "static.jpg";
     document.getElementById("cross").style.display = "none";
-  }, 1500);
+  }, 2250);
 
   // remove static image
   setTimeout(() => {
@@ -224,7 +226,7 @@ function start(){
       lButton.style.background = '#808080';
       rButton.style.background = '#808080';
 
-  }, 2000);
+  }, 2750);
 
 
   console.log(l_images);
@@ -277,7 +279,7 @@ function leftImage(choice_method){
       lImg.src = "static.jpg";
       rImg.src = "static.jpg";
       document.getElementById("cross").style.display = "none";
-    }, 1500);
+    }, 2250);
 
     // remove static image
     setTimeout(() => {
@@ -290,7 +292,7 @@ function leftImage(choice_method){
         lButton.style.background = '#808080';
         rButton.style.background = '#808080';
 
-    }, 2000);
+    }, 2750);
 }
 
 function rightImage(choice_method){
@@ -324,24 +326,26 @@ function rightImage(choice_method){
   rButton.disabled = true;
   buttons_busy = true;
 
+
+  // show cross after 0.5
   setTimeout(() => {
     document.getElementById("cross").style.display = "inline-block";
   }, 500);
 
+  // show images after 1s
   setTimeout(() => {
     // show the next svg
     setImages();
   }, 1000);
 
-  // set left and right img for 0.5 seconds
-  // hide cross
+  // show static after 1.5s
   setTimeout(() => {
     lImg.src = "static.jpg";
     rImg.src = "static.jpg";
     document.getElementById("cross").style.display = "none";
-  }, 1500);
+  }, 2250);
 
-  // remove static image
+  // hide static allow selection after 2s
   setTimeout(() => {
     rt_start = new Date();
     lImg.src = "blank.svg";
@@ -353,7 +357,7 @@ function rightImage(choice_method){
     lButton.style.background = '#808080';
     rButton.style.background = '#808080';
 
-  }, 2000);
+  }, 2750);
 
 }
 
@@ -490,7 +494,7 @@ function finishBreak(e) {
     lImg.src = "static.jpg";
     rImg.src = "static.jpg";
     document.getElementById("cross").style.display = "none";
-  }, 1500);
+  }, 2250);
 
   // remove static image
   setTimeout(() => {
@@ -501,7 +505,7 @@ function finishBreak(e) {
       document.getElementById("experiment_btn_right").disabled = false;
       lButton.style.background = '#808080';
       rButton.style.background = '#808080';
-  }, 2000);
+  }, 2750);
 
   document.getElementById("exp_header_question").innerHTML = "<br>Which has a higher <b>percentage</b> black?<br><br><br>"
 }
