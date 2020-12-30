@@ -11,7 +11,7 @@ var app = express()
 const BUCKET_NAME = 'gridstudies';
 const s3 = new AWS.S3({
     accessKeyId: config.ID,
-    secretAccessKey: config.SECCRET
+    secretAccessKey: config.SECRET
 });
 
 app.use(express.static('public'));
