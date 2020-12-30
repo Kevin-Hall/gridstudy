@@ -8,8 +8,8 @@ var app = express()
 // const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
 
 // bucket setup
-var id = 'AKIARN7TL5YNDCDNOQVT';
-var secret = '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';
+var id = config.ID;
+var secret = config.SECRET;
 const BUCKET_NAME = 'gridstudies';
 const s3 = new AWS.S3({
     accessKeyId: id,
